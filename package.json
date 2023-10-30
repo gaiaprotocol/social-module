@@ -1,0 +1,14 @@
+{
+    "name": "social-module",
+    "author": "Gaia Protocol",
+    "homepage": "https://gaiaprotocol.com",
+    "version": "0.0.1",
+    "type": "module",
+    "types": "./lib/index.d.ts",
+    "main": "./lib/index.js",
+    "dependencies": {
+        "common-app-module": "^0.0.1"
+    },
+    "devDependencies": {
+    }
+}
