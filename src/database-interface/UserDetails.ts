@@ -15,15 +15,6 @@ export default interface UserDetails {
   updated_at?: string;
 }
 
-export const DefaultUserDetails: UserDetails = {
-  user_id: "",
-  total_earned_trading_fees: "0",
-  follower_count: 0,
-  following_count: 0,
-  blocked: false,
-  created_at: "-infinity",
-};
-
 export const UserDetailsSelectQuery = `*, total_earned_trading_fees::text`;
 
 const isEqualMetadata = (a: UserDetailsMetadata, b: UserDetailsMetadata) => {

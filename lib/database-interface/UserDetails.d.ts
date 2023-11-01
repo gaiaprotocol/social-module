@@ -14,7 +14,6 @@ export default interface UserDetails {
     created_at: string;
     updated_at?: string;
 }
-export declare const DefaultUserDetails: UserDetails;
 export declare const UserDetailsSelectQuery = "*, total_earned_trading_fees::text";
 export declare const isEqualUserDetails: (a: UserDetails, b: UserDetails) => boolean;
 export {};
