@@ -1,6 +1,7 @@
-import { DomNode } from "common-app-module";
+import SocialComponent from "../SocialComponent.js";
 
-export default class PostDisplay extends DomNode {
+// Displays a single Post.
+export default class PostDisplay extends SocialComponent {
   constructor() {
     super(".post-display");
   }
