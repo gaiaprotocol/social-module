@@ -7,6 +7,7 @@ export enum PostTarget {
 }
 
 interface Author {
+  user_id: string;
   display_name?: string;
   profile_image?: string;
   x_username?: string;
@@ -33,7 +34,7 @@ export default interface Post {
 }
 
 export const PostSelectQuery =
-  "*, author(display_name, profile_image, x_username)";
+  "*, author(user_id, display_name, profile_image, x_username)";
 
 const isEqualRich = (a: Rich, b: Rich) =>
   a.files?.length === b.files?.length && (
@@ -57,7 +58,7 @@ export const isEqualPost = (a: Post | undefined, b: Post | undefined) =>
   a?.id == b?.id &&
   a?.guild_id == b?.guild_id &&
   a?.target == b?.target &&
-  isEqualAuthor(a?.author ?? {}, b?.author ?? {}) &&
+  isEqualAuthor(a?.author ?? { user_id: "" }, b?.author ?? { user_id: "" }) &&
   a?.message == b?.message &&
   isEqualRich(a?.rich ?? {}, b?.rich ?? {}) &&
   a?.post_ref == b?.post_ref &&

@@ -5,6 +5,7 @@ export declare enum PostTarget {
     KEY_HOLDERS = 1
 }
 interface Author {
+    user_id: string;
     display_name?: string;
     profile_image?: string;
     x_username?: string;
@@ -27,7 +28,7 @@ export default interface Post {
     created_at: string;
     updated_at?: string;
 }
-export declare const PostSelectQuery = "*, author(display_name, profile_image, x_username)";
+export declare const PostSelectQuery = "*, author(user_id, display_name, profile_image, x_username)";
 export declare const isEqualPost: (a: Post | undefined, b: Post | undefined) => boolean;
 export {};
 //# sourceMappingURL=Post.d.ts.map
