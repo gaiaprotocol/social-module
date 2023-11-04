@@ -7,8 +7,8 @@
     "types": "./lib/index.d.ts",
     "main": "./lib/index.js",
     "dependencies": {
-        "common-app-module": "^0.0.1"
+        "common-app-module": "^0.0.1",
+        "sofi-module": "^0.0.1"
     },
-    "devDependencies": {
-    }
+    "devDependencies": {}
 }

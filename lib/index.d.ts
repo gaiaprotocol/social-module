@@ -1,4 +1,4 @@
-export { default as Post, PostTarget, isEqualPost } from "./database-interface/Post.js";
+export { default as Post, isEqualPost, PostSelectQuery, PostTarget, } from "./database-interface/Post.js";
 export { default as Rich, UploadedFile } from "./database-interface/Rich.js";
 export { default as PostDisplay } from "./post/PostDisplay.js";
 export { default as TempUserDetailsCacher } from "./user/TempUserDetailsCacher.js";
