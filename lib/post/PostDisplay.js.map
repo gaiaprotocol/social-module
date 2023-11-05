@@ -1,1 +1,1 @@
-{"version":3,"file":"PostDisplay.js","sourceRoot":"","sources":["../../src/post/PostDisplay.ts"],"names":[],"mappings":"AAAA,OAAO,eAAe,MAAM,uBAAuB,CAAC;AAGpD,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,eAAe;IACtD;QACE,KAAK,CAAC,eAAe,CAAC,CAAC;IACzB,CAAC;CACF"}
+{"version":3,"file":"PostDisplay.js","sourceRoot":"","sources":["../../src/post/PostDisplay.ts"],"names":[],"mappings":"AACA,OAAO,eAAe,MAAM,uBAAuB,CAAC;AAGpD,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,eAAe;CA2BvD"}
