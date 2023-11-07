@@ -1,3 +1,4 @@
+export { default as ChatMessageForm } from "./chat/message-form/ChatMessageForm.js";
 export {
   default as Post,
   isEqualPost,
