@@ -1,20 +1,16 @@
-import { I18NText } from "common-app-module";
-import { UploadedFile } from "./Rich.js";
+import { I18NText, isEqualRich, Rich } from "common-app-module";
 
 export enum PostTarget {
   EVERYONE,
   KEY_HOLDERS,
 }
 
-interface Author {
+export interface Author {
   user_id: string;
   display_name?: string;
   profile_image?: string;
+  profile_image_thumbnail?: string;
   x_username?: string;
-}
-
-interface Rich {
-  files?: UploadedFile[];
 }
 
 export default interface Post {
@@ -35,17 +31,6 @@ export default interface Post {
 
 export const PostSelectQuery =
   "*, author(user_id, display_name, profile_image, x_username)";
-
-const isEqualRich = (a: Rich, b: Rich) =>
-  a.files?.length === b.files?.length && (
-    a.files?.every((file, index) => {
-      const otherFile = b.files?.[index];
-      return (file.url ?? undefined) === (otherFile?.url ?? undefined) &&
-        (file.fileName ?? undefined) === (otherFile?.fileName ?? undefined) &&
-        (file.fileType ?? undefined) === (otherFile?.fileType ?? undefined) &&
-        (file.fileSize ?? undefined) === (otherFile?.fileSize ?? undefined);
-    }) ?? false
-  );
 
 const isEqualAuthor = (a: Author, b: Author) =>
   (a.display_name ?? undefined) === (b.display_name ?? undefined) &&

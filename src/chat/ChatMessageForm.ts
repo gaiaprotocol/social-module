@@ -36,6 +36,7 @@ export default abstract class ChatMessageForm extends UploadForm {
               const message = this.textarea.domElement.value;
               if (message) this.sendMessage(message, this.toUploadFiles);
               this.textarea.domElement.value = "";
+              this.clearUploads();
             },
           },
         ),

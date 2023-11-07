@@ -1,11 +1,11 @@
-import UserDetails from "../database-interface/UserDetails.js";
+import UserPublic from "../database-interface/SocialUserPublic.js";
 
 class TempUserDetailsCacher {
-  private userDetailsMap = new Map<string, UserDetails>();
+  private userDetailsMap = new Map<string, UserPublic>();
   private xUsernameToUserIdMap = new Map<string, string>();
   private walletAddressToUserIdMap = new Map<string, string>();
 
-  public cache(userDetails: UserDetails) {
+  public cache(userDetails: UserPublic) {
     this.userDetailsMap.set(userDetails.user_id, userDetails);
     if (userDetails.x_username) {
       this.xUsernameToUserIdMap.set(
@@ -21,18 +21,18 @@ class TempUserDetailsCacher {
     }
   }
 
-  public get(userId: string): UserDetails | undefined {
+  public get(userId: string): UserPublic | undefined {
     return this.userDetailsMap.get(userId);
   }
 
-  public getByXUsername(xUsername: string): UserDetails | undefined {
+  public getByXUsername(xUsername: string): UserPublic | undefined {
     const userId = this.xUsernameToUserIdMap.get(xUsername);
     if (userId) {
       return this.get(userId);
     }
   }
 
-  public getByWalletAddress(walletAddress: string): UserDetails | undefined {
+  public getByWalletAddress(walletAddress: string): UserPublic | undefined {
     const userId = this.walletAddressToUserIdMap.get(walletAddress);
     if (userId) {
       return this.get(userId);

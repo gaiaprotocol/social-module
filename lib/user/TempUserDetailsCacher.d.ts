@@ -1,12 +1,12 @@
-import UserDetails from "../database-interface/UserDetails.js";
+import UserPublic from "../database-interface/SocialUserPublic.js";
 declare class TempUserDetailsCacher {
     private userDetailsMap;
     private xUsernameToUserIdMap;
     private walletAddressToUserIdMap;
-    cache(userDetails: UserDetails): void;
-    get(userId: string): UserDetails | undefined;
-    getByXUsername(xUsername: string): UserDetails | undefined;
-    getByWalletAddress(walletAddress: string): UserDetails | undefined;
+    cache(userDetails: UserPublic): void;
+    get(userId: string): UserPublic | undefined;
+    getByXUsername(xUsername: string): UserPublic | undefined;
+    getByWalletAddress(walletAddress: string): UserPublic | undefined;
 }
 declare const _default: TempUserDetailsCacher;
 export default _default;

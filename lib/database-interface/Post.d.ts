@@ -1,17 +1,14 @@
-import { I18NText } from "common-app-module";
-import { UploadedFile } from "./Rich.js";
+import { I18NText, Rich } from "common-app-module";
 export declare enum PostTarget {
     EVERYONE = 0,
     KEY_HOLDERS = 1
 }
-interface Author {
+export interface Author {
     user_id: string;
     display_name?: string;
     profile_image?: string;
+    profile_image_thumbnail?: string;
     x_username?: string;
-}
-interface Rich {
-    files?: UploadedFile[];
 }
 export default interface Post {
     id: number;
@@ -30,5 +27,4 @@ export default interface Post {
 }
 export declare const PostSelectQuery = "*, author(user_id, display_name, profile_image, x_username)";
 export declare const isEqualPost: (a: Post | undefined, b: Post | undefined) => boolean;
-export {};
 //# sourceMappingURL=Post.d.ts.map
