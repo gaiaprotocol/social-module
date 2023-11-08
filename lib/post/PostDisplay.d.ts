@@ -1,8 +1,9 @@
 import Post from "../database-interface/Post.js";
 import SocialComponent from "../SocialComponent.js";
+import PostInteractions from "./PostInteractions.js";
 export default class PostDisplay extends SocialComponent {
     private post;
-    private options;
+    private interactions;
     private reposted;
     private liked;
     private repostCountDisplay;
@@ -12,14 +13,7 @@ export default class PostDisplay extends SocialComponent {
         owner?: boolean;
         reposted?: boolean;
         liked?: boolean;
-        openAuthorProfile: () => void;
-        openOwnerMenu: (rect: DOMRect) => void;
-        openCommentPopup: () => void;
-        repost: () => void;
-        unrepost: () => void;
-        like: () => void;
-        unlike: () => void;
-    });
+    }, interactions: PostInteractions);
     private goAuthorProfile;
     private openOwnerMenu;
     private openCommentPopup;

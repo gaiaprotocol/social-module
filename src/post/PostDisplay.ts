@@ -1,6 +1,7 @@
 import { DateUtil, DomNode, el, Icon, RichDisplay } from "common-app-module";
 import Post from "../database-interface/Post.js";
 import SocialComponent from "../SocialComponent.js";
+import PostInteractions from "./PostInteractions.js";
 
 // Displays a single Post.
 export default class PostDisplay extends SocialComponent {
@@ -12,21 +13,13 @@ export default class PostDisplay extends SocialComponent {
 
   constructor(
     private post: Post,
-    private options: {
+    options: {
       inView?: boolean;
       owner?: boolean;
       reposted?: boolean;
       liked?: boolean;
-
-      openAuthorProfile: () => void;
-      openOwnerMenu: (rect: DOMRect) => void;
-      openCommentPopup: () => void;
-
-      repost: () => void;
-      unrepost: () => void;
-      like: () => void;
-      unlike: () => void;
     },
+    private interactions: PostInteractions,
   ) {
     super(".post-display" + (options.inView ? ".in-view" : ""));
     this.reposted = options.reposted ?? false;
@@ -117,28 +110,28 @@ export default class PostDisplay extends SocialComponent {
 
   private goAuthorProfile(event: MouseEvent) {
     event.stopPropagation();
-    this.options.openAuthorProfile?.();
+    this.interactions.openAuthorProfile?.(this.post.author);
   }
 
   private openOwnerMenu(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
-    this.options.openOwnerMenu(button.rect);
+    this.interactions.openOwnerMenu(this.post.id, button.rect);
   }
 
   private openCommentPopup(event: MouseEvent) {
     event.stopPropagation();
-    this.options.openCommentPopup();
+    this.interactions.openCommentPopup(this.post.id);
   }
 
   private repost(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
     if (!this.reposted) {
-      this.options.repost();
+      this.interactions.repost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count + 1);
       this.reposted = true;
       button.addClass("reposted");
     } else {
-      this.options.unrepost();
+      this.interactions.unrepost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count - 1);
       this.reposted = false;
       button.deleteClass("reposted");
@@ -148,12 +141,12 @@ export default class PostDisplay extends SocialComponent {
   private like(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
     if (!this.liked) {
-      this.options.like();
+      this.interactions.like(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count + 1);
       this.liked = true;
       button.addClass("liked");
     } else {
-      this.options.unlike();
+      this.interactions.unlike(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count - 1);
       this.liked = false;
       button.deleteClass("liked");
