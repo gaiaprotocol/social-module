@@ -15,15 +15,20 @@ export default class PostDisplay extends SocialComponent {
     private post: Post,
     options: {
       inView?: boolean;
-      owner?: boolean;
-      reposted?: boolean;
-      liked?: boolean;
+      owner: boolean;
+      reposted: boolean;
+      liked: boolean;
+      new: boolean;
     },
     private interactions: PostInteractions,
   ) {
-    super(".post-display" + (options.inView ? ".in-view" : ""));
-    this.reposted = options.reposted ?? false;
-    this.liked = options.liked ?? false;
+    super(
+      ".post-display" +
+        (options.inView ? ".in-view" : "") +
+        (options.new ? ".new" : ""),
+    );
+    this.reposted = options.reposted;
+    this.liked = options.liked;
 
     const authorProfileImage = el(".author-profile-image", {
       style: {

@@ -28,6 +28,7 @@ export default class PostThread extends SocialComponent {
           post.author.user_id === options.signedUserId,
         reposted: options.repostedPostIds.includes(post.id),
         liked: options.likedPostIds.includes(post.id),
+        new: options.newPostIds.includes(post.id),
       }, interactions).appendTo(this);
 
       if (post.comment_count > 0) {

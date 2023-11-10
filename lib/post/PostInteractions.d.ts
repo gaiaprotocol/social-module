@@ -1,5 +1,6 @@
 import Author from "../database-interface/Author.js";
 export default interface PostInteractions {
+    openPostView: (postId: number) => void;
     openAuthorProfile: (author: Author) => void;
     openOwnerMenu: (postId: number, rect: DOMRect) => void;
     openCommentPopup: (postId: number) => void;

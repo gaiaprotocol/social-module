@@ -10,9 +10,10 @@ export default class PostDisplay extends SocialComponent {
     private likeCountDisplay;
     constructor(post: Post, options: {
         inView?: boolean;
-        owner?: boolean;
-        reposted?: boolean;
-        liked?: boolean;
+        owner: boolean;
+        reposted: boolean;
+        liked: boolean;
+        new: boolean;
     }, interactions: PostInteractions);
     private goAuthorProfile;
     private openOwnerMenu;
