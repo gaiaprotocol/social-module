@@ -1,0 +1,1 @@
+//# sourceMappingURL=SignedSoFiUserManager.d.ts.map

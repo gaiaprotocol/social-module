@@ -1,15 +1,13 @@
 import Post from "../database-interface/Post.js";
 
-class TempPostCacher {
-  private postMap = new Map<number, Post>();
+export default class TempPostCacher<T extends Post> {
+  private postMap = new Map<number, T>();
 
-  public cache(post: Post) {
+  public cache(post: T) {
     this.postMap.set(post.id, post);
   }
 
-  public get(postId: number): Post | undefined {
+  public get(postId: number): T | undefined {
     return this.postMap.get(postId);
   }
 }
-
-export default new TempPostCacher();
