@@ -1,5 +1,6 @@
-export { default as Author } from "./database-interface/Author.js";
+export { default as SocialComponent } from "./SocialComponent.js";
 export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
+export { default as Author } from "./database-interface/Author.js";
 export {
   default as Post,
   isEqualPost,
