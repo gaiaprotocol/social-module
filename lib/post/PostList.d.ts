@@ -1,3 +1,4 @@
+import { DomNode } from "common-app-module";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
@@ -9,7 +10,7 @@ export default abstract class PostList extends SocialComponent {
         storeName: string;
         signedUserId?: string;
         emptyMessage: string;
-    }, interactions: PostInteractions);
+    }, interactions: PostInteractions, loadingAnimation: DomNode);
     private addPostItem;
     protected abstract fetchPosts(): Promise<{
         posts: {

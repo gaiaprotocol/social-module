@@ -1,4 +1,4 @@
-import { Store } from "common-app-module";
+import { DomNode, Store } from "common-app-module";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
@@ -14,6 +14,7 @@ export default abstract class PostList extends SocialComponent {
       emptyMessage: string;
     },
     private interactions: PostInteractions,
+    loadingAnimation: DomNode,
   ) {
     super(".post-list");
     this.store = new Store(options.storeName);
@@ -28,7 +29,7 @@ export default abstract class PostList extends SocialComponent {
     const cachedLikedPostIds =
       this.store.get<number[]>("cached-liked-post-ids") ?? [];
 
-    if (cachedPosts) {
+    if (cachedPosts && cachedPosts.length > 0) {
       for (const p of cachedPosts) {
         this.addPostItem(p.posts, {
           mainPostId: p.mainPostId,
@@ -38,6 +39,8 @@ export default abstract class PostList extends SocialComponent {
           signedUserId: options.signedUserId,
         }, interactions);
       }
+    } else {
+      this.append(loadingAnimation);
     }
 
     this.refresh();
