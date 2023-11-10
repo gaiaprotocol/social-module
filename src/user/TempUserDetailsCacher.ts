@@ -1,4 +1,4 @@
-import UserPublic from "../database-interface/SocialUserPublic.js";
+import UserPublic from "../database-interface/SoFiUserPublic.js";
 
 class TempUserDetailsCacher {
   private userDetailsMap = new Map<string, UserPublic>();

@@ -8,7 +8,7 @@ export {
 export {
   default as SocialUserPublic,
   isEqualSocialUserPublic,
-} from "./database-interface/SocialUserPublic.js";
+} from "./database-interface/SoFiUserPublic.js";
 export { default as PostDisplay } from "./post/PostDisplay.js";
 export { default as TempUserDetailsCacher } from "./user/TempUserDetailsCacher.js";
 export { default as AuthUtil } from "./util/AuthUtil.js";

@@ -1,4 +1,4 @@
-import UserPublic from "../database-interface/SocialUserPublic.js";
+import UserPublic from "../database-interface/SoFiUserPublic.js";
 declare class TempUserDetailsCacher {
     private userDetailsMap;
     private xUsernameToUserIdMap;

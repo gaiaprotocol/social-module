@@ -1,1 +1,1 @@
-# social-module
+# sofi-module
