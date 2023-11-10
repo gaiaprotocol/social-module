@@ -27,9 +27,7 @@ export default class PostDisplay extends SocialComponent {
 
     const authorProfileImage = el(".author-profile-image", {
       style: {
-        backgroundImage: `url(${
-          post.author.profile_image_thumbnail ?? post.author.profile_image
-        })`,
+        backgroundImage: `url(${post.author.profile_image_thumbnail})`,
       },
       click: options.inView
         ? (event) => this.goAuthorProfile(event)
