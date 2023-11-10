@@ -11,8 +11,8 @@ export default abstract class PostForm extends UploadForm {
   private textarea: DomNode<HTMLTextAreaElement>;
   private postButton: Button;
 
-  constructor(tag: string, authorProfileImage: string, focus: boolean = true) {
-    super(tag + ".chat-message-form.social-component");
+  constructor(authorProfileImage: string, focus: boolean = false) {
+    super(".post-form.social-component");
     this.append(
       el(
         "main",

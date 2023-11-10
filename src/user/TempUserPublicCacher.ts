@@ -1,6 +1,6 @@
 import UserPublic from "../database-interface/SoFiUserPublic.js";
 
-class TempUserDetailsCacher {
+class TempUserPublicCacher {
   private userDetailsMap = new Map<string, UserPublic>();
   private xUsernameToUserIdMap = new Map<string, string>();
   private walletAddressToUserIdMap = new Map<string, string>();
@@ -40,4 +40,4 @@ class TempUserDetailsCacher {
   }
 }
 
-export default new TempUserDetailsCacher();
+export default new TempUserPublicCacher();

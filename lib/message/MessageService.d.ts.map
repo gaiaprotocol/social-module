@@ -1,0 +1,1 @@
+{"version":3,"file":"MessageService.d.ts","sourceRoot":"","sources":["../../src/message/MessageService.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,kCAAkC,CAAC;AAEvD,MAAM,CAAC,OAAO,OAAO,cAAc,CAAC,CAAC,SAAS,OAAO;IACvC,OAAO,CAAC,SAAS;gBAAT,SAAS,EAAE,MAAM;CACtC"}

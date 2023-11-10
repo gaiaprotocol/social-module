@@ -1,5 +1,5 @@
 import UserPublic from "../database-interface/SoFiUserPublic.js";
-declare class TempUserDetailsCacher {
+declare class TempUserPublicCacher {
     private userDetailsMap;
     private xUsernameToUserIdMap;
     private walletAddressToUserIdMap;
@@ -8,6 +8,6 @@ declare class TempUserDetailsCacher {
     getByXUsername(xUsername: string): UserPublic | undefined;
     getByWalletAddress(walletAddress: string): UserPublic | undefined;
 }
-declare const _default: TempUserDetailsCacher;
+declare const _default: TempUserPublicCacher;
 export default _default;
 //# sourceMappingURL=TempUserDetailsCacher.d.ts.map

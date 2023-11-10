@@ -1,4 +1,4 @@
-import { Author } from "../database-interface/Post.js";
+import Author from "../database-interface/Author.js";
 
 export default interface PostInteractions {
   openAuthorProfile: (author: Author) => void;

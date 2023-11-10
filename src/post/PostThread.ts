@@ -1,6 +1,7 @@
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostDisplay from "./PostDisplay.js";
+import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
 
 // Displays all connected Posts in a thread.
@@ -11,9 +12,11 @@ export default class PostThread extends SocialComponent {
       mainPostId: number;
       repostedPostIds: number[];
       likedPostIds: number[];
-      signedUserId: string;
+      newPostIds: number[];
+      signedUserId?: string;
     },
     interactions: PostInteractions,
+    form?: PostForm,
   ) {
     super(".post-thread");
 
@@ -21,7 +24,8 @@ export default class PostThread extends SocialComponent {
     for (const post of posts) {
       const postDisplay = new PostDisplay(post, {
         inView: post.id === options.mainPostId,
-        owner: post.author.user_id === options.signedUserId,
+        owner: options.signedUserId !== undefined &&
+          post.author.user_id === options.signedUserId,
         reposted: options.repostedPostIds.includes(post.id),
         liked: options.likedPostIds.includes(post.id),
       }, interactions).appendTo(this);
@@ -32,6 +36,10 @@ export default class PostThread extends SocialComponent {
 
       if (post.id === options.mainPostId) {
         mainPostDisplay = postDisplay;
+
+        if (options.signedUserId && form) {
+          form.appendTo(this);
+        }
       }
     }
 
