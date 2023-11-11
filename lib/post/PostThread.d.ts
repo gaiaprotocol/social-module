@@ -4,6 +4,7 @@ import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
 export default class PostThread extends SocialComponent {
     constructor(posts: Post[], options: {
+        inView?: boolean;
         mainPostId: number;
         repostedPostIds: number[];
         likedPostIds: number[];

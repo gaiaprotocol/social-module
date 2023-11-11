@@ -1,0 +1,1 @@
+{"version":3,"file":"Topic.d.ts","sourceRoot":"","sources":["../../src/database-interface/Topic.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,WAAW,KAAK;IAC5B,KAAK,EAAE,MAAM,CAAC;IACd,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,oBAAoB,EAAE,MAAM,CAAC;IAC7B,UAAU,EAAE,MAAM,CAAC;IACnB,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB"}
