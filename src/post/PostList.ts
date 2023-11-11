@@ -5,8 +5,7 @@ import PostInteractions from "./PostInteractions.js";
 import PostListItem from "./PostListItem.js";
 import PostService from "./PostService.js";
 
-export default abstract class PostList<T extends Post = Post>
-  extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SocialComponent {
   private store: Store;
   private refreshed = false;
   protected lastPostId: number | undefined;

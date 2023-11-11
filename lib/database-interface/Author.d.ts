@@ -5,5 +5,4 @@ export default interface Author {
     profile_image_thumbnail?: string;
     x_username?: string;
 }
-export declare const isEqualAuthor: (a: Author, b: Author) => boolean;
 //# sourceMappingURL=Author.d.ts.map

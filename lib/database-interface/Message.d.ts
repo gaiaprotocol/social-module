@@ -10,5 +10,4 @@ export default interface Message {
     updated_at?: string;
 }
 export declare const MessageSelectQuery = "*, author(user_id, display_name, profile_image, profile_image_thumbnail, x_username)";
-export declare const isEqualMessage: (a: Message, b: Message) => boolean;
 //# sourceMappingURL=Message.d.ts.map

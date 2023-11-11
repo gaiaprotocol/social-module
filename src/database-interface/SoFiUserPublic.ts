@@ -1,4 +1,4 @@
-import { isEqualUserPublic, UserPublic } from "common-app-module";
+import { UserPublic } from "common-app-module";
 
 export default interface SoFiUserPublic extends UserPublic {
   wallet_address?: string;
@@ -9,14 +9,3 @@ export default interface SoFiUserPublic extends UserPublic {
 }
 
 export const SoFiUserPublicSelectQuery = `*, total_earned_trading_fees::text`;
-
-export const isEqualSocialUserPublic = (
-  a: SoFiUserPublic,
-  b: SoFiUserPublic,
-) =>
-  isEqualUserPublic(a, b) &&
-  a.wallet_address === b.wallet_address &&
-  a.total_earned_trading_fees === b.total_earned_trading_fees &&
-  a.x_username === b.x_username &&
-  a.follower_count === b.follower_count &&
-  a.following_count === b.following_count;

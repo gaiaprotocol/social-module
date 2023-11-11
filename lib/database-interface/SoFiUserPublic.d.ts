@@ -7,5 +7,4 @@ export default interface SoFiUserPublic extends UserPublic {
     following_count: number;
 }
 export declare const SoFiUserPublicSelectQuery = "*, total_earned_trading_fees::text";
-export declare const isEqualSocialUserPublic: (a: SoFiUserPublic, b: SoFiUserPublic) => boolean;
 //# sourceMappingURL=SoFiUserPublic.d.ts.map

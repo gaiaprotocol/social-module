@@ -3,7 +3,7 @@ import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
-export default abstract class PostList<T extends Post = Post> extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SocialComponent {
     protected postService: PostService<T>;
     private options;
     private interactions;

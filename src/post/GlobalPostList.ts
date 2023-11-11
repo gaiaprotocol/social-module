@@ -4,7 +4,7 @@ import PostInteractions from "./PostInteractions.js";
 import PostList from "./PostList.js";
 import PostService from "./PostService.js";
 
-export default class GlobalPostList<T extends Post = Post> extends PostList<T> {
+export default class GlobalPostList<T extends Post> extends PostList<T> {
   constructor(
     postService: PostService<T>,
     options: {
