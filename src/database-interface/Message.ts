@@ -17,5 +17,5 @@ export const MessageSelectQuery =
 export const isEqualMessage = (a: Message, b: Message) =>
   a.id == b.id &&
   isEqualAuthor(a.author, b.author) &&
-  (a.message ?? undefined) === (b.message ?? undefined) &&
+  a.message === b.message &&
   isEqualRich(a.rich ?? {}, b.rich ?? {});

@@ -3,20 +3,27 @@ import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostListItem from "./PostListItem.js";
+import PostService from "./PostService.js";
 
-export default abstract class PostList extends SocialComponent {
+export default abstract class PostList<T extends Post = Post>
+  extends SocialComponent {
   private store: Store;
+  private refreshed = false;
+  protected lastPostId: number | undefined;
 
   constructor(
+    tag: string,
+    protected postService: PostService<T>,
     private options: {
       storeName: string;
       signedUserId?: string;
       emptyMessage: string;
+      wait?: boolean;
     },
     private interactions: PostInteractions,
     loadingAnimation: DomNode,
   ) {
-    super(".post-list");
+    super(tag + ".post-list");
     this.store = new Store(options.storeName);
     this.domElement.setAttribute("empty-message", options.emptyMessage);
 
@@ -43,7 +50,7 @@ export default abstract class PostList extends SocialComponent {
       this.append(loadingAnimation);
     }
 
-    this.refresh();
+    if (!options.wait) this.refresh();
   }
 
   private addPostItem(
@@ -61,13 +68,36 @@ export default abstract class PostList extends SocialComponent {
   }
 
   protected abstract fetchPosts(): Promise<{
-    posts: {
-      posts: Post[];
-      mainPostId: number;
-    }[];
-    repostedPostIds: number[];
-    likedPostIds: number[];
-  }>;
+    posts: Post[];
+    mainPostId: number;
+  }[]>;
+
+  private async _fetchPosts() {
+    const fetchedPosts = await this.fetchPosts();
+    const postIds = fetchedPosts.flatMap((item) =>
+      item.posts.map((post) => post.id)
+    );
+
+    const repostedPostIds = this.options.signedUserId
+      ? await this.postService.fetchUserRepostedPosts(
+        postIds,
+        this.options.signedUserId,
+      )
+      : [];
+
+    const likedPostIds = this.options.signedUserId
+      ? await this.postService.fetchUserLikedPosts(
+        postIds,
+        this.options.signedUserId,
+      )
+      : [];
+
+    return {
+      fetchedPosts,
+      repostedPostIds,
+      likedPostIds,
+    };
+  }
 
   private async refresh() {
     const cachedPosts = this.store.get<{
@@ -76,10 +106,10 @@ export default abstract class PostList extends SocialComponent {
     }[]>("cached-posts") ?? [];
 
     const {
-      posts: fetchedPosts,
+      fetchedPosts,
       repostedPostIds,
       likedPostIds,
-    } = await this.fetchPosts();
+    } = await this._fetchPosts();
 
     const posts = fetchedPosts.reverse();
     this.store.set("cached-posts", posts, true);
@@ -102,6 +132,43 @@ export default abstract class PostList extends SocialComponent {
           signedUserId: this.options.signedUserId,
         }, this.interactions);
       }
+
+      this.lastPostId = posts[posts.length - 1]?.mainPostId;
+      this.refreshed = true;
     }
+  }
+
+  private async loadMore() {
+    const {
+      fetchedPosts,
+      repostedPostIds,
+      likedPostIds,
+    } = await this._fetchPosts();
+
+    if (!this.deleted) {
+      const posts = fetchedPosts.reverse();
+      const newPostIds = posts.map((p) => p.mainPostId);
+
+      for (const p of posts) {
+        this.addPostItem(p.posts, {
+          mainPostId: p.mainPostId,
+          repostedPostIds,
+          likedPostIds,
+          newPostIds,
+          signedUserId: this.options.signedUserId,
+        }, this.interactions);
+      }
+
+      this.lastPostId = posts[posts.length - 1]?.mainPostId;
+    }
+  }
+
+  public show() {
+    this.deleteClass("hidden");
+    if (!this.refreshed) this.refresh();
+  }
+
+  public hide() {
+    this.addClass("hidden");
   }
 }

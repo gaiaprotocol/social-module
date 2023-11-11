@@ -11,7 +11,7 @@ export const PostSelectQuery = MessageSelectQuery;
 
 export const isEqualPost = (a: Post, b: Post) =>
   isEqualMessage(a, b) &&
-  (a.parent ?? undefined) === (b.parent ?? undefined) &&
+  a.parent === b.parent &&
   a.comment_count === b.comment_count &&
   a.repost_count === b.repost_count &&
   a.like_count === b.like_count;

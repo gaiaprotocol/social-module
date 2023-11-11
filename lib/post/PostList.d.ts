@@ -2,24 +2,29 @@ import { DomNode } from "common-app-module";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
-export default abstract class PostList extends SocialComponent {
+import PostService from "./PostService.js";
+export default abstract class PostList<T extends Post = Post> extends SocialComponent {
+    protected postService: PostService<T>;
     private options;
     private interactions;
     private store;
-    constructor(options: {
+    private refreshed;
+    protected lastPostId: number | undefined;
+    constructor(tag: string, postService: PostService<T>, options: {
         storeName: string;
         signedUserId?: string;
         emptyMessage: string;
+        wait?: boolean;
     }, interactions: PostInteractions, loadingAnimation: DomNode);
     private addPostItem;
     protected abstract fetchPosts(): Promise<{
-        posts: {
-            posts: Post[];
-            mainPostId: number;
-        }[];
-        repostedPostIds: number[];
-        likedPostIds: number[];
-    }>;
+        posts: Post[];
+        mainPostId: number;
+    }[]>;
+    private _fetchPosts;
     private refresh;
+    private loadMore;
+    show(): void;
+    hide(): void;
 }
 //# sourceMappingURL=PostList.d.ts.map
