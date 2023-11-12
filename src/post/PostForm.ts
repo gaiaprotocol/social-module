@@ -4,6 +4,7 @@ import {
   el,
   FileDropArea,
   Icon,
+  msg,
   UploadForm,
 } from "common-app-module";
 
@@ -38,7 +39,7 @@ export default abstract class PostForm extends UploadForm {
         ),
         this.postButton = new Button({
           tag: ".post",
-          title: "Post",
+          title: msg("post-form-post-button"),
           click: () =>
             this._post(this.textarea.domElement.value, this.toUploadFiles),
         }),
@@ -51,7 +52,7 @@ export default abstract class PostForm extends UploadForm {
   }
 
   private async _post(message: string, files: File[]) {
-    this.postButton.disable().text = "Posting...";
+    this.postButton.disable().text = msg("post-form-posting-button");
     try {
       await this.post(message, files);
       this.textarea.domElement.value = "";
@@ -59,7 +60,7 @@ export default abstract class PostForm extends UploadForm {
     } catch (error) {
       console.error(error);
     }
-    this.postButton.enable().text = "Post";
+    this.postButton.enable().text = msg("post-form-post-button");
   }
 
   protected abstract post(message: string, files: File[]): Promise<void>;
