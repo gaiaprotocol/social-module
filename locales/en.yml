@@ -1,3 +1,4 @@
-global-post-list-empty-message: No posts yet
 post-form-post-button: Post
 post-form-posting-button: Posting...
+global-post-list-empty-message: No posts yet
+following-post-list-empty-message: No posts from followed users yet
