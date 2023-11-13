@@ -28,7 +28,17 @@ export default class PostService<T extends Post> extends MessageService<T> {
       max_count: this.fetchLimit,
     });
     if (error) throw error;
-    return Supabase.safeResult(data) ?? [];
+    const posts = Supabase.safeResult(data) ?? [];
+    for (const post of posts) {
+      post.author = {
+        user_id: post.author,
+        display_name: post.author_display_name,
+        profile_image: post.author_profile_image,
+        profile_image_thumbnail: post.author_profile_image_thumbnail,
+        x_username: post.author_x_username,
+      };
+    }
+    return posts;
   }
 
   public async fetchUserRepostedPosts(
