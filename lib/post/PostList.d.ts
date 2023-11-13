@@ -5,7 +5,12 @@ import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
 export default abstract class PostList<T extends Post> extends SocialComponent {
     protected postService: PostService<T>;
-    private options;
+    protected options: {
+        storeName: string;
+        signedUserId?: string;
+        emptyMessage: string;
+        wait?: boolean;
+    };
     private interactions;
     private store;
     private refreshed;

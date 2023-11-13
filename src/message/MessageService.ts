@@ -7,7 +7,7 @@ export default class MessageService<T extends Message> extends SupabaseService {
       b.select(this.selectQuery).lt(
         "id",
         lastMessageId ?? Number.MAX_SAFE_INTEGER,
-      ).order("created_at", { ascending: false }).limit(this.fetchLimit)
+      ).order("id", { ascending: false }).limit(this.fetchLimit)
     ) ?? [];
   }
 }

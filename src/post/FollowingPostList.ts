@@ -8,7 +8,7 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
   constructor(
     postService: PostService<T>,
     options: {
-      signedUserId?: string;
+      signedUserId: string;
       wait?: boolean;
     },
     interactions: PostInteractions,
@@ -27,7 +27,16 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
     );
   }
 
-  protected fetchPosts(): Promise<{ posts: Post[]; mainPostId: number }[]> {
-    throw new Error("Method not implemented.");
+  protected async fetchPosts(): Promise<
+    { posts: Post[]; mainPostId: number }[]
+  > {
+    const posts = await this.postService.fetchFollowingPosts(
+      this.options.signedUserId!,
+      this.lastPostId,
+    );
+    return posts.map((p) => ({
+      posts: [p],
+      mainPostId: p.id,
+    }));
   }
 }

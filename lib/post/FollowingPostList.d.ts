@@ -5,7 +5,7 @@ import PostList from "./PostList.js";
 import PostService from "./PostService.js";
 export default class FollowingPostList<T extends Post> extends PostList<T> {
     constructor(postService: PostService<T>, options: {
-        signedUserId?: string;
+        signedUserId: string;
         wait?: boolean;
     }, interactions: PostInteractions, loadingAnimation: DomNode);
     protected fetchPosts(): Promise<{

@@ -13,7 +13,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   constructor(
     tag: string,
     protected postService: PostService<T>,
-    private options: {
+    protected options: {
       storeName: string;
       signedUserId?: string;
       emptyMessage: string;
@@ -24,7 +24,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   ) {
     super(tag + ".post-list");
     this.store = new Store(options.storeName);
-    this.domElement.setAttribute("empty-message", options.emptyMessage);
+    this.domElement.setAttribute("data-empty-message", options.emptyMessage);
 
     const cachedPosts = this.store.get<{
       posts: Post[];

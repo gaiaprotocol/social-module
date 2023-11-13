@@ -14,6 +14,23 @@ export default class PostService<T extends Post> extends MessageService<T> {
     this.addAllowedEvents("newGlobalPost");
   }
 
+  protected notifyNewGlobalPost(post: T) {
+    this.fireEvent("newGlobalPost", post);
+  }
+
+  public async fetchFollowingPosts(
+    userId: string,
+    lastPostId?: number,
+  ): Promise<T[]> {
+    const { data, error } = await Supabase.client.rpc("get_following_posts", {
+      p_user_id: userId,
+      last_post_id: lastPostId,
+      max_count: this.fetchLimit,
+    });
+    if (error) throw error;
+    return Supabase.safeResult(data) ?? [];
+  }
+
   public async fetchUserRepostedPosts(
     postIds: number[],
     userId: string,
@@ -34,9 +51,5 @@ export default class PostService<T extends Post> extends MessageService<T> {
       (b) => b.select("post_id").in("post_id", postIds).eq("user_id", userId),
     );
     return data ? data.map((d: any) => d.post_id) : [];
-  }
-
-  protected notifyNewGlobalPost(post: T) {
-    this.fireEvent("newGlobalPost", post);
   }
 }
