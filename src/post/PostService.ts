@@ -11,6 +11,7 @@ export default class PostService<T extends Post> extends MessageService<T> {
     fetchLimit: number,
   ) {
     super(postTableName, selectQuery, fetchLimit);
+    this.addAllowedEvents("newGlobalPost");
   }
 
   public async fetchUserRepostedPosts(
@@ -33,5 +34,9 @@ export default class PostService<T extends Post> extends MessageService<T> {
       (b) => b.select("post_id").in("post_id", postIds).eq("user_id", userId),
     );
     return data ? data.map((d: any) => d.post_id) : [];
+  }
+
+  protected notifyNewGlobalPost(post: T) {
+    this.fireEvent("newGlobalPost", post);
   }
 }

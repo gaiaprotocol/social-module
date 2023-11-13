@@ -55,6 +55,7 @@ export default abstract class PostForm extends UploadForm {
     this.postButton.disable().text = msg("post-form-posting-button");
     try {
       await this.post(message, files);
+      if (this.deleted) return;
       this.textarea.domElement.value = "";
       this.clearUploads();
     } catch (error) {

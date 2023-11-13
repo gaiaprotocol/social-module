@@ -6,5 +6,6 @@ export default class PostService<T extends Post> extends MessageService<T> {
     constructor(postTableName: string, repostTableName: string, likeTableName: string, selectQuery: string, fetchLimit: number);
     fetchUserRepostedPosts(postIds: number[], userId: string): Promise<number[]>;
     fetchUserLikedPosts(postIds: number[], userId: string): Promise<number[]>;
+    protected notifyNewGlobalPost(post: T): void;
 }
 //# sourceMappingURL=PostService.d.ts.map

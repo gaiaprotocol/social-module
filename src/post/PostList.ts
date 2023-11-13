@@ -137,6 +137,25 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     }
   }
 
+  protected addNewPost(post: Post) {
+    const cachedPosts = this.store.get<{
+      posts: Post[];
+      mainPostId: number;
+    }[]>("cached-posts") ?? [];
+
+    cachedPosts.push({ posts: [post], mainPostId: post.id });
+
+    this.store.set("cached-posts", cachedPosts, true);
+
+    this.addPostItem([post], {
+      mainPostId: post.id,
+      repostedPostIds: [],
+      likedPostIds: [],
+      newPostIds: [post.id],
+      signedUserId: this.options.signedUserId,
+    }, this.interactions);
+  }
+
   private async loadMore() {
     const {
       fetchedPosts,

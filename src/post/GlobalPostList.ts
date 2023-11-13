@@ -25,6 +25,12 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
       interactions,
       loadingAnimation,
     );
+
+    this.onDelegate(
+      postService,
+      "newGlobalPost",
+      (post: T) => this.addNewPost(post),
+    );
   }
 
   protected async fetchPosts(): Promise<

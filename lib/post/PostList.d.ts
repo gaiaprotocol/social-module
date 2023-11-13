@@ -23,6 +23,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     }[]>;
     private _fetchPosts;
     private refresh;
+    protected addNewPost(post: Post): void;
     private loadMore;
     show(): void;
     hide(): void;
