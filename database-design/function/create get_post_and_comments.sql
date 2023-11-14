@@ -94,7 +94,7 @@ WITH RECURSIVE ancestors AS (
     JOIN 
         ancestors a ON p.id = a.parent
 ),
-descendants AS (
+comments AS (
     SELECT 
         p.id,
         p.author,
@@ -127,46 +127,10 @@ descendants AS (
     INNER JOIN 
         users_public u ON p.author = u.user_id
     WHERE 
-        parent = p_post_id
-
-    UNION
-
-    SELECT 
-        p.id,
-        p.author,
-        u.display_name,
-        u.profile_image,
-        u.profile_image_thumbnail,
-        u.x_username,
-        p.message,
-        p.translated,
-        p.rich,
-        p.parent,
-        p.comment_count,
-        p.repost_count,
-        p.like_count,
-        p.created_at,
-        p.updated_at,
-        CASE 
-            WHEN signed_user_id IS NOT NULL THEN 
-                EXISTS (SELECT 1 FROM post_likes pl WHERE pl.post_id = p.id AND pl.user_id = signed_user_id)
-            ELSE FALSE 
-        END AS liked,
-        CASE 
-            WHEN signed_user_id IS NOT NULL THEN 
-                EXISTS (SELECT 1 FROM reposts r WHERE r.post_id = p.id AND r.user_id = signed_user_id)
-            ELSE FALSE 
-        END AS reposted,
-        d.depth + 1 AS depth
-    FROM 
-        posts p
-    INNER JOIN 
-        users_public u ON p.author = u.user_id
-    JOIN 
-        descendants d ON p.parent = d.id
+        p.parent = p_post_id
 )
 SELECT * FROM ancestors
 UNION ALL
-SELECT * FROM descendants
+SELECT * FROM comments
 ORDER BY depth, created_at;
 $$;
