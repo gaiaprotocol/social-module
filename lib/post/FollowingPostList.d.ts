@@ -9,8 +9,12 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
         wait?: boolean;
     }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
     protected fetchPosts(): Promise<{
-        posts: T[];
-        mainPostId: number;
-    }[]>;
+        fetchedPosts: {
+            posts: T[];
+            mainPostId: number;
+        }[];
+        repostedPostIds: number[];
+        likedPostIds: number[];
+    }>;
 }
 //# sourceMappingURL=FollowingPostList.d.ts.map

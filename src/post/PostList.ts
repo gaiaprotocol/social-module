@@ -67,36 +67,10 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   }
 
   protected abstract fetchPosts(): Promise<{
-    posts: T[];
-    mainPostId: number;
-  }[]>;
-
-  private async _fetchPosts() {
-    const fetchedPosts = await this.fetchPosts();
-    const postIds = fetchedPosts.flatMap((item) =>
-      item.posts.map((post) => post.id)
-    );
-
-    const repostedPostIds = this.options.signedUserId
-      ? await this.postService.fetchUserRepostedPosts(
-        postIds,
-        this.options.signedUserId,
-      )
-      : [];
-
-    const likedPostIds = this.options.signedUserId
-      ? await this.postService.fetchUserLikedPosts(
-        postIds,
-        this.options.signedUserId,
-      )
-      : [];
-
-    return {
-      fetchedPosts,
-      repostedPostIds,
-      likedPostIds,
-    };
-  }
+    fetchedPosts: { posts: T[]; mainPostId: number }[];
+    repostedPostIds: number[];
+    likedPostIds: number[];
+  }>;
 
   private async refresh() {
     this.append(new ListLoadingBar());
@@ -110,7 +84,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
       fetchedPosts,
       repostedPostIds,
       likedPostIds,
-    } = await this._fetchPosts();
+    } = await this.fetchPosts();
 
     const posts = fetchedPosts.reverse();
     this.store.set("cached-posts", posts, true);
@@ -163,7 +137,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
       fetchedPosts,
       repostedPostIds,
       likedPostIds,
-    } = await this._fetchPosts();
+    } = await this.fetchPosts();
 
     if (!this.deleted) {
       const posts = fetchedPosts.reverse();

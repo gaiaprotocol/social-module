@@ -23,10 +23,13 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
     private addPostItem;
     protected abstract fetchPosts(): Promise<{
-        posts: T[];
-        mainPostId: number;
-    }[]>;
-    private _fetchPosts;
+        fetchedPosts: {
+            posts: T[];
+            mainPostId: number;
+        }[];
+        repostedPostIds: number[];
+        likedPostIds: number[];
+    }>;
     private refresh;
     protected addNewPost(post: T): void;
     private loadMore;

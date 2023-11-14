@@ -27,16 +27,22 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
     );
   }
 
-  protected async fetchPosts(): Promise<
-    { posts: T[]; mainPostId: number }[]
-  > {
-    const posts = await this.postService.fetchFollowingPosts(
+  protected async fetchPosts(): Promise<{
+    fetchedPosts: { posts: T[]; mainPostId: number }[];
+    repostedPostIds: number[];
+    likedPostIds: number[];
+  }> {
+    const result = await this.postService.fetchFollowingPosts(
       this.options.signedUserId!,
       this.lastPostId,
     );
-    return posts.map((p) => ({
-      posts: [p],
-      mainPostId: p.id,
-    }));
+    return {
+      fetchedPosts: result.posts.map((p) => ({
+        posts: [p],
+        mainPostId: p.id,
+      })),
+      repostedPostIds: result.repostedPostIds,
+      likedPostIds: result.likedPostIds,
+    };
   }
 }

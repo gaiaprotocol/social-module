@@ -18,18 +18,16 @@ export default class PostService<T extends Post> extends MessageService<T> {
     this.fireEvent("newGlobalPost", post);
   }
 
-  public async fetchFollowingPosts(
-    userId: string,
-    lastPostId?: number,
-  ): Promise<T[]> {
-    const { data, error } = await Supabase.client.rpc("get_following_posts", {
-      p_user_id: userId,
-      last_post_id: lastPostId,
-      max_count: this.fetchLimit,
-    });
-    if (error) throw error;
-    const posts = Supabase.safeResult(data) ?? [];
-    for (const post of posts) {
+  protected enhancePostData(posts: T[]): {
+    posts: T[];
+    repostedPostIds: number[];
+    likedPostIds: number[];
+  } {
+    const _post = Supabase.safeResult(posts);
+    const repostedPostIds: number[] = [];
+    const likedPostIds: number[] = [];
+
+    for (const post of _post as any) {
       post.author = {
         user_id: post.author,
         display_name: post.author_display_name,
@@ -37,30 +35,50 @@ export default class PostService<T extends Post> extends MessageService<T> {
         profile_image_thumbnail: post.author_profile_image_thumbnail,
         x_username: post.author_x_username,
       };
+      if (post.reposted) repostedPostIds.push(post.id);
+      if (post.liked) likedPostIds.push(post.id);
     }
-    return posts;
+
+    return {
+      posts: _post,
+      repostedPostIds,
+      likedPostIds,
+    };
   }
 
-  public async fetchUserRepostedPosts(
-    postIds: number[],
-    userId: string,
-  ): Promise<number[]> {
-    const data = await Supabase.safeFetch(
-      this.repostTableName,
-      (b) => b.select("post_id").in("post_id", postIds).eq("user_id", userId),
-    );
-    return data ? data.map((d: any) => d.post_id) : [];
+  public async fetchPost(postId: number, signedUserId: string | undefined) {
+    const { data, error } = await Supabase.client.rpc("get_post_and_comments", {
+      p_post_id: postId,
+      signed_user_id: signedUserId,
+    });
+    if (error) throw error;
+    return this.enhancePostData(data ?? []);
   }
 
-  public async fetchUserLikedPosts(
-    postIds: number[],
+  public async fetchGlobalPosts(
+    lastPostId: number | undefined,
+    signedUserId: string | undefined,
+  ) {
+    const { data, error } = await Supabase.client.rpc("get_global_posts", {
+      last_post_id: lastPostId,
+      max_count: this.fetchLimit,
+      signed_user_id: signedUserId,
+    });
+    if (error) throw error;
+    return this.enhancePostData(data ?? []);
+  }
+
+  public async fetchFollowingPosts(
     userId: string,
-  ): Promise<number[]> {
-    const data = await Supabase.safeFetch(
-      this.likeTableName,
-      (b) => b.select("post_id").in("post_id", postIds).eq("user_id", userId),
-    );
-    return data ? data.map((d: any) => d.post_id) : [];
+    lastPostId: number | undefined,
+  ) {
+    const { data, error } = await Supabase.client.rpc("get_following_posts", {
+      p_user_id: userId,
+      last_post_id: lastPostId,
+      max_count: this.fetchLimit,
+    });
+    if (error) throw error;
+    return this.enhancePostData(data ?? []);
   }
 
   public async repost(postId: number) {

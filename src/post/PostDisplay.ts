@@ -34,9 +34,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       style: {
         backgroundImage: `url(${post.author.profile_image_thumbnail})`,
       },
-      click: options.inView
-        ? (event) => this.goAuthorProfile(event)
-        : undefined,
+      click: (event) => this.goAuthorProfile(event),
     });
 
     const authorDisplay = el(
@@ -107,7 +105,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
           dateDisplay,
           actions,
         ),
-      );
+      ).onDom("click", () => interactions.openPostView(post.id));
     }
   }
 
