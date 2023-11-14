@@ -10,4 +10,8 @@ export default class MessageService<T extends Message> extends SupabaseService {
       ).order("id", { ascending: false }).limit(this.fetchLimit)
     ) ?? [];
   }
+
+  public async deleteMessage(messageId: number) {
+    //TODO:
+  }
 }

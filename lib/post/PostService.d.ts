@@ -8,5 +8,9 @@ export default class PostService<T extends Post> extends MessageService<T> {
     fetchFollowingPosts(userId: string, lastPostId?: number): Promise<T[]>;
     fetchUserRepostedPosts(postIds: number[], userId: string): Promise<number[]>;
     fetchUserLikedPosts(postIds: number[], userId: string): Promise<number[]>;
+    repost(postId: number): Promise<void>;
+    unrepost(postId: number): Promise<void>;
+    like(postId: number): Promise<void>;
+    unlike(postId: number): Promise<void>;
 }
 //# sourceMappingURL=PostService.d.ts.map

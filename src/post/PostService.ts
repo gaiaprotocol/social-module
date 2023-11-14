@@ -62,4 +62,20 @@ export default class PostService<T extends Post> extends MessageService<T> {
     );
     return data ? data.map((d: any) => d.post_id) : [];
   }
+
+  public async repost(postId: number) {
+    //TODO:
+  }
+
+  public async unrepost(postId: number) {
+    //TODO:
+  }
+
+  public async like(postId: number) {
+    //TODO:
+  }
+
+  public async unlike(postId: number) {
+    //TODO:
+  }
 }
