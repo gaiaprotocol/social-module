@@ -64,18 +64,28 @@ export default class PostService<T extends Post> extends MessageService<T> {
   }
 
   public async repost(postId: number) {
-    //TODO:
+    const { error } = await Supabase.client.from(this.repostTableName).insert({
+      post_id: postId,
+    });
+    if (error) throw error;
   }
 
   public async unrepost(postId: number) {
-    //TODO:
+    const { error } = await Supabase.client.from(this.repostTableName).delete()
+      .eq("post_id", postId);
+    if (error) throw error;
   }
 
   public async like(postId: number) {
-    //TODO:
+    const { error } = await Supabase.client.from(this.likeTableName).insert({
+      post_id: postId,
+    });
+    if (error) throw error;
   }
 
   public async unlike(postId: number) {
-    //TODO:
+    const { error } = await Supabase.client.from(this.likeTableName).delete()
+      .eq("post_id", postId);
+    if (error) throw error;
   }
 }

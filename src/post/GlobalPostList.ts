@@ -11,7 +11,7 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
       signedUserId?: string;
       wait?: boolean;
     },
-    interactions: PostInteractions,
+    interactions: PostInteractions<T>,
     loadingAnimation: DomNode,
   ) {
     super(
@@ -34,7 +34,7 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
   }
 
   protected async fetchPosts(): Promise<
-    { posts: Post[]; mainPostId: number }[]
+    { posts: T[]; mainPostId: number }[]
   > {
     const posts = await this.postService.fetchGlobalMessages(this.lastPostId);
     return posts.map((p) => ({

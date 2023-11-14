@@ -4,7 +4,7 @@ import SocialComponent from "../SocialComponent.js";
 import PostInteractions from "./PostInteractions.js";
 
 // Displays a single Post.
-export default class PostDisplay extends SocialComponent {
+export default class PostDisplay<T extends Post> extends SocialComponent {
   private reposted: boolean;
   private liked: boolean;
 
@@ -12,7 +12,7 @@ export default class PostDisplay extends SocialComponent {
   private likeCountDisplay: DomNode;
 
   constructor(
-    private post: Post,
+    private post: T,
     options: {
       inView?: boolean;
       owner: boolean;
@@ -20,7 +20,7 @@ export default class PostDisplay extends SocialComponent {
       liked: boolean;
       new: boolean;
     },
-    private interactions: PostInteractions,
+    private interactions: PostInteractions<T>,
   ) {
     super(
       ".post-display" +

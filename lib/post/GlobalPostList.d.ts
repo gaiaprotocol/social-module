@@ -7,9 +7,9 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
     constructor(postService: PostService<T>, options: {
         signedUserId?: string;
         wait?: boolean;
-    }, interactions: PostInteractions, loadingAnimation: DomNode);
+    }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
     protected fetchPosts(): Promise<{
-        posts: Post[];
+        posts: T[];
         mainPostId: number;
     }[]>;
 }

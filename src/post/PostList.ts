@@ -19,7 +19,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
       emptyMessage: string;
       wait?: boolean;
     },
-    private interactions: PostInteractions,
+    private interactions: PostInteractions<T>,
     loadingAnimation: DomNode,
   ) {
     super(tag + ".post-list");
@@ -27,7 +27,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     this.domElement.setAttribute("data-empty-message", options.emptyMessage);
 
     const cachedPosts = this.store.get<{
-      posts: Post[];
+      posts: T[];
       mainPostId: number;
     }[]>("cached-posts");
     const cachedRepostedPostIds =
@@ -53,7 +53,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   }
 
   private addPostItem(
-    posts: Post[],
+    posts: T[],
     options: {
       mainPostId: number;
       repostedPostIds: number[];
@@ -61,13 +61,13 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
       newPostIds: number[];
       signedUserId?: string;
     },
-    interactions: PostInteractions,
+    interactions: PostInteractions<T>,
   ) {
     new PostListItem(posts, options, interactions).appendTo(this, 0);
   }
 
   protected abstract fetchPosts(): Promise<{
-    posts: Post[];
+    posts: T[];
     mainPostId: number;
   }[]>;
 
@@ -102,7 +102,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     this.append(new ListLoadingBar());
 
     const cachedPosts = this.store.get<{
-      posts: Post[];
+      posts: T[];
       mainPostId: number;
     }[]>("cached-posts") ?? [];
 
@@ -139,9 +139,9 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     }
   }
 
-  protected addNewPost(post: Post) {
+  protected addNewPost(post: T) {
     const cachedPosts = this.store.get<{
-      posts: Post[];
+      posts: T[];
       mainPostId: number;
     }[]>("cached-posts") ?? [];
 

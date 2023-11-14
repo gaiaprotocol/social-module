@@ -5,9 +5,9 @@ import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
 
 // Displays all connected Posts in a thread.
-export default class PostThread extends SocialComponent {
+export default class PostThread<T extends Post> extends SocialComponent {
   constructor(
-    posts: Post[],
+    posts: T[],
     options: {
       inView?: boolean;
       mainPostId: number;
@@ -16,7 +16,7 @@ export default class PostThread extends SocialComponent {
       newPostIds: number[];
       signedUserId?: string;
     },
-    interactions: PostInteractions,
+    interactions: PostInteractions<T>,
     form?: PostForm,
   ) {
     super(".post-thread");

@@ -20,15 +20,15 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
         signedUserId?: string;
         emptyMessage: string;
         wait?: boolean;
-    }, interactions: PostInteractions, loadingAnimation: DomNode);
+    }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
     private addPostItem;
     protected abstract fetchPosts(): Promise<{
-        posts: Post[];
+        posts: T[];
         mainPostId: number;
     }[]>;
     private _fetchPosts;
     private refresh;
-    protected addNewPost(post: Post): void;
+    protected addNewPost(post: T): void;
     private loadMore;
     show(): void;
     hide(): void;

@@ -3,9 +3,9 @@ import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostThread from "./PostThread.js";
 
-export default class PostListItem extends SocialComponent {
+export default class PostListItem<T extends Post> extends SocialComponent {
   constructor(
-    posts: Post[],
+    posts: T[],
     options: {
       mainPostId: number;
       repostedPostIds: number[];
@@ -13,7 +13,7 @@ export default class PostListItem extends SocialComponent {
       newPostIds: number[];
       signedUserId?: string;
     },
-    interactions: PostInteractions,
+    interactions: PostInteractions<T>,
   ) {
     super(".post-list-item");
     this.append(new PostThread(posts, options, interactions));
