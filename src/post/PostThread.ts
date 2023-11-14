@@ -21,7 +21,9 @@ export default class PostThread<T extends Post> extends SocialComponent {
   ) {
     super(".post-thread");
 
+    let parent = true;
     let mainPostDisplay;
+
     for (const post of posts) {
       const postDisplay = new PostDisplay(post, {
         inView: options.inView && post.id === options.mainPostId,
@@ -32,21 +34,20 @@ export default class PostThread<T extends Post> extends SocialComponent {
         new: options.newPostIds.includes(post.id),
       }, interactions).appendTo(this);
 
-      if (post.comment_count > 0) {
-        postDisplay.addClass("has-comments");
-      }
-
       if (post.id === options.mainPostId) {
         mainPostDisplay = postDisplay;
+        parent = false;
 
         if (options.signedUserId && form) {
           form.appendTo(this);
         }
       }
+
+      if (parent) postDisplay.addClass("parent");
     }
 
     if (mainPostDisplay) {
-      mainPostDisplay.domElement.scrollIntoView();
+      this.on("visible", () => mainPostDisplay!.domElement.scrollIntoView());
     }
   }
 }
