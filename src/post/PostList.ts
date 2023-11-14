@@ -1,4 +1,4 @@
-import { DomNode, Store } from "common-app-module";
+import { DomNode, ListLoadingBar, Store } from "common-app-module";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
@@ -99,6 +99,8 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   }
 
   private async refresh() {
+    this.append(new ListLoadingBar());
+
     const cachedPosts = this.store.get<{
       posts: Post[];
       mainPostId: number;
