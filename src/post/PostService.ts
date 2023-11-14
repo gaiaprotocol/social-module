@@ -46,9 +46,13 @@ export default class PostService<T extends Post> extends MessageService<T> {
     };
   }
 
-  public async fetchPost(postId: number, signedUserId: string | undefined) {
+  public async fetchPost(
+    postId: number,
+    signedUserId: string | undefined,
+  ) {
     const { data, error } = await Supabase.client.rpc("get_post_and_comments", {
       p_post_id: postId,
+      max_comment_count: this.fetchLimit,
       signed_user_id: signedUserId,
     });
     if (error) throw error;
