@@ -2,7 +2,7 @@ import Post from "../database-interface/Post.js";
 import SocialComponent from "../SocialComponent.js";
 import PostInteractions from "./PostInteractions.js";
 export default class PostDisplay<T extends Post> extends SocialComponent {
-    private post;
+    post: T;
     private interactions;
     private reposted;
     private liked;

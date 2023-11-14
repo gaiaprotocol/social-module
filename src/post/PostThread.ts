@@ -6,6 +6,8 @@ import PostInteractions from "./PostInteractions.js";
 
 // Displays all connected Posts in a thread.
 export default class PostThread<T extends Post> extends SocialComponent {
+  private postDisplays: PostDisplay<T>[] = [];
+
   constructor(
     posts: T[],
     options: {
@@ -22,7 +24,6 @@ export default class PostThread<T extends Post> extends SocialComponent {
     super(".post-thread");
 
     let parent = true;
-    let mainPostDisplay;
 
     for (const post of posts) {
       const postDisplay = new PostDisplay(post, {
@@ -34,8 +35,9 @@ export default class PostThread<T extends Post> extends SocialComponent {
         new: options.newPostIds.includes(post.id),
       }, interactions).appendTo(this);
 
+      this.postDisplays.push(postDisplay);
+
       if (post.id === options.mainPostId) {
-        mainPostDisplay = postDisplay;
         parent = false;
 
         if (options.signedUserId && form) {
@@ -45,9 +47,11 @@ export default class PostThread<T extends Post> extends SocialComponent {
 
       if (parent) postDisplay.addClass("parent");
     }
+  }
 
-    if (mainPostDisplay) {
-      this.on("visible", () => mainPostDisplay!.domElement.scrollIntoView());
-    }
+  public findPostDisplay(postId: number): PostDisplay<T> | undefined {
+    return this.postDisplays.find((postDisplay) =>
+      postDisplay.post.id === postId
+    );
   }
 }

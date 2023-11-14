@@ -12,7 +12,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
   private likeCountDisplay: DomNode;
 
   constructor(
-    private post: T,
+    public post: T,
     options: {
       inView?: boolean;
       owner: boolean;
