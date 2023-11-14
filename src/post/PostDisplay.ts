@@ -123,7 +123,7 @@ export default class PostDisplay extends SocialComponent {
 
   private openCommentPopup(event: MouseEvent) {
     event.stopPropagation();
-    this.interactions.openCommentPopup(this.post.id);
+    this.interactions.openCommentPopup(this.post);
   }
 
   private repost(event: MouseEvent, button: DomNode) {
