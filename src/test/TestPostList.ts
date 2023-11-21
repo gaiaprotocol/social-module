@@ -46,7 +46,7 @@ class TestPostInteractions implements PostInteractions<Post> {
 export default class TestPostList extends PostList<Post> {
   constructor() {
     super(
-      ".global-post-list",
+      ".test-post-list",
       new TestPostService(),
       {
         storeName: "global-posts",

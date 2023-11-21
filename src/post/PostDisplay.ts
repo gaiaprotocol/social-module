@@ -111,7 +111,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
 
   private goAuthorProfile(event: MouseEvent) {
     event.stopPropagation();
-    this.interactions.openAuthorProfile?.(this.post.author);
+    this.interactions.openAuthorProfile(this.post.author);
   }
 
   private openOwnerMenu(event: MouseEvent, button: DomNode) {

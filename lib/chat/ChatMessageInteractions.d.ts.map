@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatMessageInteractions.d.ts","sourceRoot":"","sources":["../../src/chat/ChatMessageInteractions.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,iCAAiC,CAAC;AAErD,MAAM,CAAC,OAAO,WAAW,uBAAuB;IAC9C,iBAAiB,EAAE,CAAC,MAAM,EAAE,MAAM,KAAK,IAAI,CAAC;CAC7C"}
