@@ -1,9 +1,9 @@
-import SocialComponent from "../SocialComponent.js";
+import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostDisplay from "./PostDisplay.js";
 import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
-export default class PostThread<T extends Post> extends SocialComponent {
+export default class PostThread<T extends Post> extends SoFiComponent {
     private postDisplays;
     constructor(posts: T[], options: {
         inView?: boolean;

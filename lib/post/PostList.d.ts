@@ -1,9 +1,9 @@
-import { DomNode } from "common-app-module";
-import SocialComponent from "../SocialComponent.js";
+import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
-export default abstract class PostList<T extends Post> extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SoFiComponent {
     protected postService: PostService<T>;
     protected options: {
         storeName?: string;
@@ -18,7 +18,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
         storeName?: string;
         signedUserId?: string;
         emptyMessage: string;
-    }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
+    }, interactions: PostInteractions<T>, loadingAnimation: DomChild);
     protected abstract fetchPosts(): Promise<{
         fetchedPosts: {
             posts: T[];

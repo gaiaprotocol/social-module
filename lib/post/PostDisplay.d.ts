@@ -1,7 +1,7 @@
 import Post from "../database-interface/Post.js";
-import SocialComponent from "../SocialComponent.js";
+import SoFiComponent from "../SoFiComponent.js";
 import PostInteractions from "./PostInteractions.js";
-export default class PostDisplay<T extends Post> extends SocialComponent {
+export default class PostDisplay<T extends Post> extends SoFiComponent {
     post: T;
     private interactions;
     private reposted;

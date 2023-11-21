@@ -1,10 +1,10 @@
 import { DateUtil, DomNode, el, Icon, RichDisplay } from "common-app-module";
 import Post from "../database-interface/Post.js";
-import SocialComponent from "../SocialComponent.js";
+import SoFiComponent from "../SoFiComponent.js";
 import PostInteractions from "./PostInteractions.js";
 
 // Displays a single Post.
-export default class PostDisplay<T extends Post> extends SocialComponent {
+export default class PostDisplay<T extends Post> extends SoFiComponent {
   private reposted: boolean;
   private liked: boolean;
 

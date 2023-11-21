@@ -1,7 +1,7 @@
-import SocialComponent from "../SocialComponent.js";
+import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
-export default class PostListItem<T extends Post> extends SocialComponent {
+export default class PostListItem<T extends Post> extends SoFiComponent {
     constructor(posts: T[], options: {
         mainPostId: number;
         repostedPostIds: number[];

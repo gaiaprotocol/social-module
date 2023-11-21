@@ -1,11 +1,12 @@
-import { DomNode, ListLoadingBar, Store } from "common-app-module";
-import SocialComponent from "../SocialComponent.js";
+import { ListLoadingBar, Store } from "common-app-module";
+import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostListItem from "./PostListItem.js";
 import PostService from "./PostService.js";
 
-export default abstract class PostList<T extends Post> extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SoFiComponent {
   private store: Store | undefined;
   private refreshed = false;
   protected lastPostId: number | undefined;
@@ -19,7 +20,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
       emptyMessage: string;
     },
     private interactions: PostInteractions<T>,
-    loadingAnimation: DomNode,
+    loadingAnimation: DomChild,
   ) {
     super(tag + ".post-list");
     this.store = options.storeName ? new Store(options.storeName) : undefined;
