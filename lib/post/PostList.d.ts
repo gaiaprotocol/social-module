@@ -6,22 +6,19 @@ import PostService from "./PostService.js";
 export default abstract class PostList<T extends Post> extends SocialComponent {
     protected postService: PostService<T>;
     protected options: {
-        storeName: string;
+        storeName?: string;
         signedUserId?: string;
         emptyMessage: string;
-        wait?: boolean;
     };
     private interactions;
     private store;
     private refreshed;
     protected lastPostId: number | undefined;
     constructor(tag: string, postService: PostService<T>, options: {
-        storeName: string;
+        storeName?: string;
         signedUserId?: string;
         emptyMessage: string;
-        wait?: boolean;
     }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
-    private addPostItem;
     protected abstract fetchPosts(): Promise<{
         fetchedPosts: {
             posts: T[];
@@ -30,6 +27,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
         repostedPostIds: number[];
         likedPostIds: number[];
     }>;
+    private addPostItem;
     private refresh;
     protected addNewPost(post: T): void;
     private loadMore;

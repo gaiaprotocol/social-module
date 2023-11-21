@@ -6,7 +6,7 @@ import PostListItem from "./PostListItem.js";
 import PostService from "./PostService.js";
 
 export default abstract class PostList<T extends Post> extends SocialComponent {
-  private store: Store;
+  private store: Store | undefined;
   private refreshed = false;
   protected lastPostId: number | undefined;
 
@@ -14,43 +14,50 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     tag: string,
     protected postService: PostService<T>,
     protected options: {
-      storeName: string;
+      storeName?: string;
       signedUserId?: string;
       emptyMessage: string;
-      wait?: boolean;
     },
     private interactions: PostInteractions<T>,
     loadingAnimation: DomNode,
   ) {
     super(tag + ".post-list");
-    this.store = new Store(options.storeName);
+    this.store = options.storeName ? new Store(options.storeName) : undefined;
     this.domElement.setAttribute("data-empty-message", options.emptyMessage);
 
-    const cachedPosts = this.store.get<{
-      posts: T[];
-      mainPostId: number;
-    }[]>("cached-posts");
-    const cachedRepostedPostIds =
-      this.store.get<number[]>("cached-reposted-post-ids") ?? [];
-    const cachedLikedPostIds =
-      this.store.get<number[]>("cached-liked-post-ids") ?? [];
+    if (this.store) {
+      const cachedPosts = this.store.get<{
+        posts: T[];
+        mainPostId: number;
+      }[]>("cached-posts");
+      const cachedRepostedPostIds =
+        this.store.get<number[]>("cached-reposted-post-ids") ?? [];
+      const cachedLikedPostIds =
+        this.store.get<number[]>("cached-liked-post-ids") ?? [];
 
-    if (cachedPosts && cachedPosts.length > 0) {
-      for (const p of cachedPosts) {
-        this.addPostItem(p.posts, {
-          mainPostId: p.mainPostId,
-          repostedPostIds: cachedRepostedPostIds,
-          likedPostIds: cachedLikedPostIds,
-          newPostIds: [],
-          signedUserId: options.signedUserId,
-        }, interactions);
+      if (cachedPosts && cachedPosts.length > 0) {
+        for (const p of cachedPosts) {
+          this.addPostItem(p.posts, {
+            mainPostId: p.mainPostId,
+            repostedPostIds: cachedRepostedPostIds,
+            likedPostIds: cachedLikedPostIds,
+            newPostIds: [],
+            signedUserId: options.signedUserId,
+          }, interactions);
+        }
+      } else {
+        this.append(loadingAnimation);
       }
     } else {
       this.append(loadingAnimation);
     }
-
-    if (!options.wait) this.refresh();
   }
+
+  protected abstract fetchPosts(): Promise<{
+    fetchedPosts: { posts: T[]; mainPostId: number }[];
+    repostedPostIds: number[];
+    likedPostIds: number[];
+  }>;
 
   private addPostItem(
     posts: T[],
@@ -66,16 +73,10 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     new PostListItem(posts, options, interactions).appendTo(this, 0);
   }
 
-  protected abstract fetchPosts(): Promise<{
-    fetchedPosts: { posts: T[]; mainPostId: number }[];
-    repostedPostIds: number[];
-    likedPostIds: number[];
-  }>;
-
   private async refresh() {
     this.append(new ListLoadingBar());
 
-    const cachedPosts = this.store.get<{
+    const cachedPosts = this.store?.get<{
       posts: T[];
       mainPostId: number;
     }[]>("cached-posts") ?? [];
@@ -87,9 +88,11 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     } = await this.fetchPosts();
 
     const posts = fetchedPosts.reverse();
-    this.store.set("cached-posts", posts, true);
-    this.store.set("cached-reposted-post-ids", repostedPostIds, true);
-    this.store.set("cached-liked-post-ids", likedPostIds, true);
+    if (this.store) {
+      this.store.set("cached-posts", posts, true);
+      this.store.set("cached-reposted-post-ids", repostedPostIds, true);
+      this.store.set("cached-liked-post-ids", likedPostIds, true);
+    }
 
     if (!this.deleted) {
       const cachedPostIds = new Set(cachedPosts.map((p) => p.mainPostId));
@@ -114,14 +117,14 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
   }
 
   protected addNewPost(post: T) {
-    const cachedPosts = this.store.get<{
+    const cachedPosts = this.store?.get<{
       posts: T[];
       mainPostId: number;
     }[]>("cached-posts") ?? [];
 
     cachedPosts.push({ posts: [post], mainPostId: post.id });
 
-    this.store.set("cached-posts", cachedPosts, true);
+    this.store?.set("cached-posts", cachedPosts, true);
 
     this.addPostItem([post], {
       mainPostId: post.id,
