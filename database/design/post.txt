@@ -1,6 +1,6 @@
 posts
 	id - int8 - pk
-	author - uuid - auth.uid() - fk users_public.user_id
+	author - uuid, fk to users_public.user_id - auth.uid()
 	message - text - not null
 	translated - jsonb - nullbale
 	rich - jsonb - nullable

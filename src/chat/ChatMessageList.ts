@@ -14,5 +14,6 @@ export default abstract class ChatMessageList extends SoFiComponent {
     loadingAnimation: DomChild,
   ) {
     super(tag + ".chat-message-list");
+    this.domElement.setAttribute("data-empty-message", options.emptyMessage);
   }
 }
