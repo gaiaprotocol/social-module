@@ -9,5 +9,7 @@
   "dependencies": {
     "common-app-module": "^0.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/uuid": "^9.0.7"
+  }
 }

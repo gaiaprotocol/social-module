@@ -6,6 +6,7 @@ import {
   Icon,
   UploadForm,
 } from "common-app-module";
+import { v4 as uuidv4 } from "uuid";
 
 export default abstract class ChatMessageForm extends UploadForm {
   private form: DomNode<HTMLFormElement>;
@@ -13,6 +14,7 @@ export default abstract class ChatMessageForm extends UploadForm {
 
   constructor(tag: string, focus: boolean = true) {
     super(tag + ".chat-message-form.social-component");
+    this.addAllowedEvents("sendMessage");
     this.append(
       this.uploadPreviewArea = el(".upload-preview-area"),
       el(
@@ -34,7 +36,7 @@ export default abstract class ChatMessageForm extends UploadForm {
             submit: (event) => {
               event.preventDefault();
               const message = this.textarea.domElement.value;
-              if (message) this.sendMessage(message, this.toUploadFiles);
+              if (message) this._sendMessage(message, this.toUploadFiles);
               this.textarea.domElement.value = "";
               this.clearUploads();
             },
@@ -56,5 +58,15 @@ export default abstract class ChatMessageForm extends UploadForm {
     }
   }
 
-  protected abstract sendMessage(message: string, files: File[]): void;
+  private async _sendMessage(message: string, files: File[]) {
+    const tempId = uuidv4();
+    this.fireEvent("messageSending", { tempId, message, files });
+    const messageId = await this.sendMessage(message, files);
+    this.fireEvent("messageSent", { tempId, messageId });
+  }
+
+  protected abstract sendMessage(
+    message: string,
+    files: File[],
+  ): Promise<number>;
 }

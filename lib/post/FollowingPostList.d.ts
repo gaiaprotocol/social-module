@@ -7,7 +7,7 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
     constructor(postService: PostService<T>, options: {
         signedUserId: string;
         wait?: boolean;
-    }, interactions: PostInteractions<T>, loadingAnimation: DomNode);
+    }, interactions: PostInteractions<T>, initialLoadingAnimation: DomNode);
     protected fetchPosts(): Promise<{
         fetchedPosts: {
             posts: T[];

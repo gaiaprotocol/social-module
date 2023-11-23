@@ -12,7 +12,7 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
       wait?: boolean;
     },
     interactions: PostInteractions<T>,
-    loadingAnimation: DomNode,
+    initialLoadingAnimation: DomNode,
   ) {
     super(
       ".global-post-list",
@@ -23,7 +23,7 @@ export default class GlobalPostList<T extends Post> extends PostList<T> {
         ...options,
       },
       interactions,
-      loadingAnimation,
+      initialLoadingAnimation,
     );
 
     this.onDelegate(

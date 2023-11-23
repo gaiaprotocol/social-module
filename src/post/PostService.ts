@@ -23,7 +23,7 @@ export default class PostService<T extends Post> extends MessageService<T> {
     repostedPostIds: number[];
     likedPostIds: number[];
   } {
-    const _post = Supabase.safeResult(posts);
+    const _post = Supabase.safeResult<T[]>(posts) ?? [];
     const repostedPostIds: number[] = [];
     const likedPostIds: number[] = [];
 

@@ -18,7 +18,7 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
         storeName?: string;
         signedUserId?: string;
         emptyMessage: string;
-    }, interactions: PostInteractions<T>, loadingAnimation: DomChild);
+    }, interactions: PostInteractions<T>, initialLoadingAnimation: DomChild);
     protected abstract fetchPosts(): Promise<{
         fetchedPosts: {
             posts: T[];

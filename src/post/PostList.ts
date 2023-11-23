@@ -20,7 +20,7 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
       emptyMessage: string;
     },
     private interactions: PostInteractions<T>,
-    loadingAnimation: DomChild,
+    initialLoadingAnimation: DomChild,
   ) {
     super(tag + ".post-list");
     this.store = options.storeName ? new Store(options.storeName) : undefined;
@@ -47,10 +47,10 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
           }, interactions);
         }
       } else {
-        this.append(loadingAnimation);
+        this.append(initialLoadingAnimation);
       }
     } else {
-      this.append(loadingAnimation);
+      this.append(initialLoadingAnimation);
     }
   }
 

@@ -12,7 +12,7 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
       wait?: boolean;
     },
     interactions: PostInteractions<T>,
-    loadingAnimation: DomNode,
+    initialLoadingAnimation: DomNode,
   ) {
     super(
       ".following-post-list",
@@ -23,7 +23,7 @@ export default class FollowingPostList<T extends Post> extends PostList<T> {
         ...options,
       },
       interactions,
-      loadingAnimation,
+      initialLoadingAnimation,
     );
   }
 

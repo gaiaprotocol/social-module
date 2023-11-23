@@ -1,6 +1,7 @@
 import ChatMessageInteractions from "../chat/ChatMessageInteractions.js";
 import ChatMessageList from "../chat/ChatMessageList.js";
 import Author from "../database-interface/Author.js";
+import Message from "../database-interface/Message.js";
 
 class TestChatMessageInteractions implements ChatMessageInteractions {
   public openAuthorProfile(author: Author) {
@@ -19,5 +20,9 @@ export default class TestChatMessageList extends ChatMessageList {
       new TestChatMessageInteractions(),
       "Loading...",
     );
+  }
+
+  protected fetchMessages(): Promise<Message[]> {
+    throw new Error("Method not implemented.");
   }
 }
