@@ -15,7 +15,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     protected abstract fetchMessages(): Promise<Message[]>;
     private refresh;
     private groupMessagesByAuthor;
-    addNewMessage(message: Message): void;
+    addNewMessage(message: Message, wait?: boolean): void;
     messageSending(tempId: number, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
     private scrollToBottom;

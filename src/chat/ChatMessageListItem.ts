@@ -71,13 +71,14 @@ export default class ChatMessageListItem extends SoFiComponent {
     if (message) this.interactions.openAuthorProfile(message.author);
   }
 
-  public addNewMessage(message: Message) {
+  public addNewMessage(message: Message, wait?: boolean) {
     if (this.main) {
       const display = new ChatMessageDisplay(message, {
         owner: this.options.signedUserId !== undefined &&
           message.author.user_id === this.options.signedUserId,
       }, this.interactions).appendTo(this.main);
       display.addClass("new");
+      if (wait) display.addClass("wait");
     }
   }
 }

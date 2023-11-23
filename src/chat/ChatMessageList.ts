@@ -98,7 +98,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     return grouped;
   }
 
-  public addNewMessage(message: Message) {
+  public addNewMessage(message: Message, wait?: boolean) {
     const lastMessageItem: ChatMessageListItem | undefined =
       this.children.length
         ? this.children[this.children.length - 1] as ChatMessageListItem
@@ -110,8 +110,9 @@ export default abstract class ChatMessageList extends SoFiComponent {
         signedUserId: this.options.signedUserId,
       }, this.interactions).appendTo(this);
       item.addClass("new");
+      if (wait) item.addClass("wait");
     } else {
-      lastMessageItem.addNewMessage(message);
+      lastMessageItem.addNewMessage(message, wait);
     }
   }
 
@@ -121,7 +122,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     message: string,
     files: File[],
   ) {
-    const tempMessage: Message = {
+    this.addNewMessage({
       id: tempId,
       author,
       message,
@@ -134,12 +135,12 @@ export default abstract class ChatMessageList extends SoFiComponent {
         })),
       },
       created_at: new Date().toISOString(),
-    };
-    this.addNewMessage(tempMessage);
+    }, true);
   }
 
   public messageSent(tempId: number, id: number) {
     //TODO:
+    console.log(id);
   }
 
   private scrollToBottom() {

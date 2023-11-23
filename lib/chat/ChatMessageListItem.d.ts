@@ -11,6 +11,6 @@ export default class ChatMessageListItem extends SoFiComponent {
         signedUserId?: string;
     }, interactions: ChatMessageInteractions);
     private goAuthorProfile;
-    addNewMessage(message: Message): void;
+    addNewMessage(message: Message, wait?: boolean): void;
 }
 //# sourceMappingURL=ChatMessageListItem.d.ts.map
