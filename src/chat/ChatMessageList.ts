@@ -38,7 +38,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
       this.append(initialLoadingAnimation);
     }
 
-    this.refresh();
+    setTimeout(() => this.refresh());
   }
 
   protected abstract fetchMessages(): Promise<Message[]>;
@@ -61,6 +61,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
           }, this.interactions),
         );
       }
+      this.scrollToBottom();
     }
   }
 
@@ -110,5 +111,12 @@ export default abstract class ChatMessageList extends SoFiComponent {
 
   public messageSent(tempId: number, id: number) {
     //TODO:
+  }
+
+  private scrollToBottom() {
+    this.domElement.scrollTo(
+      0,
+      this.domElement.scrollHeight,
+    );
   }
 }
