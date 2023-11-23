@@ -1,4 +1,4 @@
-import { el } from "common-app-module";
+import { DateUtil, el } from "common-app-module";
 import SoFiComponent from "../SoFiComponent.js";
 import Message from "../database-interface/Message.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
@@ -21,6 +21,16 @@ export default class ChatMessageListItem extends SoFiComponent {
         }),
         el(
           "main",
+          el(
+            "header",
+            el(
+              ".author",
+              el(".name", message.author.display_name, {
+                click: (event) => this.goAuthorProfile(event),
+              }),
+            ),
+            el(".date", DateUtil.fromNow(message.created_at)),
+          ),
           ...messages.map((message) =>
             new ChatMessageDisplay(message, {
               owner: options.signedUserId !== undefined &&

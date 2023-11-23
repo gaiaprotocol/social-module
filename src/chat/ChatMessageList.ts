@@ -67,18 +67,30 @@ export default abstract class ChatMessageList extends SoFiComponent {
     const grouped = [];
     let currentGroup = [];
     let lastAuthorId = null;
+    let lastMessageTime = null;
 
     for (const message of messages) {
-      if (message.author.user_id !== lastAuthorId) {
+      // Convert the message timestamp to a Date object
+      const messageTime = new Date(message.created_at);
+
+      // Start a new group if the author changes or the time difference is more than 1 minute
+      if (
+        message.author.user_id !== lastAuthorId ||
+        (lastMessageTime &&
+          (messageTime.getTime() - lastMessageTime.getTime()) >= 60000)
+      ) {
         if (currentGroup.length > 0) {
           grouped.push(currentGroup);
         }
         currentGroup = [];
       }
+
       currentGroup.push(message);
       lastAuthorId = message.author.user_id;
+      lastMessageTime = messageTime;
     }
 
+    // Add the last group
     if (currentGroup.length > 0) {
       grouped.push(currentGroup);
     }

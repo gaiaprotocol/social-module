@@ -11,7 +11,7 @@ export default class ChatMessageDisplay extends SoFiComponent {
   }, interactions: ChatMessageInteractions) {
     super(".chat-message-display");
     this.append(
-      el(".message", message.message),
+      el("p.message", message.message),
       message.rich ? new RichDisplay(message.rich) : undefined,
     );
   }
