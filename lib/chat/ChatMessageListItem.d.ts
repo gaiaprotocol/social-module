@@ -3,11 +3,14 @@ import Message from "../database-interface/Message.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 export default class ChatMessageListItem extends SoFiComponent {
     private messages;
+    private options;
     private interactions;
+    firstMessage: Message | undefined;
+    private main;
     constructor(messages: Message[], options: {
-        newMessageIds: number[];
         signedUserId?: string;
     }, interactions: ChatMessageInteractions);
     private goAuthorProfile;
+    addNewMessage(message: Message): void;
 }
 //# sourceMappingURL=ChatMessageListItem.d.ts.map

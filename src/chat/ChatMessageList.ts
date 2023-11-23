@@ -29,7 +29,6 @@ export default abstract class ChatMessageList extends SoFiComponent {
       for (const messages of groupedMessages) {
         this.append(
           new ChatMessageListItem(messages, {
-            newMessageIds: [],
             signedUserId: options.signedUserId,
           }, interactions),
         );
@@ -56,7 +55,6 @@ export default abstract class ChatMessageList extends SoFiComponent {
       for (const messages of groupedMessages) {
         this.append(
           new ChatMessageListItem(messages, {
-            newMessageIds: [],
             signedUserId: this.options.signedUserId,
           }, this.interactions),
         );
@@ -100,13 +98,44 @@ export default abstract class ChatMessageList extends SoFiComponent {
     return grouped;
   }
 
+  public addNewMessage(message: Message) {
+    const lastMessageItem: ChatMessageListItem | undefined =
+      this.children.length
+        ? this.children[this.children.length - 1] as ChatMessageListItem
+        : undefined;
+    if (
+      lastMessageItem?.firstMessage?.author.user_id !== message.author.user_id
+    ) {
+      const item = new ChatMessageListItem([message], {
+        signedUserId: this.options.signedUserId,
+      }, this.interactions).appendTo(this);
+      item.addClass("new");
+    } else {
+      lastMessageItem.addNewMessage(message);
+    }
+  }
+
   public messageSending(
     tempId: number,
     author: Author,
     message: string,
     files: File[],
   ) {
-    //TODO:
+    const tempMessage: Message = {
+      id: tempId,
+      author,
+      message,
+      rich: {
+        files: files.map((file) => ({
+          fileName: file.name,
+          fileSize: file.size,
+          fileType: file.type,
+          url: URL.createObjectURL(file),
+        })),
+      },
+      created_at: new Date().toISOString(),
+    };
+    this.addNewMessage(tempMessage);
   }
 
   public messageSent(tempId: number, id: number) {

@@ -7,7 +7,6 @@ import ChatMessageInteractions from "./ChatMessageInteractions.js";
 export default class ChatMessageDisplay extends SoFiComponent {
   constructor(message: Message, options: {
     owner: boolean;
-    new: boolean;
   }, interactions: ChatMessageInteractions) {
     super(".chat-message-display");
     this.append(
