@@ -46,7 +46,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
   private async refresh() {
     this.append(new ListLoadingBar());
 
-    const messages = await this.fetchMessages();
+    const messages = (await this.fetchMessages()).reverse();
 
     this.store.set("cached-messages", messages, true);
 
