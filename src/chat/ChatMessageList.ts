@@ -1,6 +1,7 @@
 import { ListLoadingBar, Store } from "common-app-module";
 import { DomChild } from "common-app-module/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
+import Author from "../database-interface/Author.js";
 import Message from "../database-interface/Message.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 import ChatMessageListItem from "./ChatMessageListItem.js";
@@ -96,5 +97,18 @@ export default abstract class ChatMessageList extends SoFiComponent {
     }
 
     return grouped;
+  }
+
+  public messageSending(
+    tempId: number,
+    author: Author,
+    message: string,
+    files: File[],
+  ) {
+    //TODO:
+  }
+
+  public messageSent(tempId: number, id: number) {
+    //TODO:
   }
 }

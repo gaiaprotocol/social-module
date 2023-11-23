@@ -1,5 +1,6 @@
 import { DomChild } from "common-app-module/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
+import Author from "../database-interface/Author.js";
 import Message from "../database-interface/Message.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 export default abstract class ChatMessageList extends SoFiComponent {
@@ -14,5 +15,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     protected abstract fetchMessages(): Promise<Message[]>;
     private refresh;
     private groupMessagesByAuthor;
+    messageSending(tempId: number, author: Author, message: string, files: File[]): void;
+    messageSent(tempId: number, id: number): void;
 }
 //# sourceMappingURL=ChatMessageList.d.ts.map
