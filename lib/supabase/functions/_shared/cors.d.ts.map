@@ -1,0 +1,1 @@
+{"version":3,"file":"cors.d.ts","sourceRoot":"","sources":["../../../../supabase/functions/_shared/cors.ts"],"names":[],"mappings":"AAEA,eAAO,MAAM,WAAW;;;;CAKvB,CAAC;AAEF,eAAO,MAAM,QAAQ,SAAU,MAAM,GAAG,MAAM,aAO7C,CAAC;AASF,eAAO,MAAM,gBAAgB,kBACZ,OAAO,KAAK,QAAQ,QAAQ,GAAG,IAAI,CAAC,SAcpD,CAAC"}

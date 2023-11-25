@@ -5,4 +5,3 @@ chat_messages
 	translated - jsonb - nullbale
 	rich - jsonb - nullable
 	created_at - timestampz - now()
-	updated_at - timestampz - nullable
