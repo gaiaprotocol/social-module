@@ -33,6 +33,12 @@ export default abstract class ChatMessageList extends SoFiComponent {
           }, interactions),
         );
       }
+      this.on("visible", () => {
+        this.scrollToBottom();
+        setTimeout(() => {
+          if (!this.deleted) this.scrollToBottom();
+        });
+      });
     } else {
       this.append(initialLoadingAnimation);
     }

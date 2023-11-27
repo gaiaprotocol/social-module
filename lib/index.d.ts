@@ -8,6 +8,7 @@ export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as SoFiUserPublic, SoFiUserPublicSelectQuery, } from "./database-interface/SoFiUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as MessageService } from "./message/MessageService.js";
+export { default as msg } from "./msg.js";
 export { default as FollowingPostList } from "./post/FollowingPostList.js";
 export { default as GlobalPostList } from "./post/GlobalPostList.js";
 export { default as PostDisplay } from "./post/PostDisplay.js";

@@ -1,6 +1,5 @@
 import {
   Button,
-  DomNode,
   el,
   FileDropArea,
   Icon,
@@ -9,7 +8,7 @@ import {
 } from "common-app-module";
 
 export default abstract class PostForm extends UploadForm {
-  private textarea: DomNode<HTMLTextAreaElement>;
+  private input: FileDropArea;
   private postButton: Button;
 
   constructor(authorProfileImage: string, focus: boolean = false) {
@@ -22,8 +21,8 @@ export default abstract class PostForm extends UploadForm {
         }),
         el(
           "form",
-          this.textarea = new FileDropArea<HTMLTextAreaElement>(
-            "textarea",
+          this.input = new FileDropArea(
+            { tag: ".message-input", contenteditable: true },
             (files) => this.appendFiles(files),
           ),
           this.uploadPreviewArea = el(".upload-preview-area"),
@@ -41,13 +40,13 @@ export default abstract class PostForm extends UploadForm {
           tag: ".post",
           title: msg("post-form-post-button"),
           click: () =>
-            this._post(this.textarea.domElement.value, this.toUploadFiles),
+            this._post(this.input.domElement.innerText, this.toUploadFiles),
         }),
       ),
     );
 
     if (focus) {
-      this.on("visible", () => this.textarea.domElement.focus());
+      this.on("visible", () => this.input.domElement.focus());
     }
   }
 
@@ -56,7 +55,7 @@ export default abstract class PostForm extends UploadForm {
     try {
       await this.post(message, files);
       if (this.deleted) return;
-      this.textarea.domElement.value = "";
+      this.input.domElement.innerText = "";
       this.clearUploads();
     } catch (error) {
       console.error(error);

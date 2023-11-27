@@ -1,6 +1,6 @@
 import { UploadForm } from "common-app-module";
 export default abstract class PostForm extends UploadForm {
-    private textarea;
+    private input;
     private postButton;
     constructor(authorProfileImage: string, focus?: boolean);
     private _post;
