@@ -9,8 +9,10 @@ import {
 
 export default abstract class ChatMessageForm extends UploadForm {
   private form: DomNode<HTMLFormElement>;
-  private textarea: DomNode<HTMLTextAreaElement>;
+  private input: FileDropArea;
   private nextTempId = 0;
+
+  protected sendButton: Button;
 
   constructor(tag: string, focus: boolean = true) {
     super(tag + ".chat-message-form.social-component");
@@ -27,17 +29,21 @@ export default abstract class ChatMessageForm extends UploadForm {
         ),
         this.form = el(
           "form",
-          this.textarea = new FileDropArea<HTMLTextAreaElement>(
-            "textarea",
-            (files) => this.appendFiles(files),
+          el(
+            ".input-container",
+            this.input = new FileDropArea(
+              { tag: ".message-input", contenteditable: true },
+              (files) => this.appendFiles(files),
+            ),
+            { click: () => this.input.domElement.focus() },
           ),
-          new Button({ tag: ".send", title: "Send" }),
+          this.sendButton = new Button({ tag: ".send", title: "Send" }),
           {
             submit: (event) => {
               event.preventDefault();
-              const message = this.textarea.domElement.value;
+              const message = this.input.value;
               if (message) this._sendMessage(message, this.toUploadFiles);
-              this.textarea.domElement.value = "";
+              this.input.value = "";
               this.clearUploads();
             },
           },
@@ -45,8 +51,7 @@ export default abstract class ChatMessageForm extends UploadForm {
       ),
     );
 
-    this.textarea.domElement.autocomplete = "off";
-    this.textarea.onDom("keydown", (event: KeyboardEvent) => {
+    this.input.onDom("keydown", (event: KeyboardEvent) => {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         this.form.fireDomEvent("submit");
@@ -54,7 +59,7 @@ export default abstract class ChatMessageForm extends UploadForm {
     });
 
     if (focus) {
-      this.on("visible", () => this.textarea.domElement.focus());
+      this.on("visible", () => this.input.domElement.focus());
     }
   }
 

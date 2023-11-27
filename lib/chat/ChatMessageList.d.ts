@@ -18,6 +18,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     addNewMessage(message: Message, wait?: boolean): void;
     messageSending(tempId: number, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
+    protected get scrolledToBottom(): boolean;
     private scrollToBottom;
 }
 //# sourceMappingURL=ChatMessageList.d.ts.map

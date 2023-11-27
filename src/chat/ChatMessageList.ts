@@ -114,6 +114,8 @@ export default abstract class ChatMessageList extends SoFiComponent {
     } else {
       lastMessageItem.addNewMessage(message, wait);
     }
+
+    if (this.scrolledToBottom) this.scrollToBottom();
   }
 
   public messageSending(
@@ -142,6 +144,13 @@ export default abstract class ChatMessageList extends SoFiComponent {
   public messageSent(tempId: number, id: number) {
     //TODO:
     console.log(tempId, id);
+  }
+
+  protected get scrolledToBottom() {
+    return (
+      this.domElement.scrollTop >=
+        this.domElement.scrollHeight - this.domElement.clientHeight - 100
+    );
   }
 
   private scrollToBottom() {
