@@ -12,7 +12,7 @@ export default abstract class PostForm extends UploadForm {
   private postButton: Button;
 
   constructor(authorProfileImage: string, focus: boolean = false) {
-    super(".post-form.social-component");
+    super(".post-form.sofi-component");
     this.append(
       el(
         "main",
@@ -22,7 +22,7 @@ export default abstract class PostForm extends UploadForm {
         el(
           "form",
           this.input = new FileDropArea(
-            { tag: ".message-input", contenteditable: true },
+            { tag: "p.message-input", contenteditable: true },
             (files) => this.appendFiles(files),
           ),
           this.uploadPreviewArea = el(".upload-preview-area"),

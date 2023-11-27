@@ -15,7 +15,7 @@ export default abstract class ChatMessageForm extends UploadForm {
   protected sendButton: Button;
 
   constructor(tag: string, focus: boolean = true) {
-    super(tag + ".chat-message-form.social-component");
+    super(tag + ".chat-message-form.sofi-component");
     this.addAllowedEvents("messageSending", "messageSent");
     this.append(
       this.uploadPreviewArea = el(".upload-preview-area"),
@@ -32,7 +32,7 @@ export default abstract class ChatMessageForm extends UploadForm {
           el(
             ".input-container",
             this.input = new FileDropArea(
-              { tag: ".message-input", contenteditable: true },
+              { tag: "p.message-input", contenteditable: true },
               (files) => this.appendFiles(files),
             ),
             { click: () => this.input.domElement.focus() },
