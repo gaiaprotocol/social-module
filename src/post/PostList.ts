@@ -71,7 +71,65 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
     },
     interactions: PostInteractions<T>,
   ) {
-    new PostListItem(posts, options, interactions).appendTo(this, 0);
+    const item = new PostListItem(posts, options, interactions).appendTo(
+      this,
+      0,
+    );
+    ["like", "unlike", "repost", "unrepost"].forEach((event) =>
+      item.on(event, (postId) => {
+        if (this.store) {
+          const cachedPosts = this.store.get<{
+            posts: T[];
+            mainPostId: number;
+          }[]>("cached-posts") ?? [];
+          const cachedRepostedPostIds =
+            this.store.get<number[]>("cached-reposted-post-ids") ?? [];
+          const cachedLikedPostIds =
+            this.store.get<number[]>("cached-liked-post-ids") ?? [];
+
+          // Update the relevant post's data based on the event type
+          cachedPosts.forEach((cachedPostGroup) => {
+            cachedPostGroup.posts.forEach((post) => {
+              if (post.id === postId) {
+                switch (event) {
+                  case "like":
+                    post.like_count++;
+                    cachedLikedPostIds.push(postId);
+                    break;
+                  case "unlike":
+                    post.like_count--;
+                    const likeIndex = cachedLikedPostIds.indexOf(postId);
+                    if (likeIndex > -1) cachedLikedPostIds.splice(likeIndex, 1);
+                    break;
+                  case "repost":
+                    post.repost_count++;
+                    cachedRepostedPostIds.push(postId);
+                    break;
+                  case "unrepost":
+                    post.repost_count--;
+                    const repostIndex = cachedRepostedPostIds.indexOf(postId);
+                    if (repostIndex > -1) {
+                      cachedRepostedPostIds.splice(repostIndex, 1);
+                    }
+                    break;
+                  default:
+                    break;
+                }
+              }
+            });
+          });
+
+          // Update the store with the new data
+          this.store.set("cached-posts", cachedPosts, true);
+          this.store.set(
+            "cached-reposted-post-ids",
+            cachedRepostedPostIds,
+            true,
+          );
+          this.store.set("cached-liked-post-ids", cachedLikedPostIds, true);
+        }
+      })
+    );
   }
 
   private async refresh() {

@@ -30,6 +30,8 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
     this.reposted = options.reposted;
     this.liked = options.liked;
 
+    this.addAllowedEvents("like", "unlike", "repost", "unrepost");
+
     const authorProfileImage = el(".author-profile-image", {
       style: {
         backgroundImage: `url(${post.author.profile_image_thumbnail})`,
@@ -131,11 +133,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
       this.repostCountDisplay.text = String(this.post.repost_count + 1);
       this.reposted = true;
       button.addClass("reposted");
+      this.fireEvent("repost");
     } else {
       this.interactions.unrepost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count - 1);
       this.reposted = false;
       button.deleteClass("reposted");
+      this.fireEvent("unrepost");
     }
   }
 
@@ -146,11 +150,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
       this.likeCountDisplay.text = String(this.post.like_count + 1);
       this.liked = true;
       button.addClass("liked");
+      this.fireEvent("like");
     } else {
       this.interactions.unlike(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count - 1);
       this.liked = false;
       button.deleteClass("liked");
+      this.fireEvent("unlike");
     }
   }
 }

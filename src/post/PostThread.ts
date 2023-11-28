@@ -22,6 +22,7 @@ export default class PostThread<T extends Post> extends SoFiComponent {
     form?: PostForm,
   ) {
     super(".post-thread");
+    this.addAllowedEvents("like", "unlike", "repost", "unrepost");
 
     let parent = true;
 
@@ -34,6 +35,10 @@ export default class PostThread<T extends Post> extends SoFiComponent {
         liked: options.likedPostIds.includes(post.id),
         new: options.newPostIds.includes(post.id),
       }, interactions).appendTo(this);
+
+      ["like", "unlike", "repost", "unrepost"].forEach((event) =>
+        postDisplay.on(event, () => this.fireEvent(event, post.id))
+      );
 
       this.postDisplays.push(postDisplay);
 
