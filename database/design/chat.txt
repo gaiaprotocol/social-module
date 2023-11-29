@@ -1,5 +1,5 @@
 chat_messages
-	id - int8 - pk
+	id - int8 - auto_increment - pk
 	author - uuid, fk to users_public.user_id - auth.uid()
 	message - text - nullable
 	translated - jsonb - nullbale

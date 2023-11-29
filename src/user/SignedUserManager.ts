@@ -1,8 +1,9 @@
 import { EventContainer, Supabase } from "common-app-module";
 import SoFiUserPublic from "../database-interface/SoFiUserPublic.js";
 
-export default abstract class SignedUserManager extends EventContainer {
-  public user: SoFiUserPublic | undefined;
+export default abstract class SignedUserManager<UT extends SoFiUserPublic>
+  extends EventContainer {
+  public user: UT | undefined;
 
   public get signed() {
     return this.user !== undefined;
@@ -28,7 +29,7 @@ export default abstract class SignedUserManager extends EventContainer {
 
   protected abstract fetchUser(
     userId: string,
-  ): Promise<SoFiUserPublic | undefined>;
+  ): Promise<UT | undefined>;
 
   public async signOut() {
     await Supabase.signOut();
