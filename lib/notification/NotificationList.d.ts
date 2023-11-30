@@ -11,7 +11,8 @@ export default abstract class NotificationList<T> extends SoFiComponent {
     protected store: Store;
     private channel;
     constructor(tag: string, options: NotificationListOptions, initialLoadingAnimation: DomChild);
-    protected abstract addNotificationItem(notification: T): void;
+    protected abstract addNotificationItem(notification: T, isNew: boolean): void;
+    protected abstract fetchNotification(id: number): Promise<T | undefined>;
     protected abstract fetchNotifications(): Promise<T[]>;
     private refresh;
     delete(): void;

@@ -26,7 +26,7 @@ export default abstract class NotificationList<T> extends SoFiComponent {
     const cachedNotifications = this.store.get<T[]>("cached-notifications");
     if (cachedNotifications && cachedNotifications.length > 0) {
       for (const notification of cachedNotifications) {
-        this.addNotificationItem(notification);
+        this.addNotificationItem(notification, false);
       }
     } else {
       this.append(initialLoadingAnimation);
@@ -44,16 +44,23 @@ export default abstract class NotificationList<T> extends SoFiComponent {
           table: options.tableName,
           filter: "user_id=eq." + options.userId,
         },
-        (payload: any) => {
-          console.log(payload);
-          //TODO:
+        async (payload: any) => {
+          const notification = await this.fetchNotification(payload.new.id);
+          if (notification) {
+            const cachedNotifications =
+              this.store.get<T[]>("cached-notifications") ?? [];
+            cachedNotifications.push(notification);
+            this.store.set("cached-notifications", cachedNotifications, true);
+            this.addNotificationItem(notification, true);
+          }
         },
       )
       .subscribe();
   }
 
-  protected abstract addNotificationItem(notification: T): void;
+  protected abstract addNotificationItem(notification: T, isNew: boolean): void;
 
+  protected abstract fetchNotification(id: number): Promise<T | undefined>;
   protected abstract fetchNotifications(): Promise<T[]>;
 
   private async refresh() {
@@ -66,7 +73,7 @@ export default abstract class NotificationList<T> extends SoFiComponent {
     if (!this.deleted) {
       this.empty();
       for (const notification of notifications) {
-        this.addNotificationItem(notification);
+        this.addNotificationItem(notification, false);
       }
     }
   }
