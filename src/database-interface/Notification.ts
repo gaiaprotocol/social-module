@@ -1,3 +1,5 @@
+import Author from "./Author.js";
+
 export enum NotificationType {
   FOLLOW,
   POST_LIKE,
@@ -9,9 +11,12 @@ export enum NotificationType {
 export default interface Notification<T = NotificationType> {
   id: number;
   user_id: string;
-  triggered_by: string;
+  triggerer: Author;
   type: T;
   source_id?: number;
   read_at?: string;
   created_at: string;
 }
+
+export const NotificationSelectQuery =
+  "*, triggerer(user_id, display_name, profile_image, profile_image_thumbnail, x_username)";

@@ -5,20 +5,22 @@ export { default as ChatMessageList } from "./chat/ChatMessageList.js";
 export { default as Author } from "./database-interface/Author.js";
 export {
   default as Message,
-  MessageSelectQuery
+  MessageSelectQuery,
 } from "./database-interface/Message.js";
 export {
   default as Notification,
-  NotificationType
+  NotificationType,
 } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export {
   default as SoFiUserPublic,
-  SoFiUserPublicSelectQuery
+  SoFiUserPublicSelectQuery,
 } from "./database-interface/SoFiUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as MessageService } from "./message/MessageService.js";
 export { default as msg } from "./msg.js";
+export { default as NotificationList } from "./notification/NotificationList.js";
+export { default as NotificationListItem } from "./notification/NotificationListItem.js";
 export { default as FollowingPostList } from "./post/FollowingPostList.js";
 export { default as GlobalPostList } from "./post/GlobalPostList.js";
 export { default as PostDisplay } from "./post/PostDisplay.js";
@@ -36,4 +38,3 @@ export { default as SignedUserManager } from "./user/SignedUserManager.js";
 export { default as SoFiUserService } from "./user/SoFiUserService.js";
 export { default as TempSoFiUserCacher } from "./user/TempSoFiUserCacher.js";
 export { default as AuthUtil } from "./util/AuthUtil.js";
-
