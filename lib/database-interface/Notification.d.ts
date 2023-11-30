@@ -11,7 +11,6 @@ export default interface Notification<T = NotificationType> {
     user_id: string;
     triggerer: Author;
     type: T;
-    source_id?: number;
     read_at?: string;
     created_at: string;
 }

@@ -130,13 +130,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
     event.stopPropagation();
     if (!this.reposted) {
       this.interactions.repost(this.post.id);
-      this.repostCountDisplay.text = String(this.post.repost_count + 1);
+      this.repostCountDisplay.text = String(this.post.repost_count += 1);
       this.reposted = true;
       button.addClass("reposted");
       this.fireEvent("repost");
     } else {
       this.interactions.unrepost(this.post.id);
-      this.repostCountDisplay.text = String(this.post.repost_count - 1);
+      this.repostCountDisplay.text = String(this.post.repost_count -= 1);
       this.reposted = false;
       button.deleteClass("reposted");
       this.fireEvent("unrepost");
@@ -147,13 +147,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
     event.stopPropagation();
     if (!this.liked) {
       this.interactions.like(this.post.id);
-      this.likeCountDisplay.text = String(this.post.like_count + 1);
+      this.likeCountDisplay.text = String(this.post.like_count += 1);
       this.liked = true;
       button.addClass("liked");
       this.fireEvent("like");
     } else {
       this.interactions.unlike(this.post.id);
-      this.likeCountDisplay.text = String(this.post.like_count - 1);
+      this.likeCountDisplay.text = String(this.post.like_count -= 1);
       this.liked = false;
       button.deleteClass("liked");
       this.fireEvent("unlike");
