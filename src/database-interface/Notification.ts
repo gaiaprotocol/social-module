@@ -11,7 +11,7 @@ export enum NotificationType {
 export default interface Notification<T = NotificationType> {
   id: number;
   user_id: string;
-  triggerer: Author;
+  triggerer?: Author;
   type: T;
   read_at?: string;
   created_at: string;

@@ -8,8 +8,8 @@ export { default as Notification, NotificationSelectQuery, NotificationType, } f
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as SoFiUserPublic, SoFiUserPublicSelectQuery, } from "./database-interface/SoFiUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
+export { default as inject_sofi_msg } from "./inject_sofi_msg.js";
 export { default as MessageService } from "./message/MessageService.js";
-export { default as msg } from "./msg.js";
 export { default as NotificationList } from "./notification/NotificationList.js";
 export { default as NotificationListItem } from "./notification/NotificationListItem.js";
 export { default as NotificationStore } from "./notification/NotificationStore.js";

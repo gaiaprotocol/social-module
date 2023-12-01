@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS "public"."notifications" (
     "id" bigint NOT NULL,
     "user_id" "uuid" NOT NULL,
-    "triggerer" "uuid" NOT NULL,
+    "triggerer" "uuid",
     "type" smallint NOT NULL,
     "read" boolean DEFAULT false NOT NULL,
     "read_at" timestamp with time zone,
