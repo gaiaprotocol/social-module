@@ -22,13 +22,11 @@ export { default as PostInteractions } from "./post/PostInteractions.js";
 export { default as PostList } from "./post/PostList.js";
 export { default as PostService } from "./post/PostService.js";
 export { default as PostThread } from "./post/PostThread.js";
-export { default as TempPostCacher } from "./post/TempPostCacher.js";
 export { default as TestChatView } from "./test/TestChatView.js";
 export { default as TestPostListView } from "./test/TestPostListView.js";
 export { default as TestPostView } from "./test/TestPostView.js";
 export { default as TopicService } from "./topic/TopicService.js";
 export { default as SignedUserManager } from "./user/SignedUserManager.js";
 export { default as SoFiUserService } from "./user/SoFiUserService.js";
-export { default as TempSoFiUserCacher } from "./user/TempSoFiUserCacher.js";
 export { default as AuthUtil } from "./util/AuthUtil.js";
 //# sourceMappingURL=index.d.ts.map
