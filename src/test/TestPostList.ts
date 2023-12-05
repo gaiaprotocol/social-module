@@ -17,7 +17,7 @@ class TestPostService extends PostService<Post> {
 }
 
 class TestPostInteractions implements PostInteractions<Post> {
-  public openPostView(postId: number) {
+  public openPostView(post: Post) {
     throw new Error("Method not implemented.");
   }
   public openAuthorProfile(author: Author) {

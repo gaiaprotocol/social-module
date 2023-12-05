@@ -107,7 +107,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
           dateDisplay,
           actions,
         ),
-      ).onDom("click", () => interactions.openPostView(post.id));
+      ).onDom("click", () => interactions.openPostView(post));
     }
   }
 
