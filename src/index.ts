@@ -13,6 +13,7 @@ export {
   NotificationType,
 } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
+export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
 export {
   default as SoFiUserPublic,
   SoFiUserPublicSelectQuery,

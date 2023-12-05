@@ -6,6 +6,7 @@ export { default as Author } from "./database-interface/Author.js";
 export { default as Message, MessageSelectQuery, } from "./database-interface/Message.js";
 export { default as Notification, NotificationSelectQuery, NotificationType, } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
+export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
 export { default as SoFiUserPublic, SoFiUserPublicSelectQuery, } from "./database-interface/SoFiUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as inject_sofi_msg } from "./inject_sofi_msg.js";

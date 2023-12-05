@@ -1,23 +1,13 @@
 import { SupabaseService } from "common-app-module";
 
-export default class NotificationStore<T> extends SupabaseService {
+export default class NotificationStore<T> extends SupabaseService<T> {
   public async fetchNotification(id: number) {
-    const data = await this.safeFetch<T[]>((b) =>
-      b.select(this.selectQuery).eq("id", id)
-    );
-    return data?.[0];
+    return await this.safeSelectSingle((b) => b.eq("id", id));
   }
 
   public async fetchNotifications(userId: string) {
-    const data = await this.safeFetch<T[]>((b) =>
-      b.select(this.selectQuery).limit(this.fetchLimit).eq(
-        "user_id",
-        userId,
-      ).order(
-        "created_at",
-        { ascending: false },
-      )
+    return await this.safeSelect((b) =>
+      b.eq("user_id", userId).order("created_at", { ascending: false })
     );
-    return data ?? [];
   }
 }
