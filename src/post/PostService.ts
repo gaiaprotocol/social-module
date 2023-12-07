@@ -169,9 +169,11 @@ export default class PostService<T extends Post> extends MessageService<T> {
   public async findPosts(
     query: string,
     lastPostId: number | undefined,
+    signedUserId: string | undefined,
   ) {
     const { data, error } = await Supabase.client.rpc("find_posts", {
-      p_query: query,
+      p_user_id: signedUserId,
+      search_string: query,
       last_post_id: lastPostId,
       max_count: this.fetchLimit,
     });

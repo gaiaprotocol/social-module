@@ -51,7 +51,7 @@ export default class PostService<T extends Post> extends MessageService<T> {
         };
         lastRepostedAt: string | undefined;
     }>;
-    findPosts(query: string, lastPostId: number | undefined): Promise<{
+    findPosts(query: string, lastPostId: number | undefined, signedUserId: string | undefined): Promise<{
         posts: T[];
         repostedPostIds: number[];
         likedPostIds: number[];
