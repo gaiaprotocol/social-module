@@ -1,10 +1,11 @@
 import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
-import PostDisplay from "./PostDisplay.js";
 import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
 export default class PostThread<T extends Post> extends SoFiComponent {
-    private postDisplays;
+    private options;
+    private interactions;
+    private form?;
     constructor(posts: T[], options: {
         inView?: boolean;
         mainPostId: number;
@@ -12,7 +13,8 @@ export default class PostThread<T extends Post> extends SoFiComponent {
         likedPostIds: number[];
         newPostIds: number[];
         signedUserId?: string;
-    }, interactions: PostInteractions<T>, form?: PostForm);
-    findPostDisplay(postId: number): PostDisplay<T> | undefined;
+    }, interactions: PostInteractions<T>, form?: PostForm | undefined);
+    private addPostDisplay;
+    addComment(post: T): void;
 }
 //# sourceMappingURL=PostThread.d.ts.map

@@ -28,7 +28,7 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
         likedPostIds: number[];
     }>;
     private addPostItem;
-    private refresh;
+    protected refresh(): Promise<void>;
     protected addNewPost(post: T): void;
     private loadMore;
     show(): void;

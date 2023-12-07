@@ -7,7 +7,7 @@ export default class NotificationStore<T> extends SupabaseService<T> {
 
   public async fetchNotifications(userId: string) {
     return await this.safeSelect((b) =>
-      b.eq("user_id", userId).order("created_at", { ascending: false })
+      b.eq("user_id", userId).order("id", { ascending: false })
     );
   }
 }

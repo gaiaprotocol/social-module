@@ -1,5 +1,6 @@
 import { EventContainer, Supabase } from "common-app-module";
 import SoFiUserPublic from "../database-interface/SoFiUserPublic.js";
+import FollowService from "../follow/FollowService.js";
 
 export default abstract class SignedUserManager<UT extends SoFiUserPublic>
   extends EventContainer {
@@ -23,7 +24,10 @@ export default abstract class SignedUserManager<UT extends SoFiUserPublic>
     if (error) throw error;
     const sessionUser = data?.session?.user;
     if (sessionUser) {
-      this.user = await this.fetchUser(sessionUser.id);
+      [this.user] = await Promise.all([
+        this.fetchUser(sessionUser.id),
+        FollowService.fetchSignedUserFollows(sessionUser.id),
+      ]);
     }
   }
 

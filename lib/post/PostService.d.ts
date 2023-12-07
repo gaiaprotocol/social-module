@@ -10,7 +10,7 @@ export default class PostService<T extends Post> extends MessageService<T> {
         repostedPostIds: number[];
         likedPostIds: number[];
     };
-    fetchPost(postId: number, signedUserId: string | undefined): Promise<{
+    fetchPost(postId: number, lastCommentId: number | undefined, signedUserId: string | undefined): Promise<{
         posts: T[];
         repostedPostIds: number[];
         likedPostIds: number[];
@@ -21,6 +21,37 @@ export default class PostService<T extends Post> extends MessageService<T> {
         likedPostIds: number[];
     }>;
     fetchFollowingPosts(userId: string, lastPostId: number | undefined): Promise<{
+        posts: T[];
+        repostedPostIds: number[];
+        likedPostIds: number[];
+    }>;
+    fetchUserPosts(userId: string, lastPostId: number | undefined): Promise<{
+        posts: T[];
+        repostedPostIds: number[];
+        likedPostIds: number[];
+    }>;
+    fetchUserCommentPosts(userId: string, lastPostId: number | undefined): Promise<{
+        posts: T[];
+        repostedPostIds: number[];
+        likedPostIds: number[];
+    }>;
+    fetchLikedPosts(userId: string, lastLikedAt: string | undefined): Promise<{
+        data: {
+            posts: T[];
+            repostedPostIds: number[];
+            likedPostIds: number[];
+        };
+        lastLikedAt: string | undefined;
+    }>;
+    fetchReposts(userId: string, lastRepostedAt: string | undefined): Promise<{
+        data: {
+            posts: T[];
+            repostedPostIds: number[];
+            likedPostIds: number[];
+        };
+        lastRepostedAt: string | undefined;
+    }>;
+    findPosts(query: string, lastPostId: number | undefined): Promise<{
         posts: T[];
         repostedPostIds: number[];
         likedPostIds: number[];

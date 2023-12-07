@@ -6,11 +6,9 @@ import PostInteractions from "./PostInteractions.js";
 
 // Displays all connected Posts in a thread.
 export default class PostThread<T extends Post> extends SoFiComponent {
-  private postDisplays: PostDisplay<T>[] = [];
-
   constructor(
     posts: T[],
-    options: {
+    private options: {
       inView?: boolean;
       mainPostId: number;
       repostedPostIds: number[];
@@ -18,8 +16,8 @@ export default class PostThread<T extends Post> extends SoFiComponent {
       newPostIds: number[];
       signedUserId?: string;
     },
-    interactions: PostInteractions<T>,
-    form?: PostForm,
+    private interactions: PostInteractions<T>,
+    private form?: PostForm,
   ) {
     super(".post-thread");
     this.addAllowedEvents("like", "unlike", "repost", "unrepost");
@@ -27,20 +25,7 @@ export default class PostThread<T extends Post> extends SoFiComponent {
     let parent = true;
 
     for (const post of posts) {
-      const postDisplay = new PostDisplay(post, {
-        inView: options.inView && post.id === options.mainPostId,
-        owner: options.signedUserId !== undefined &&
-          post.author.user_id === options.signedUserId,
-        reposted: options.repostedPostIds.includes(post.id),
-        liked: options.likedPostIds.includes(post.id),
-        new: options.newPostIds.includes(post.id),
-      }, interactions).appendTo(this);
-
-      ["like", "unlike", "repost", "unrepost"].forEach((event) =>
-        postDisplay.on(event, () => this.fireEvent(event, post.id))
-      );
-
-      this.postDisplays.push(postDisplay);
+      const postDisplay = this.addPostDisplay(post);
 
       if (post.id === options.mainPostId) {
         parent = false;
@@ -54,9 +39,27 @@ export default class PostThread<T extends Post> extends SoFiComponent {
     }
   }
 
-  public findPostDisplay(postId: number): PostDisplay<T> | undefined {
-    return this.postDisplays.find((postDisplay) =>
-      postDisplay.post.id === postId
+  private addPostDisplay(post: T, index?: number) {
+    const postDisplay = new PostDisplay(post, {
+      inView: this.options.inView && post.id === this.options.mainPostId,
+      owner: this.options.signedUserId !== undefined &&
+        post.author.user_id === this.options.signedUserId,
+      reposted: this.options.repostedPostIds.includes(post.id),
+      liked: this.options.likedPostIds.includes(post.id),
+      new: this.options.newPostIds.includes(post.id),
+    }, this.interactions).appendTo(this, index);
+
+    ["like", "unlike", "repost", "unrepost"].forEach((event) =>
+      postDisplay.on(event, () => this.fireEvent(event, post.id))
     );
+
+    return postDisplay;
+  }
+
+  public addComment(post: T) {
+    if (this.form) {
+      const index = this.children.findIndex((child) => child === this.form);
+      this.addPostDisplay(post, index + 1);
+    }
   }
 }

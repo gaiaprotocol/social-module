@@ -132,7 +132,7 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
     );
   }
 
-  private async refresh() {
+  protected async refresh() {
     this.append(new ListLoadingBar());
 
     const cachedPosts = this.store?.get<{

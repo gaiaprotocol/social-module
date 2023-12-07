@@ -9,6 +9,7 @@ export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
 export { default as SoFiUserPublic } from "./database-interface/SoFiUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
+export { default as FollowService } from "./follow/FollowService.js";
 export { default as inject_sofi_msg } from "./inject_sofi_msg.js";
 export { default as MessageService } from "./message/MessageService.js";
 export { default as NotificationList } from "./notification/NotificationList.js";
