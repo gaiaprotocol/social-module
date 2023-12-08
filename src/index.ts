@@ -24,6 +24,7 @@ export { default as NotificationListItem } from "./notification/NotificationList
 export { default as NotificationStore } from "./notification/NotificationStore.js";
 export { default as FollowingPostList } from "./post/FollowingPostList.js";
 export { default as GlobalPostList } from "./post/GlobalPostList.js";
+export { default as PostContentDisplay } from "./post/PostContentDisplay.js";
 export { default as PostDisplay } from "./post/PostDisplay.js";
 export { default as PostForm } from "./post/PostForm.js";
 export { default as PostInteractions } from "./post/PostInteractions.js";

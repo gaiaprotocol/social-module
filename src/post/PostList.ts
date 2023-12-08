@@ -71,10 +71,16 @@ export default abstract class PostList<T extends Post> extends SoFiComponent {
     },
     interactions: PostInteractions<T>,
   ) {
-    const item = new PostListItem(posts, options, interactions).appendTo(
-      this,
-      0,
-    );
+    const item = new PostListItem(
+      posts,
+      this.postService,
+      options,
+      interactions,
+    )
+      .appendTo(
+        this,
+        0,
+      );
     ["like", "unlike", "repost", "unrepost"].forEach((event) =>
       item.on(event, (postId) => {
         if (this.store) {

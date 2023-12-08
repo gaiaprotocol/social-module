@@ -2,6 +2,7 @@ import { DateUtil, DomNode, el, Icon, RichDisplay } from "common-app-module";
 import Post from "../database-interface/Post.js";
 import SoFiComponent from "../SoFiComponent.js";
 import PostInteractions from "./PostInteractions.js";
+import PostService from "./PostService.js";
 
 // Displays a single Post.
 export default class PostDisplay<T extends Post> extends SoFiComponent {
@@ -13,6 +14,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
 
   constructor(
     public post: T,
+    private postService: PostService<T>,
     options: {
       inView?: boolean;
       owner: boolean;
@@ -85,12 +87,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
 
     if (options.inView) {
       this.append(
-        el(
-          "header",
-          authorProfileImage,
-          authorDisplay,
-          ownerMenuButton,
-        ),
+        el("header", authorProfileImage, authorDisplay, ownerMenuButton),
         messageDisplay,
         richDisplay,
         dateDisplay,
@@ -109,6 +106,8 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
         ),
       ).onDom("click", () => interactions.openPostView(post));
     }
+
+    this.onDelegate(postService, "deleteMessage", () => this.delete());
   }
 
   private goAuthorProfile(event: MouseEvent) {
@@ -129,13 +128,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
   private repost(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
     if (!this.reposted) {
-      this.interactions.repost(this.post.id);
+      this.postService.repost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count += 1);
       this.reposted = true;
       button.addClass("reposted");
       this.fireEvent("repost");
     } else {
-      this.interactions.unrepost(this.post.id);
+      this.postService.unrepost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count -= 1);
       this.reposted = false;
       button.deleteClass("reposted");
@@ -146,13 +145,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
   private like(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
     if (!this.liked) {
-      this.interactions.like(this.post.id);
+      this.postService.like(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count += 1);
       this.liked = true;
       button.addClass("liked");
       this.fireEvent("like");
     } else {
-      this.interactions.unlike(this.post.id);
+      this.postService.unlike(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count -= 1);
       this.liked = false;
       button.deleteClass("liked");

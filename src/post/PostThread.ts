@@ -3,11 +3,13 @@ import Post from "../database-interface/Post.js";
 import PostDisplay from "./PostDisplay.js";
 import PostForm from "./PostForm.js";
 import PostInteractions from "./PostInteractions.js";
+import PostService from "./PostService.js";
 
 // Displays all connected Posts in a thread.
 export default class PostThread<T extends Post> extends SoFiComponent {
   constructor(
     posts: T[],
+    private postService: PostService<T>,
     private options: {
       inView?: boolean;
       mainPostId: number;
@@ -40,14 +42,19 @@ export default class PostThread<T extends Post> extends SoFiComponent {
   }
 
   private addPostDisplay(post: T, index?: number) {
-    const postDisplay = new PostDisplay(post, {
-      inView: this.options.inView && post.id === this.options.mainPostId,
-      owner: this.options.signedUserId !== undefined &&
-        post.author.user_id === this.options.signedUserId,
-      reposted: this.options.repostedPostIds.includes(post.id),
-      liked: this.options.likedPostIds.includes(post.id),
-      new: this.options.newPostIds.includes(post.id),
-    }, this.interactions).appendTo(this, index);
+    const postDisplay = new PostDisplay(
+      post,
+      this.postService,
+      {
+        inView: this.options.inView && post.id === this.options.mainPostId,
+        owner: this.options.signedUserId !== undefined &&
+          post.author.user_id === this.options.signedUserId,
+        reposted: this.options.repostedPostIds.includes(post.id),
+        liked: this.options.likedPostIds.includes(post.id),
+        new: this.options.newPostIds.includes(post.id),
+      },
+      this.interactions,
+    ).appendTo(this, index);
 
     ["like", "unlike", "repost", "unrepost"].forEach((event) =>
       postDisplay.on(event, () => this.fireEvent(event, post.id))

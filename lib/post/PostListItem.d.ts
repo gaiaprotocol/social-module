@@ -1,8 +1,9 @@
 import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
+import PostService from "./PostService.js";
 export default class PostListItem<T extends Post> extends SoFiComponent {
-    constructor(posts: T[], options: {
+    constructor(posts: T[], postService: PostService<T>, options: {
         mainPostId: number;
         repostedPostIds: number[];
         likedPostIds: number[];
