@@ -17,10 +17,11 @@ export default abstract class ChatMessageList extends SoFiComponent {
     private refresh;
     private groupMessagesByAuthor;
     private addItem;
+    private addNewItem;
     messageSending(tempId: number, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
     addNewMessage(message: Message): void;
-    protected get scrolledToBottom(): boolean;
+    protected scrolledToBottom(appendHeight?: number): boolean;
     private scrollToBottom;
 }
 //# sourceMappingURL=ChatMessageList.d.ts.map

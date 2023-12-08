@@ -5,13 +5,24 @@ import ChatMessageInteractions from "./ChatMessageInteractions.js";
 
 // Displays a single message.
 export default class ChatMessageDisplay extends SoFiComponent {
+  private richDisplay: RichDisplay | undefined;
+
   constructor(message: Message, options: {
     owner: boolean;
   }, interactions: ChatMessageInteractions) {
     super(".chat-message-display");
+    this.addAllowedEvents("imageLoaded");
+
     this.append(
       el("p.message", message.message),
-      message.rich ? new RichDisplay(message.rich) : undefined,
+      message.rich
+        ? this.richDisplay = new RichDisplay(message.rich)
+        : undefined,
+    );
+
+    this.richDisplay?.on(
+      "imageLoaded",
+      (imageHeight) => this.fireEvent("imageLoaded", imageHeight),
     );
   }
 }

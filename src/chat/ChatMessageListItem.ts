@@ -14,6 +14,8 @@ export default class ChatMessageListItem extends SoFiComponent {
     private interactions: ChatMessageInteractions,
   ) {
     super(".chat-message-list-item");
+    this.addAllowedEvents("imageLoaded");
+
     this.firstMessage = messages[0];
     if (this.firstMessage) {
       const authorProfileImage = el(".author-profile-image", {
@@ -37,10 +39,7 @@ export default class ChatMessageListItem extends SoFiComponent {
       );
 
       const messageDisplays = messages.map((message) =>
-        new ChatMessageDisplay(message, {
-          owner: options.signedUserId !== undefined &&
-            message.author.user_id === options.signedUserId,
-        }, interactions)
+        this.createDisplay(message)
       );
 
       if (this.firstMessage.author.user_id === options.signedUserId) {
@@ -71,12 +70,24 @@ export default class ChatMessageListItem extends SoFiComponent {
     if (message) this.interactions.openAuthorProfile(message.author);
   }
 
+  public createDisplay(message: Message) {
+    const display = new ChatMessageDisplay(message, {
+      owner: this.options.signedUserId !== undefined &&
+        message.author.user_id === this.options.signedUserId,
+    }, this.interactions);
+
+    display.addClass("new").on(
+      "imageLoaded",
+      (imageHeight) => this.fireEvent("imageLoaded", imageHeight),
+    );
+
+    return display;
+  }
+
   public addMessage(message: Message, wait?: boolean) {
     if (this.main) {
-      const display = new ChatMessageDisplay(message, {
-        owner: this.options.signedUserId !== undefined &&
-          message.author.user_id === this.options.signedUserId,
-      }, this.interactions).appendTo(this.main);
+      const display = this.createDisplay(message);
+
       display.addClass("new");
       if (wait) display.addClass("wait");
     }

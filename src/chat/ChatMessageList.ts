@@ -60,11 +60,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
       this.empty();
       const groupedMessages = this.groupMessagesByAuthor(messages);
       for (const messages of groupedMessages) {
-        this.append(
-          new ChatMessageListItem(messages, {
-            signedUserId: this.options.signedUserId,
-          }, this.interactions),
-        );
+        this.addItem(messages);
       }
       this.scrollToBottom();
     }
@@ -105,7 +101,22 @@ export default abstract class ChatMessageList extends SoFiComponent {
     return grouped;
   }
 
-  private addItem(message: Message, wait?: boolean) {
+  private addItem(messages: Message[]) {
+    const item = new ChatMessageListItem(messages, {
+      signedUserId: this.options.signedUserId,
+    }, this.interactions).appendTo(this);
+
+    item.on(
+      "imageLoaded",
+      (imageHeight) => {
+        if (this.scrolledToBottom(imageHeight)) this.scrollToBottom();
+      },
+    );
+
+    return item;
+  }
+
+  private addNewItem(message: Message, wait?: boolean) {
     const lastMessageItem: ChatMessageListItem | undefined =
       this.children.length
         ? this.children[this.children.length - 1] as ChatMessageListItem
@@ -113,16 +124,15 @@ export default abstract class ChatMessageList extends SoFiComponent {
     if (
       lastMessageItem?.firstMessage?.author.user_id !== message.author.user_id
     ) {
-      const item = new ChatMessageListItem([message], {
-        signedUserId: this.options.signedUserId,
-      }, this.interactions).appendTo(this);
+      const item = this.addItem([message]);
+
       item.addClass("new");
       if (wait) item.addClass("wait");
     } else {
       lastMessageItem.addMessage(message, wait);
     }
 
-    if (this.scrolledToBottom) this.scrollToBottom();
+    if (this.scrolledToBottom()) this.scrollToBottom();
   }
 
   public messageSending(
@@ -131,7 +141,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     message: string,
     files: File[],
   ) {
-    this.addItem({
+    this.addNewItem({
       id: tempId,
       author,
       message,
@@ -156,20 +166,20 @@ export default abstract class ChatMessageList extends SoFiComponent {
 
   public addNewMessage(message: Message) {
     if (!this.addedMessageIds.includes(message.id)) {
-      this.addItem(message);
-    } else {
+      this.addNewItem(message);
       this.addedMessageIds.push(message.id);
-
-      const cachedMessages = this.store.get<Message[]>("cached-messages") ?? [];
-      cachedMessages.push(message);
-      this.store.set("cached-messages", cachedMessages, true);
     }
+
+    const cachedMessages = this.store.get<Message[]>("cached-messages") ?? [];
+    cachedMessages.push(message);
+    this.store.set("cached-messages", cachedMessages, true);
   }
 
-  protected get scrolledToBottom() {
+  protected scrolledToBottom(appendHeight = 0) {
     return (
       this.domElement.scrollTop >=
-        this.domElement.scrollHeight - this.domElement.clientHeight - 100
+        this.domElement.scrollHeight - this.domElement.clientHeight - 100 -
+          appendHeight
     );
   }
 
