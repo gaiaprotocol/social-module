@@ -7,6 +7,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     private options;
     private interactions;
     private store;
+    private addedMessageIds;
     constructor(tag: string, options: {
         storeName: string;
         signedUserId?: string;
@@ -15,9 +16,10 @@ export default abstract class ChatMessageList extends SoFiComponent {
     protected abstract fetchMessages(): Promise<Message[]>;
     private refresh;
     private groupMessagesByAuthor;
-    addNewMessage(message: Message, wait?: boolean): void;
+    private addItem;
     messageSending(tempId: number, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
+    addNewMessage(message: Message): void;
     protected get scrolledToBottom(): boolean;
     private scrollToBottom;
 }

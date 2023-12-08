@@ -12,6 +12,10 @@ export default class MessageService<T extends Message>
     this.addAllowedEvents("deleteMessage");
   }
 
+  public async fetchMessage(messageId: number) {
+    return await this.safeSelectSingle((b) => b.eq("id", messageId));
+  }
+
   public async deleteMessage(messageId: number) {
     await this.safeDelete((b) => b.eq("id", messageId));
     this.fireEvent("deleteMessage", messageId);
