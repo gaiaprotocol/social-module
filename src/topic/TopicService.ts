@@ -1,4 +1,4 @@
-import { SupabaseService } from "common-app-module";
+import { Constants, SupabaseService } from "common-app-module";
 import Topic from "../database-interface/Topic.js";
 
 export default class TopicService<T extends Topic = Topic>
@@ -9,7 +9,7 @@ export default class TopicService<T extends Topic = Topic>
 
   public async fetchGlobalTopics(lastTopicCreatedAt?: string) {
     return await this.safeSelect((b) =>
-      b.gt("created_at", lastTopicCreatedAt ?? "1970-01-01T00:00:00.000Z")
+      b.gt("created_at", lastTopicCreatedAt ?? Constants.UNIX_EPOCH_START_DATE)
         .order("created_at", { ascending: false })
     );
   }

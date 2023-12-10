@@ -2,3 +2,6 @@ post-form-post-button: Post
 post-form-posting-button: Posting...
 global-post-list-empty-message: No posts yet
 following-post-list-empty-message: No posts from followed users yet
+getting-email-from-x-error-message: >
+  Error getting user email from external provider.
+  Please add an email in your X account settings and allow email access.

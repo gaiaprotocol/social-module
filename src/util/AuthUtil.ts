@@ -1,4 +1,4 @@
-import { ErrorAlert } from "common-app-module";
+import { ErrorAlert, msg } from "common-app-module";
 
 export default class AuthUtil {
   public static checkEmailAccess() {
@@ -6,11 +6,10 @@ export default class AuthUtil {
     let message = params.get("error_description")!;
     if (message) {
       if (message === "Error getting user email from external provider") {
-        message +=
-          ".\nPlease add an email in your X account settings and allow email access.";
+        message = msg("getting-email-from-x-error-message");
       }
       new ErrorAlert({
-        title: "Error",
+        title: msg("error-alert-title"),
         message,
       });
     }
