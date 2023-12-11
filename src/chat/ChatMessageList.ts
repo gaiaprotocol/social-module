@@ -116,7 +116,11 @@ export default abstract class ChatMessageList extends SoFiComponent {
     return item;
   }
 
-  private addNewItem(message: Message, wait?: boolean) {
+  private addNewItem(
+    message: Message,
+    wait?: boolean,
+    scrollToBottom?: boolean,
+  ) {
     const lastMessageItem: ChatMessageListItem | undefined =
       this.children.length
         ? this.children[this.children.length - 1] as ChatMessageListItem
@@ -132,7 +136,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
       lastMessageItem.addMessage(message, wait);
     }
 
-    if (this.scrolledToBottom()) this.scrollToBottom();
+    if (scrollToBottom || this.scrolledToBottom()) this.scrollToBottom();
   }
 
   public messageSending(
@@ -141,20 +145,24 @@ export default abstract class ChatMessageList extends SoFiComponent {
     message: string,
     files: File[],
   ) {
-    this.addNewItem({
-      id: tempId,
-      author,
-      message,
-      rich: {
-        files: files.map((file) => ({
-          fileName: file.name,
-          fileSize: file.size,
-          fileType: file.type,
-          url: URL.createObjectURL(file),
-        })),
+    this.addNewItem(
+      {
+        id: tempId,
+        author,
+        message,
+        rich: {
+          files: files.map((file) => ({
+            fileName: file.name,
+            fileSize: file.size,
+            fileType: file.type,
+            url: URL.createObjectURL(file),
+          })),
+        },
+        created_at: new Date().toISOString(),
       },
-      created_at: new Date().toISOString(),
-    }, true);
+      true,
+      true,
+    );
   }
 
   // The response indicating that a message has been sent arrives before the real-time message itself.
