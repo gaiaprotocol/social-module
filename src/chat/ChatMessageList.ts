@@ -159,8 +159,6 @@ export default abstract class ChatMessageList extends SoFiComponent {
 
   // The response indicating that a message has been sent arrives before the real-time message itself.
   public messageSent(tempId: number, id: number) {
-    //TODO:
-    console.log(tempId, id);
     this.addedMessageIds.push(id);
   }
 

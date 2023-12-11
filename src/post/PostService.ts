@@ -2,7 +2,8 @@ import { Supabase } from "common-app-module";
 import Post from "../database-interface/Post.js";
 import MessageService from "../message/MessageService.js";
 
-export default class PostService<T extends Post> extends MessageService<T> {
+export default abstract class PostService<T extends Post>
+  extends MessageService<T> {
   constructor(
     postTableName: string,
     private repostTableName: string,
@@ -13,6 +14,8 @@ export default class PostService<T extends Post> extends MessageService<T> {
     super(postTableName, selectQuery, fetchLimit);
     this.addAllowedEvents("newGlobalPost");
   }
+
+  public abstract checkSigned(): void;
 
   protected notifyNewGlobalPost(post: T) {
     this.fireEvent("newGlobalPost", post);

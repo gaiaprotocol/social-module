@@ -86,7 +86,7 @@ export default class ChatMessageListItem extends SoFiComponent {
 
   public addMessage(message: Message, wait?: boolean) {
     if (this.main) {
-      const display = this.createDisplay(message);
+      const display = this.createDisplay(message).appendTo(this.main);
 
       display.addClass("new");
       if (wait) display.addClass("wait");

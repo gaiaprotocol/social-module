@@ -14,6 +14,10 @@ class TestPostService extends PostService<Post> {
       50,
     );
   }
+
+  public checkSigned(): void {
+    throw new Error("Method not implemented.");
+  }
 }
 
 class TestPostInteractions implements PostInteractions<Post> {

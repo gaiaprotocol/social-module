@@ -127,6 +127,8 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
 
   private repost(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
+    this.postService.checkSigned();
+
     if (!this.reposted) {
       this.postService.repost(this.post.id);
       this.repostCountDisplay.text = String(this.post.repost_count += 1);
@@ -144,6 +146,8 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
 
   private like(event: MouseEvent, button: DomNode) {
     event.stopPropagation();
+    this.postService.checkSigned();
+
     if (!this.liked) {
       this.postService.like(this.post.id);
       this.likeCountDisplay.text = String(this.post.like_count += 1);

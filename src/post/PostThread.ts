@@ -32,9 +32,11 @@ export default class PostThread<T extends Post> extends SoFiComponent {
       if (post.id === options.mainPostId) {
         parent = false;
 
-        this.on("visible", () => {
-          postDisplay.domElement.scrollIntoView();
-        });
+        if (options.inView) {
+          this.on("visible", () => {
+            postDisplay.domElement.scrollIntoView();
+          });
+        }
 
         if (options.signedUserId && form) {
           form.appendTo(this);

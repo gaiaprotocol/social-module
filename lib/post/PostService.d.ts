@@ -1,9 +1,10 @@
 import Post from "../database-interface/Post.js";
 import MessageService from "../message/MessageService.js";
-export default class PostService<T extends Post> extends MessageService<T> {
+export default abstract class PostService<T extends Post> extends MessageService<T> {
     private repostTableName;
     private likeTableName;
     constructor(postTableName: string, repostTableName: string, likeTableName: string, selectQuery: string, fetchLimit: number);
+    abstract checkSigned(): void;
     protected notifyNewGlobalPost(post: T): void;
     protected enhancePostData(posts: T[]): {
         posts: T[];
