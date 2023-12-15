@@ -1,18 +1,18 @@
 import SoFiComponent from "../SoFiComponent.js";
-import Message from "../database-interface/Message.js";
+import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
-export default class ChatMessageListItem extends SoFiComponent {
+export default class ChatMessageListItem<S> extends SoFiComponent {
     private messages;
     private options;
     private interactions;
-    firstMessage: Message | undefined;
+    firstMessage: ChatMessage<S> | undefined;
     private main;
-    constructor(messages: Message[], options: {
+    constructor(messages: ChatMessage<S>[], options: {
         signedUserId?: string;
-    }, interactions: ChatMessageInteractions);
+    }, interactions: ChatMessageInteractions<S>);
     private goAuthorProfile;
-    createDisplay(message: Message): ChatMessageDisplay;
-    addMessage(message: Message, wait?: boolean): void;
+    createDisplay(message: ChatMessage<S>): ChatMessageDisplay<S>;
+    addMessage(message: ChatMessage<S>, wait?: boolean): void;
 }
 //# sourceMappingURL=ChatMessageListItem.d.ts.map

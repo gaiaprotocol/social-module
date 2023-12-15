@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS "public"."users_public" (
     "display_name" "text",
     "profile_image" "text",
     "profile_image_thumbnail" "text",
+    "stored_profile_image" "text",
+    "stored_profile_image_thumbnail" "text",
     "profile_image_stored" boolean DEFAULT false NOT NULL,
     "x_username" "text",
     "metadata" "jsonb",

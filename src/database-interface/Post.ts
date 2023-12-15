@@ -1,7 +1,9 @@
+import Author from "./Author.js";
 import Message, { MessageSelectQuery } from "./Message.js";
 
 export default interface Post extends Message {
   parent?: number;
+  author: Author;
   comment_count: number;
   repost_count: number;
   like_count: number;

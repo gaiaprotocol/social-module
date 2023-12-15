@@ -1,9 +1,9 @@
 import { DomChild } from "common-app-module/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 import Author from "../database-interface/Author.js";
-import Message from "../database-interface/Message.js";
+import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
-export default abstract class ChatMessageList extends SoFiComponent {
+export default abstract class ChatMessageList<S> extends SoFiComponent {
     private options;
     private interactions;
     private store;
@@ -12,15 +12,15 @@ export default abstract class ChatMessageList extends SoFiComponent {
         storeName: string;
         signedUserId?: string;
         emptyMessage: string;
-    }, interactions: ChatMessageInteractions, initialLoadingAnimation: DomChild);
-    protected abstract fetchMessages(): Promise<Message[]>;
+    }, interactions: ChatMessageInteractions<S>, initialLoadingAnimation: DomChild);
+    protected abstract fetchMessages(): Promise<ChatMessage<S>[]>;
     private refresh;
     private groupMessagesByAuthor;
     private addItem;
     private addNewItem;
-    messageSending(tempId: number, author: Author, message: string, files: File[]): void;
+    messageSending(tempId: number, source: S, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
-    addNewMessage(message: Message): void;
+    addNewMessage(message: ChatMessage<S>): void;
     protected scrolledToBottom(appendHeight?: number): boolean;
     private scrollToBottom;
 }

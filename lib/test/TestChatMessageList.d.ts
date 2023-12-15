@@ -1,7 +1,7 @@
 import ChatMessageList from "../chat/ChatMessageList.js";
-import Message from "../database-interface/Message.js";
-export default class TestChatMessageList extends ChatMessageList {
+import ChatMessage from "../database-interface/ChatMessage.js";
+export default class TestChatMessageList extends ChatMessageList<number> {
     constructor();
-    protected fetchMessages(): Promise<Message[]>;
+    protected fetchMessages(): Promise<ChatMessage<number>[]>;
 }
 //# sourceMappingURL=TestChatMessageList.d.ts.map

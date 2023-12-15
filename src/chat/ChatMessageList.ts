@@ -2,11 +2,11 @@ import { ListLoadingBar, Store } from "common-app-module";
 import { DomChild } from "common-app-module/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 import Author from "../database-interface/Author.js";
-import Message from "../database-interface/Message.js";
+import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 import ChatMessageListItem from "./ChatMessageListItem.js";
 
-export default abstract class ChatMessageList extends SoFiComponent {
+export default abstract class ChatMessageList<S> extends SoFiComponent {
   private store: Store;
   private addedMessageIds: number[] = [];
 
@@ -17,14 +17,14 @@ export default abstract class ChatMessageList extends SoFiComponent {
       signedUserId?: string;
       emptyMessage: string;
     },
-    private interactions: ChatMessageInteractions,
+    private interactions: ChatMessageInteractions<S>,
     initialLoadingAnimation: DomChild,
   ) {
     super(tag + ".chat-message-list");
     this.store = new Store(options.storeName);
     this.domElement.setAttribute("data-empty-message", options.emptyMessage);
 
-    const cachedMessages = this.store.get<Message[]>("cached-messages");
+    const cachedMessages = this.store.get<ChatMessage<S>[]>("cached-messages");
     if (cachedMessages && cachedMessages.length > 0) {
       const groupedMessages = this.groupMessagesByAuthor(cachedMessages);
       for (const messages of groupedMessages) {
@@ -47,7 +47,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     setTimeout(() => this.refresh());
   }
 
-  protected abstract fetchMessages(): Promise<Message[]>;
+  protected abstract fetchMessages(): Promise<ChatMessage<S>[]>;
 
   private async refresh() {
     this.append(new ListLoadingBar());
@@ -66,7 +66,9 @@ export default abstract class ChatMessageList extends SoFiComponent {
     }
   }
 
-  private groupMessagesByAuthor(messages: Message[]): Message[][] {
+  private groupMessagesByAuthor(
+    messages: ChatMessage<S>[],
+  ): ChatMessage<S>[][] {
     const grouped = [];
     let currentGroup = [];
     let lastAuthorId = null;
@@ -75,10 +77,13 @@ export default abstract class ChatMessageList extends SoFiComponent {
     for (const message of messages) {
       // Convert the message timestamp to a Date object
       const messageTime = new Date(message.created_at);
+      const messageAuthorId = message.author
+        ? message.author.user_id
+        : message.external_author_id;
 
       // Start a new group if the author changes or the time difference is more than 1 minute
       if (
-        message.author.user_id !== lastAuthorId ||
+        messageAuthorId !== lastAuthorId ||
         (lastMessageTime &&
           (messageTime.getTime() - lastMessageTime.getTime()) >= 60000)
       ) {
@@ -89,7 +94,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
       }
 
       currentGroup.push(message);
-      lastAuthorId = message.author.user_id;
+      lastAuthorId = messageAuthorId;
       lastMessageTime = messageTime;
     }
 
@@ -101,7 +106,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     return grouped;
   }
 
-  private addItem(messages: Message[]) {
+  private addItem(messages: ChatMessage<S>[]) {
     const item = new ChatMessageListItem(messages, {
       signedUserId: this.options.signedUserId,
     }, this.interactions).appendTo(this);
@@ -117,22 +122,29 @@ export default abstract class ChatMessageList extends SoFiComponent {
   }
 
   private addNewItem(
-    message: Message,
+    message: ChatMessage<S>,
     wait?: boolean,
     scrollToBottom?: boolean,
   ) {
-    const lastMessageItem: ChatMessageListItem | undefined =
+    const lastMessageItem: ChatMessageListItem<S> | undefined =
       this.children.length
-        ? this.children[this.children.length - 1] as ChatMessageListItem
+        ? this.children[this.children.length - 1] as ChatMessageListItem<S>
         : undefined;
-    if (
-      lastMessageItem?.firstMessage?.author.user_id !== message.author.user_id
-    ) {
+
+    const lastMessageAuthorId = lastMessageItem?.firstMessage?.author
+      ? lastMessageItem.firstMessage.author.user_id
+      : lastMessageItem?.firstMessage?.external_author_id;
+
+    const messageAuthorId = message.author
+      ? message.author.user_id
+      : message.external_author_id;
+
+    if (lastMessageAuthorId !== messageAuthorId) {
       const item = this.addItem([message]);
 
       item.addClass("new");
       if (wait) item.addClass("wait");
-    } else {
+    } else if (lastMessageItem) {
       lastMessageItem.addMessage(message, wait);
     }
 
@@ -141,6 +153,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
 
   public messageSending(
     tempId: number,
+    source: S,
     author: Author,
     message: string,
     files: File[],
@@ -148,6 +161,7 @@ export default abstract class ChatMessageList extends SoFiComponent {
     this.addNewItem(
       {
         id: tempId,
+        source,
         author,
         message,
         rich: {
@@ -170,13 +184,14 @@ export default abstract class ChatMessageList extends SoFiComponent {
     this.addedMessageIds.push(id);
   }
 
-  public addNewMessage(message: Message) {
+  public addNewMessage(message: ChatMessage<S>) {
     if (!this.addedMessageIds.includes(message.id)) {
       this.addNewItem(message);
       this.addedMessageIds.push(message.id);
     }
 
-    const cachedMessages = this.store.get<Message[]>("cached-messages") ?? [];
+    const cachedMessages =
+      this.store.get<ChatMessage<S>[]>("cached-messages") ?? [];
     cachedMessages.push(message);
     this.store.set("cached-messages", cachedMessages, true);
   }

@@ -1,15 +1,28 @@
 import ChatMessageInteractions from "../chat/ChatMessageInteractions.js";
 import ChatMessageList from "../chat/ChatMessageList.js";
 import Author from "../database-interface/Author.js";
-import Message from "../database-interface/Message.js";
+import ChatMessage from "../database-interface/ChatMessage.js";
 
-class TestChatMessageInteractions implements ChatMessageInteractions {
+class TestChatMessageInteractions implements ChatMessageInteractions<number> {
   public openAuthorProfile(author: Author) {
     throw new Error("Method not implemented.");
   }
+
+  public getSourceLabel: (source: number) => string = (source) => {
+    switch (source) {
+      case 0:
+        return "Source 0";
+      case 1:
+        return "Source 1";
+      case 2:
+        return "Source 2";
+      default:
+        return "Source default";
+    }
+  };
 }
 
-export default class TestChatMessageList extends ChatMessageList {
+export default class TestChatMessageList extends ChatMessageList<number> {
   constructor() {
     super(
       ".test-chat-message-list",
@@ -22,9 +35,10 @@ export default class TestChatMessageList extends ChatMessageList {
     );
   }
 
-  protected async fetchMessages(): Promise<Message[]> {
+  protected async fetchMessages(): Promise<ChatMessage<number>[]> {
     return [{
       id: 0,
+      source: 0,
       author: {
         user_id: "test",
         display_name: "test",
@@ -44,6 +58,7 @@ export default class TestChatMessageList extends ChatMessageList {
       created_at: new Date().toISOString(),
     }, {
       id: 1,
+      source: 0,
       author: {
         user_id: "test",
         display_name: "test",
@@ -63,6 +78,7 @@ export default class TestChatMessageList extends ChatMessageList {
       created_at: new Date().toISOString(),
     }, {
       id: 2,
+      source: 0,
       author: {
         user_id: "test2",
         display_name: "test2",

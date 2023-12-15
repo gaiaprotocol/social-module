@@ -1,10 +1,10 @@
-import Message from "../database-interface/Message.js";
+import ChatMessage from "../database-interface/ChatMessage.js";
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
-export default class ChatMessageDisplay extends SoFiComponent {
+export default class ChatMessageDisplay<S> extends SoFiComponent {
     private richDisplay;
-    constructor(message: Message, options: {
+    constructor(message: ChatMessage<S>, options: {
         owner: boolean;
-    }, interactions: ChatMessageInteractions);
+    }, interactions: ChatMessageInteractions<S>);
 }
 //# sourceMappingURL=ChatMessageDisplay.d.ts.map

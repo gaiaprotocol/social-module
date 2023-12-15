@@ -3,7 +3,7 @@ import Author from "./Author.js";
 
 export default interface Message {
   id: number;
-  author: Author;
+  author?: Author;
   message?: string;
   translated?: I18NText;
   rich?: Rich;
