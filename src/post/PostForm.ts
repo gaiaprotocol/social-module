@@ -6,19 +6,29 @@ import {
   msg,
   UploadForm,
 } from "common-app-module";
+import AuthorUtil from "../util/AuthorUtil.js";
 
 export default abstract class PostForm extends UploadForm {
   private input: FileDropArea;
   private postButton: Button;
 
-  constructor(authorProfileImage: string, focus: boolean = false) {
+  constructor(
+    authorProfileImages: (string | undefined)[],
+    focus: boolean = false,
+  ) {
     super(".post-form.sofi-component");
+
+    const authorProfileImage = el(".author-profile-image");
+
+    AuthorUtil.selectLoadableProfileImage(
+      authorProfileImage,
+      authorProfileImages,
+    );
+
     this.append(
       el(
         "main",
-        el(".author-profile-image", {
-          style: { backgroundImage: `url(${authorProfileImage})` },
-        }),
+        authorProfileImage,
         el(
           "form",
           this.input = new FileDropArea(

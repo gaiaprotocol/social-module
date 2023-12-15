@@ -1,6 +1,7 @@
 import { DateUtil, DomNode, el } from "common-app-module";
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
+import AuthorUtil from "../util/AuthorUtil.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 
@@ -19,15 +20,14 @@ export default class ChatMessageListItem<S> extends SoFiComponent {
     this.firstMessage = messages[0];
     if (this.firstMessage) {
       const authorProfileImage = el(".author-profile-image", {
-        style: {
-          backgroundImage: `url(${
-            this.firstMessage.author
-              ? this.firstMessage.author.profile_image_thumbnail
-              : this.firstMessage.external_author_avatar
-          })`,
-        },
         click: (event) => this.goAuthorProfile(event),
       });
+
+      AuthorUtil.selectLoadableProfileImage(authorProfileImage, [
+        this.firstMessage.author?.profile_image_thumbnail,
+        this.firstMessage.author?.stored_profile_image_thumbnail,
+        this.firstMessage.external_author_avatar,
+      ]);
 
       const authorInfoDisplay = el(
         ".author",

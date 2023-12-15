@@ -1,6 +1,7 @@
 import { DateUtil, DomNode, el, Icon, RichDisplay } from "common-app-module";
 import Post from "../database-interface/Post.js";
 import SoFiComponent from "../SoFiComponent.js";
+import AuthorUtil from "../util/AuthorUtil.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
 
@@ -35,11 +36,13 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
     this.addAllowedEvents("like", "unlike", "repost", "unrepost");
 
     const authorProfileImage = el(".author-profile-image", {
-      style: {
-        backgroundImage: `url(${post.author.profile_image_thumbnail})`,
-      },
       click: (event) => this.goAuthorProfile(event),
     });
+
+    AuthorUtil.selectLoadableProfileImage(authorProfileImage, [
+      post.author.profile_image_thumbnail,
+      post.author.stored_profile_image_thumbnail,
+    ]);
 
     const authorDisplay = el(
       ".author",

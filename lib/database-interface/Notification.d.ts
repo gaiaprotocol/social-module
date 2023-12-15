@@ -14,5 +14,5 @@ export default interface Notification<T = NotificationType> {
     read_at?: string;
     created_at: string;
 }
-export declare const NotificationSelectQuery = "*, triggerer(user_id, display_name, profile_image, profile_image_thumbnail, x_username)";
+export declare const NotificationSelectQuery = "*, triggerer(user_id, display_name, profile_image, profile_image_thumbnail, stored_profile_image, stored_profile_image_thumbnail, x_username)";
 //# sourceMappingURL=Notification.d.ts.map

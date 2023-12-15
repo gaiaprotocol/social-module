@@ -36,6 +36,8 @@ export default abstract class PostService<T extends Post>
         display_name: post.author_display_name,
         profile_image: post.author_profile_image,
         profile_image_thumbnail: post.author_profile_image_thumbnail,
+        stored_profile_image: post.author_stored_profile_image,
+        stored_profile_image_thumbnail: post.author_stored_profile_image_thumbnail,
         x_username: post.author_x_username,
       };
       if (post.reposted) repostedPostIds.push(post.id);
