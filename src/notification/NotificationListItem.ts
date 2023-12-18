@@ -9,7 +9,7 @@ export default abstract class NotificationListItem<T> extends SoFiComponent {
     if (notification.triggerer) {
       this.append(el(".triggerer-profile-image", {
         style: {
-          backgroundImage: `url(${notification.triggerer.profile_image})`,
+          backgroundImage: `url(${notification.triggerer.avatar})`,
         },
         click: (event) => {
           event.stopPropagation();

@@ -18,4 +18,4 @@ export default interface Notification<T = NotificationType> {
 }
 
 export const NotificationSelectQuery =
-  "*, triggerer(user_id, display_name, profile_image, profile_image_thumbnail, stored_profile_image, stored_profile_image_thumbnail, x_username)";
+  "*, triggerer(user_id, display_name, avatar, avatar_thumb, stored_avatar, stored_avatar_thumb, x_username)";

@@ -10,8 +10,8 @@ export default class PostContentDisplay<T extends Post> extends SoFiComponent {
     const authorProfileImage = el(".author-profile-image");
 
     AuthorUtil.selectLoadableProfileImage(authorProfileImage, [
-      post.author.profile_image_thumbnail,
-      post.author.stored_profile_image_thumbnail,
+      post.author.avatar_thumb,
+      post.author.stored_avatar_thumb,
     ]);
 
     const authorDisplay = el(
