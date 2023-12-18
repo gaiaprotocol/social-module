@@ -85,14 +85,14 @@ export default class ChatMessageListItem<S> extends SoFiComponent {
     if (message?.author) this.interactions.openAuthorProfile(message.author);
   }
 
-  public createDisplay(message: ChatMessage<S>) {
+  private createDisplay(message: ChatMessage<S>) {
     const display = new ChatMessageDisplay(message, {
       owner: this.options.signedUserId !== undefined &&
         message.author !== undefined &&
         message.author.user_id === this.options.signedUserId,
     }, this.interactions);
 
-    display.addClass("new").on(
+    display.on(
       "imageLoaded",
       (imageHeight) => this.fireEvent("imageLoaded", imageHeight),
     );

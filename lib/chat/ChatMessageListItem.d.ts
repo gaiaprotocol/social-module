@@ -1,6 +1,5 @@
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
-import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 export default class ChatMessageListItem<S> extends SoFiComponent {
     private messages;
@@ -12,7 +11,7 @@ export default class ChatMessageListItem<S> extends SoFiComponent {
         signedUserId?: string;
     }, interactions: ChatMessageInteractions<S>);
     private goAuthorProfile;
-    createDisplay(message: ChatMessage<S>): ChatMessageDisplay<S>;
+    private createDisplay;
     addMessage(message: ChatMessage<S>, wait?: boolean): void;
 }
 //# sourceMappingURL=ChatMessageListItem.d.ts.map
