@@ -20,7 +20,7 @@ export default abstract class PostForm extends UploadForm {
 
     const authorProfileImage = el(".author-profile-image");
 
-    AuthorUtil.selectLoadableProfileImage(
+    AuthorUtil.selectLoadableAvatar(
       authorProfileImage,
       authorProfileImages,
     );

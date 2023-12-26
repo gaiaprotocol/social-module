@@ -39,7 +39,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
       click: (event) => this.goAuthorProfile(event),
     });
 
-    AuthorUtil.selectLoadableProfileImage(authorProfileImage, [
+    AuthorUtil.selectLoadableAvatar(authorProfileImage, [
       post.author.avatar_thumb,
       post.author.stored_avatar_thumb,
     ]);

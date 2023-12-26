@@ -23,7 +23,7 @@ export default class ChatMessageListItem<S> extends SoFiComponent {
         click: (event) => this.goAuthorProfile(event),
       });
 
-      AuthorUtil.selectLoadableProfileImage(authorProfileImage, [
+      AuthorUtil.selectLoadableAvatar(authorProfileImage, [
         this.firstMessage.author?.avatar_thumb,
         this.firstMessage.author?.stored_avatar_thumb,
         this.firstMessage.external_author_avatar,
