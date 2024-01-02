@@ -1,4 +1,4 @@
-import { View, ViewParams } from "common-app-module";
+import { View, ViewParams } from "@common-module/app";
 export default class TestPostView extends View {
     constructor(params: ViewParams);
 }

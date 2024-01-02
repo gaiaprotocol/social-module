@@ -1,4 +1,4 @@
-import { msg } from "common-app-module";
+import { msg } from "@common-module/app";
 import messages_en from "../locales/en.yml";
 import messages_ja from "../locales/ja.yml";
 import messages_zh from "../locales/zh.yml";

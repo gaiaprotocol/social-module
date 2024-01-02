@@ -1,4 +1,4 @@
-import { BodyNode, el, View, ViewParams } from "common-app-module";
+import { BodyNode, el, View, ViewParams } from "@common-module/app";
 import TestPostList from "./TestPostList.js";
 
 export default class TestPostListView extends View {

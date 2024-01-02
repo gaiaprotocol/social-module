@@ -1,5 +1,5 @@
-import { ListLoadingBar, Store } from "common-app-module";
-import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import { ListLoadingBar, Store } from "@common-module/app";
+import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 import Author from "../database-interface/Author.js";
 import ChatMessage from "../database-interface/ChatMessage.js";

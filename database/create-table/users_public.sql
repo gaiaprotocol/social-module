@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS "public"."users_public" (
     "user_id" "uuid" DEFAULT "auth"."uid"() NOT NULL,
-    "wallet_address" "text",
     "display_name" "text",
     "avatar" "text",
     "avatar_thumb" "text",
@@ -21,8 +20,6 @@ ALTER TABLE ONLY "public"."users_public"
     ADD CONSTRAINT "users_public_pkey" PRIMARY KEY ("user_id");
 ALTER TABLE ONLY "public"."users_public"
     ADD CONSTRAINT "users_public_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id");
-ALTER TABLE ONLY "public"."users_public"
-    ADD CONSTRAINT "users_public_wallet_address_key" UNIQUE ("wallet_address");
 
 ALTER TABLE "public"."users_public" ENABLE ROW LEVEL SECURITY;
 

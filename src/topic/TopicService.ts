@@ -1,4 +1,4 @@
-import { Constants, SupabaseService } from "common-app-module";
+import { Constants, SupabaseService } from "@common-module/app";
 import Topic from "../database-interface/Topic.js";
 
 export default class TopicService<T extends Topic = Topic>

@@ -1,4 +1,4 @@
-import { BodyNode, el, View, ViewParams } from "common-app-module";
+import { BodyNode, el, View, ViewParams } from "@common-module/app";
 import TestChatMessageList from "./TestChatMessageList.js";
 
 export default class TestChatView extends View {

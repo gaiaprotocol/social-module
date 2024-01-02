@@ -1,4 +1,4 @@
-import { DateUtil, DomNode, el, Icon, RichDisplay } from "common-app-module";
+import { DateUtil, DomNode, el, Icon, RichDisplay } from "@common-module/app";
 import Post from "../database-interface/Post.js";
 import SoFiComponent from "../SoFiComponent.js";
 import AuthorUtil from "../util/AuthorUtil.js";

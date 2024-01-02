@@ -1,4 +1,4 @@
-import { el, Router } from "common-app-module";
+import { el, Router } from "@common-module/app";
 import Notification from "../database-interface/Notification.js";
 import SoFiComponent from "../SoFiComponent.js";
 

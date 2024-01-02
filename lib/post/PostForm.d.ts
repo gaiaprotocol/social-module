@@ -1,4 +1,4 @@
-import { UploadForm } from "common-app-module";
+import { UploadForm } from "@common-module/app";
 export default abstract class PostForm extends UploadForm {
     private input;
     private postButton;

@@ -1,4 +1,4 @@
-import { SupabaseService } from "common-app-module";
+import { SupabaseService } from "@common-module/app";
 
 export default class NotificationStore<T> extends SupabaseService<T> {
   public async fetchNotification(id: number) {

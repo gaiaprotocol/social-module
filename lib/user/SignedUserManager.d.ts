@@ -1,4 +1,4 @@
-import { EventContainer } from "common-app-module";
+import { EventContainer } from "@common-module/app";
 import SoFiUserPublic from "../database-interface/SoFiUserPublic.js";
 export default abstract class SignedUserManager<UT extends SoFiUserPublic> extends EventContainer {
     user: UT | undefined;

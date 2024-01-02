@@ -1,5 +1,5 @@
-import { Store } from "common-app-module";
-import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import { Store } from "@common-module/app";
+import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 export interface NotificationListOptions {
     userId: string;

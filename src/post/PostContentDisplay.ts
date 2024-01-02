@@ -1,4 +1,4 @@
-import { el } from "common-app-module";
+import { el } from "@common-module/app";
 import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import AuthorUtil from "../util/AuthorUtil.js";

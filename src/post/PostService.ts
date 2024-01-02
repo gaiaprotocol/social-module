@@ -1,4 +1,4 @@
-import { Supabase } from "common-app-module";
+import { Supabase } from "@common-module/app";
 import Post from "../database-interface/Post.js";
 import MessageService from "../message/MessageService.js";
 

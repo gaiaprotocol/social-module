@@ -1,6 +1,5 @@
 users_public
 	user_id - uuid, fk to auth.user - auth.uid() - pk
-	wallet_address - text - nullable
 	display_name - text - nullable
 	avatar - text - nullable
 	avatar_thumbnail - text - nullable

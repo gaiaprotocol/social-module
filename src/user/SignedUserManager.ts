@@ -1,4 +1,4 @@
-import { EventContainer, Supabase } from "common-app-module";
+import { EventContainer, Supabase } from "@common-module/app";
 import SoFiUserPublic from "../database-interface/SoFiUserPublic.js";
 import FollowService from "../follow/FollowService.js";
 

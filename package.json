@@ -1,5 +1,5 @@
 {
-  "name": "social-module",
+  "name": "@common-module/social",
   "author": "yj.gaia",
   "homepage": "https://yj.dev",
   "version": "0.0.1",
@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "main": "./lib/index.js",
   "dependencies": {
-    "app-module": "^0.0.1"
+    "@common-module/app": "^0.0.1"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.7"

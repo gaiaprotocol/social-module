@@ -5,7 +5,7 @@ import {
   FileDropArea,
   Icon,
   UploadForm,
-} from "common-app-module";
+} from "@common-module/app";
 
 export default abstract class ChatMessageForm extends UploadForm {
   private form: DomNode<HTMLFormElement>;

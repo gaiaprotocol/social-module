@@ -1,4 +1,4 @@
-import { ErrorAlert, msg } from "common-app-module";
+import { ErrorAlert, msg } from "@common-module/app";
 
 export default class AuthUtil {
   public static checkEmailAccess() {

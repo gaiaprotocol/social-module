@@ -1,4 +1,4 @@
-export { default as SocialComponent } from "./SoFiComponent.js";
+export { default as SoFiComponent } from "./SoFiComponent.js";
 export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
 export { default as ChatMessageInteractions } from "./chat/ChatMessageInteractions.js";
 export { default as ChatMessageList } from "./chat/ChatMessageList.js";

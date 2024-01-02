@@ -1,4 +1,4 @@
-import { SupabaseService } from "common-app-module";
+import { SupabaseService } from "@common-module/app";
 import Follow from "../database-interface/Follow.js";
 
 class FollowService extends SupabaseService<Follow> {

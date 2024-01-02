@@ -5,7 +5,7 @@ import {
   Icon,
   msg,
   UploadForm,
-} from "common-app-module";
+} from "@common-module/app";
 import AuthorUtil from "../util/AuthorUtil.js";
 
 export default abstract class PostForm extends UploadForm {

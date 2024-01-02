@@ -1,4 +1,4 @@
-import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";

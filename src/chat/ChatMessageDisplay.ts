@@ -1,4 +1,4 @@
-import { el, RichDisplay } from "common-app-module";
+import { el, RichDisplay } from "@common-module/app";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";

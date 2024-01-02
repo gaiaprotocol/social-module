@@ -1,4 +1,4 @@
-import { DomChild } from "common-app-module/lib/dom/DomNode.js";
+import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SoFiComponent from "../SoFiComponent.js";
 import Author from "../database-interface/Author.js";
 import ChatMessage from "../database-interface/ChatMessage.js";

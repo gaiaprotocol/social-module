@@ -1,4 +1,4 @@
-import { DomNode } from "common-app-module";
+import { DomNode } from "@common-module/app";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostList from "./PostList.js";

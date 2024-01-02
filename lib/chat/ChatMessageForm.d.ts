@@ -1,4 +1,4 @@
-import { Button, UploadForm } from "common-app-module";
+import { Button, UploadForm } from "@common-module/app";
 export default abstract class ChatMessageForm extends UploadForm {
     private form;
     private input;

@@ -1,4 +1,4 @@
-import { DateUtil, DomNode, el } from "common-app-module";
+import { DateUtil, DomNode, el } from "@common-module/app";
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import AuthorUtil from "../util/AuthorUtil.js";
