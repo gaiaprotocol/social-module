@@ -10,10 +10,6 @@ export default abstract class SignedUserManager<UT extends SoFiUserPublic>
     return this.user !== undefined;
   }
 
-  public get walletLinked() {
-    return this.user?.wallet_address !== undefined;
-  }
-
   constructor() {
     super();
     this.addAllowedEvents("walletLinked");
