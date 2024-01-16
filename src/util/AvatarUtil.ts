@@ -1,7 +1,7 @@
 import { DomNode } from "@common-module/app";
 
-export default class AuthorUtil {
-  public static async selectLoadableAvatar(
+export default class AvatarUtil {
+  public static async selectLoadable(
     target: DomNode,
     images: (string | undefined)[],
   ) {

@@ -6,7 +6,7 @@ import {
   msg,
   UploadForm,
 } from "@common-module/app";
-import AuthorUtil from "../util/AuthorUtil.js";
+import AvatarUtil from "../util/AvatarUtil.js";
 
 export default abstract class PostForm extends UploadForm {
   private input: FileDropArea;
@@ -20,7 +20,7 @@ export default abstract class PostForm extends UploadForm {
 
     const authorProfileImage = el(".author-profile-image");
 
-    AuthorUtil.selectLoadableAvatar(
+    AvatarUtil.selectLoadable(
       authorProfileImage,
       authorProfileImages,
     );

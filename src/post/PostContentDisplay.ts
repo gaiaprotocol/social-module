@@ -1,7 +1,7 @@
 import { el } from "@common-module/app";
 import SoFiComponent from "../SoFiComponent.js";
 import Post from "../database-interface/Post.js";
-import AuthorUtil from "../util/AuthorUtil.js";
+import AvatarUtil from "../util/AvatarUtil.js";
 
 export default class PostContentDisplay<T extends Post> extends SoFiComponent {
   constructor(public post: T) {
@@ -9,7 +9,7 @@ export default class PostContentDisplay<T extends Post> extends SoFiComponent {
 
     const authorProfileImage = el(".author-profile-image");
 
-    AuthorUtil.selectLoadableAvatar(authorProfileImage, [
+    AvatarUtil.selectLoadable(authorProfileImage, [
       post.author.avatar_thumb,
       post.author.stored_avatar_thumb,
     ]);

@@ -1,7 +1,7 @@
 import { DateUtil, DomNode, el, Icon, RichDisplay } from "@common-module/app";
 import Post from "../database-interface/Post.js";
 import SoFiComponent from "../SoFiComponent.js";
-import AuthorUtil from "../util/AuthorUtil.js";
+import AvatarUtil from "../util/AvatarUtil.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
 
@@ -39,7 +39,7 @@ export default class PostDisplay<T extends Post> extends SoFiComponent {
       click: (event) => this.goAuthorProfile(event),
     });
 
-    AuthorUtil.selectLoadableAvatar(authorProfileImage, [
+    AvatarUtil.selectLoadable(authorProfileImage, [
       post.author.avatar_thumb,
       post.author.stored_avatar_thumb,
     ]);

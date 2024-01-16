@@ -38,4 +38,4 @@ export { default as TopicService } from "./topic/TopicService.js";
 export { default as SignedUserManager } from "./user/SignedUserManager.js";
 export { default as SoFiUserService } from "./user/SoFiUserService.js";
 export { default as AuthUtil } from "./util/AuthUtil.js";
-export { default as AuthorUtil } from "./util/AuthorUtil.js";
+export { default as AvatarUtil } from "./util/AvatarUtil.js";

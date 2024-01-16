@@ -1,7 +1,7 @@
 import { DateUtil, DomNode, el } from "@common-module/app";
 import SoFiComponent from "../SoFiComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
-import AuthorUtil from "../util/AuthorUtil.js";
+import AvatarUtil from "../util/AvatarUtil.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 
@@ -23,7 +23,7 @@ export default class ChatMessageListItem<S> extends SoFiComponent {
         click: (event) => this.goAuthorProfile(event),
       });
 
-      AuthorUtil.selectLoadableAvatar(authorProfileImage, [
+      AvatarUtil.selectLoadable(authorProfileImage, [
         this.firstMessage.author?.avatar_thumb,
         this.firstMessage.author?.stored_avatar_thumb,
         this.firstMessage.external_author_avatar,
