@@ -1,6 +1,6 @@
 import Notification from "../database-interface/Notification.js";
-import SoFiComponent from "../SoFiComponent.js";
-export default abstract class NotificationListItem<T> extends SoFiComponent {
+import SocialComponent from "../SocialComponent.js";
+export default abstract class NotificationListItem<T> extends SocialComponent {
     constructor(tag: string, notification: Notification<T>);
 }
 //# sourceMappingURL=NotificationListItem.d.ts.map

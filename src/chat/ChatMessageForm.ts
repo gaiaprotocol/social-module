@@ -15,7 +15,7 @@ export default abstract class ChatMessageForm extends UploadForm {
   protected sendButton: Button;
 
   constructor(tag: string, focus: boolean = true) {
-    super(tag + ".chat-message-form.sofi-component");
+    super(tag + ".chat-message-form.social-component");
     this.addAllowedEvents("messageSending", "messageSent");
     this.append(
       this.uploadPreviewArea = el(".upload-preview-area"),

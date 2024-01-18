@@ -1,12 +1,12 @@
 import { ListLoadingBar, Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostListItem from "./PostListItem.js";
 import PostService from "./PostService.js";
 
-export default abstract class PostList<T extends Post> extends SoFiComponent {
+export default abstract class PostList<T extends Post> extends SocialComponent {
   private store: Store | undefined;
   private refreshed = false;
   protected lastPostId: number | undefined;

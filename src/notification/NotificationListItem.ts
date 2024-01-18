@@ -1,8 +1,8 @@
 import { el, Router } from "@common-module/app";
 import Notification from "../database-interface/Notification.js";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 
-export default abstract class NotificationListItem<T> extends SoFiComponent {
+export default abstract class NotificationListItem<T> extends SocialComponent {
   constructor(tag: string, notification: Notification<T>) {
     super(tag + ".notification-list-item");
 

@@ -5,7 +5,7 @@ import messages_zh from "../locales/zh.yml";
 import messages_zh_HK from "../locales/zh_HK.yml";
 import messages_zh_TW from "../locales/zh_TW.yml";
 
-export default function inject_sofi_msg() {
+export default function inject_social_msg() {
   msg.setMessages({
     en: messages_en,
     zh: messages_zh,

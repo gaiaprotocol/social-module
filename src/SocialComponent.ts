@@ -5,10 +5,10 @@ import messages_zh from "../locales/zh.yml";
 import messages_zh_HK from "../locales/zh_HK.yml";
 import messages_zh_TW from "../locales/zh_TW.yml";
 
-export default class SoFiComponent<EL extends HTMLElement = HTMLElement>
+export default class SocialComponent<EL extends HTMLElement = HTMLElement>
   extends DomNode<EL> {
   constructor(tag: string, ...nodes: (DomNode | string | undefined)[]) {
-    super(tag + ".sofi-component");
+    super(tag + ".social-component");
     this.append(...nodes);
   }
 

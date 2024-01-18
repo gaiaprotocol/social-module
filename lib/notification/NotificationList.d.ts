@@ -1,13 +1,13 @@
 import { Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 export interface NotificationListOptions {
     userId: string;
     tableName: string;
     storeName: string;
     emptyMessage: string;
 }
-export default abstract class NotificationList<T> extends SoFiComponent {
+export default abstract class NotificationList<T> extends SocialComponent {
     protected store: Store;
     private channel;
     constructor(tag: string, options: NotificationListOptions, initialLoadingAnimation: DomChild);

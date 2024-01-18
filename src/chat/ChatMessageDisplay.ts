@@ -1,10 +1,10 @@
 import { el, RichDisplay } from "@common-module/app";
 import ChatMessage from "../database-interface/ChatMessage.js";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 
 // Displays a single message.
-export default class ChatMessageDisplay<S> extends SoFiComponent {
+export default class ChatMessageDisplay<S> extends SocialComponent {
   private richDisplay: RichDisplay | undefined;
 
   constructor(message: ChatMessage<S>, options: {

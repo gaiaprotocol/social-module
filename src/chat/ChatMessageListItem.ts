@@ -1,11 +1,11 @@
 import { DateUtil, DomNode, el } from "@common-module/app";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import AvatarUtil from "../util/AvatarUtil.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 
-export default class ChatMessageListItem<S> extends SoFiComponent {
+export default class ChatMessageListItem<S> extends SocialComponent {
   public firstMessage: ChatMessage<S> | undefined;
   private main: DomNode | undefined;
 

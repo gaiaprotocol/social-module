@@ -1,8 +1,8 @@
 import { EventContainer, Supabase } from "@common-module/app";
-import SoFiUserPublic from "../database-interface/SoFiUserPublic.js";
+import SocialUserPublic from "../database-interface/SocialUserPublic.js";
 import FollowService from "../follow/FollowService.js";
 
-export default abstract class SignedUserManager<UT extends SoFiUserPublic>
+export default abstract class SignedUserManager<UT extends SocialUserPublic>
   extends EventContainer {
   public user: UT | undefined;
 

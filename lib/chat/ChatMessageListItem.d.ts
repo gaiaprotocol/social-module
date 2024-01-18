@@ -1,7 +1,7 @@
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
-export default class ChatMessageListItem<S> extends SoFiComponent {
+export default class ChatMessageListItem<S> extends SocialComponent {
     private messages;
     private options;
     private interactions;

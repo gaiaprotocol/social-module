@@ -16,7 +16,7 @@ export default abstract class PostForm extends UploadForm {
     authorProfileImages: (string | undefined)[],
     focus: boolean = false,
   ) {
-    super(".post-form.sofi-component");
+    super(".post-form.social-component");
 
     const authorProfileImage = el(".author-profile-image");
 

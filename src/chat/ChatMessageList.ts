@@ -1,12 +1,12 @@
 import { ListLoadingBar, Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
-import SoFiComponent from "../SoFiComponent.js";
+import SocialComponent from "../SocialComponent.js";
 import Author from "../database-interface/Author.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 import ChatMessageListItem from "./ChatMessageListItem.js";
 
-export default abstract class ChatMessageList<S> extends SoFiComponent {
+export default abstract class ChatMessageList<S> extends SocialComponent {
   private store: Store;
   private addedMessageIds: number[] = [];
 
