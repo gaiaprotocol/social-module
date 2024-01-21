@@ -22,7 +22,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     if (sessionUser) {
       [this.user] = await Promise.all([
         this.fetchUser(sessionUser.id),
-        //FollowService.fetchSignedUserFollows(sessionUser.id),
+        FollowService.fetchSignedUserFollows(sessionUser.id),
       ]);
     }
   }
