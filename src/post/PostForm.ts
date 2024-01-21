@@ -18,17 +18,17 @@ export default abstract class PostForm extends UploadForm {
   ) {
     super(".post-form.social-component");
 
-    const authorProfileImage = el(".author-profile-image");
+    const authorAvatar = el(".author-avatar");
 
     AvatarUtil.selectLoadable(
-      authorProfileImage,
+      authorAvatar,
       authorProfileImages,
     );
 
     this.append(
       el(
         "main",
-        authorProfileImage,
+        authorAvatar,
         el(
           "form",
           this.input = new FileDropArea(

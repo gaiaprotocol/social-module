@@ -3,13 +3,14 @@ import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import AvatarUtil from "../util/AvatarUtil.js";
 
-export default class PostContentDisplay<T extends Post> extends SocialComponent {
+export default class PostContentDisplay<T extends Post>
+  extends SocialComponent {
   constructor(public post: T) {
     super(".post-content-display");
 
-    const authorProfileImage = el(".author-profile-image");
+    const authorAvatar = el(".author-avatar");
 
-    AvatarUtil.selectLoadable(authorProfileImage, [
+    AvatarUtil.selectLoadable(authorAvatar, [
       post.author.avatar_thumb,
       post.author.stored_avatar_thumb,
     ]);
@@ -25,7 +26,7 @@ export default class PostContentDisplay<T extends Post> extends SocialComponent 
     const messageDisplay = el(".message", post.message);
 
     this.append(
-      authorProfileImage,
+      authorAvatar,
       el(
         "main",
         el("header", authorDisplay),

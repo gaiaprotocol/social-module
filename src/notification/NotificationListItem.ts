@@ -7,7 +7,7 @@ export default abstract class NotificationListItem<T> extends SocialComponent {
     super(tag + ".notification-list-item");
 
     if (notification.triggerer) {
-      this.append(el(".triggerer-profile-image", {
+      this.append(el(".triggerer-avatar", {
         style: {
           backgroundImage: `url(${notification.triggerer.avatar})`,
         },

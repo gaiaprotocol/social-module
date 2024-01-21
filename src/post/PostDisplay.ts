@@ -35,11 +35,11 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
 
     this.addAllowedEvents("like", "unlike", "repost", "unrepost");
 
-    const authorProfileImage = el(".author-profile-image", {
+    const authorAvatar = el(".author-avatar", {
       click: (event) => this.goAuthorProfile(event),
     });
 
-    AvatarUtil.selectLoadable(authorProfileImage, [
+    AvatarUtil.selectLoadable(authorAvatar, [
       post.author.avatar_thumb,
       post.author.stored_avatar_thumb,
     ]);
@@ -90,7 +90,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
 
     if (options.inView) {
       this.append(
-        el("header", authorProfileImage, authorDisplay, ownerMenuButton),
+        el("header", authorAvatar, authorDisplay, ownerMenuButton),
         messageDisplay,
         richDisplay,
         dateDisplay,
@@ -98,7 +98,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       );
     } else {
       this.append(
-        authorProfileImage,
+        authorAvatar,
         el(
           "main",
           el("header", authorDisplay, ownerMenuButton),

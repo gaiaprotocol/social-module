@@ -19,11 +19,11 @@ export default class ChatMessageListItem<S> extends SocialComponent {
 
     this.firstMessage = messages[0];
     if (this.firstMessage) {
-      const authorProfileImage = el(".author-profile-image", {
+      const authorAvatar = el(".author-avatar", {
         click: (event) => this.goAuthorProfile(event),
       });
 
-      AvatarUtil.selectLoadable(authorProfileImage, [
+      AvatarUtil.selectLoadable(authorAvatar, [
         this.firstMessage.author?.avatar_thumb,
         this.firstMessage.author?.stored_avatar_thumb,
         this.firstMessage.external_author_avatar,
@@ -64,11 +64,11 @@ export default class ChatMessageListItem<S> extends SocialComponent {
             el("header", dateDisplay, authorInfoDisplay),
             ...messageDisplays,
           ),
-          authorProfileImage,
+          authorAvatar,
         ).addClass("authored");
       } else {
         this.append(
-          authorProfileImage,
+          authorAvatar,
           this.main = el(
             "main",
             el("header", authorInfoDisplay, dateDisplay),
