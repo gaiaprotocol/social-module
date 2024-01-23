@@ -3,6 +3,7 @@ export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
 export { default as ChatMessageInteractions } from "./chat/ChatMessageInteractions.js";
 export { default as ChatMessageList } from "./chat/ChatMessageList.js";
 export { default as Author } from "./database-interface/Author.js";
+export { default as ChatMessage } from "./database-interface/ChatMessage.js";
 export { default as Message, MessageSelectQuery, } from "./database-interface/Message.js";
 export { default as Notification, NotificationSelectQuery, NotificationType, } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
