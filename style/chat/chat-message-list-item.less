@@ -36,22 +36,29 @@
                 font-size: 12px;
             }
         }
-
-        >.chat-message-display {
-            border-radius   : 6px;
-            background-color: #fff;
-            color           : #0A0A0A;
-            padding         : 6px 10px;
-        }
     }
 
     &.authored {
         justify-content: end;
 
+        >.author-avatar {
+            display: none;
+        }
+
         >main {
             align-items: end;
 
-            >.chat-message-display {}
+            >header {
+                >.author {
+                    display: none;
+                }
+            }
+
+            >.chat-message-display {
+                background-color: var(--button-bg-color);
+                border          : 1px solid var(--primary-color);
+                color           : var(--primary-color);
+            }
         }
     }
 }

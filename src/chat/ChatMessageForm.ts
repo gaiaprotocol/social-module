@@ -42,9 +42,11 @@ export default abstract class ChatMessageForm extends UploadForm {
             submit: (event) => {
               event.preventDefault();
               const message = this.input.domElement.innerText;
-              if (message) this._sendMessage(message, this.toUploadFiles);
-              this.input.domElement.innerText = "";
-              this.clearUploads();
+              if (message) {
+                this._sendMessage(message, this.toUploadFiles);
+                this.input.domElement.innerText = "";
+                this.clearUploads();
+              }
             },
           },
         ),
