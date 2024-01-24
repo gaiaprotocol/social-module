@@ -1,6 +1,8 @@
 import { DomNode } from "@common-module/app";
 
 export default class AvatarUtil {
+  public static NOT_FOUND_USER_IMAGE = "/images/unknown-user.png";
+
   public static async selectLoadable(
     target: DomNode,
     images: (string | undefined)[],
@@ -18,6 +20,9 @@ export default class AvatarUtil {
         }
       }
     }
+    target.style({
+      backgroundImage: `url('${AvatarUtil.NOT_FOUND_USER_IMAGE}')`,
+    });
     console.warn("No valid images found");
   }
 }
