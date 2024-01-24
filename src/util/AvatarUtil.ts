@@ -20,9 +20,11 @@ export default class AvatarUtil {
         }
       }
     }
-    target.style({
-      backgroundImage: `url('${AvatarUtil.NOT_FOUND_USER_IMAGE}')`,
-    });
+    if (!target.deleted) {
+      target.style({
+        backgroundImage: `url('${AvatarUtil.NOT_FOUND_USER_IMAGE}')`,
+      });
+    }
     console.warn("No valid images found");
   }
 }
