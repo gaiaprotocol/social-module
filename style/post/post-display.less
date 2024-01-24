@@ -5,10 +5,6 @@
     cursor  : pointer;
     padding : 20px;
 
-    /*@media @phone {
-        gap: 6px;
-    }*/
-
     >main {
         flex-grow: 1;
     }
@@ -75,6 +71,33 @@
 
                 &.like {}
             }
+        }
+    }
+
+    &.in-view {
+        display: block;
+        cursor : inherit;
+
+        >header {
+            display    : flex;
+            gap        : 12px;
+            align-items: center;
+            font-size  : 16px;
+
+            >.author {
+                padding-top   : 0;
+                flex-direction: column;
+                gap           : 4px;
+            }
+        }
+
+        .message {
+            margin-top: 12px;
+            font-size : 16px;
+        }
+
+        .actions {
+            margin-top: 20px;
         }
     }
 }
