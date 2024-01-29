@@ -1,7 +1,6 @@
-import { el } from "@common-module/app";
+import { AvatarUtil, el } from "@common-module/app";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
-import AvatarUtil from "../util/AvatarUtil.js";
 
 export default class PostContentDisplay<T extends Post>
   extends SocialComponent {

@@ -1,7 +1,13 @@
-import { DateUtil, DomNode, el, Icon, RichDisplay } from "@common-module/app";
+import {
+  AvatarUtil,
+  DateUtil,
+  DomNode,
+  el,
+  Icon,
+  RichDisplay,
+} from "@common-module/app";
 import Post from "../database-interface/Post.js";
 import SocialComponent from "../SocialComponent.js";
-import AvatarUtil from "../util/AvatarUtil.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
 

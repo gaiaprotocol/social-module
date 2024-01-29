@@ -1,7 +1,6 @@
-import { DateUtil, DomNode, el } from "@common-module/app";
+import { AvatarUtil, DateUtil, DomNode, el } from "@common-module/app";
 import SocialComponent from "../SocialComponent.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
-import AvatarUtil from "../util/AvatarUtil.js";
 import ChatMessageDisplay from "./ChatMessageDisplay.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 

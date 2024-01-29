@@ -1,4 +1,5 @@
 import {
+  AvatarUtil,
   Button,
   el,
   FileDropArea,
@@ -6,7 +7,6 @@ import {
   msg,
   UploadForm,
 } from "@common-module/app";
-import AvatarUtil from "../util/AvatarUtil.js";
 
 export default abstract class PostForm extends UploadForm {
   private input: FileDropArea;
