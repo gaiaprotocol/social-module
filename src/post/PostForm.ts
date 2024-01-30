@@ -2,6 +2,7 @@ import {
   AvatarUtil,
   Button,
   el,
+  ErrorAlert,
   FileDropArea,
   Icon,
   msg,
@@ -61,6 +62,15 @@ export default abstract class PostForm extends UploadForm {
   }
 
   private async _post(message: string, files: File[]) {
+    if (message.length > 2000) {
+      new ErrorAlert({
+        title: msg("message-too-long-alert-title"),
+        message: msg("message-too-long-alert-message", {
+          maxLength: 2000,
+        }),
+      });
+      return;
+    }
     this.postButton.disable().text = msg("post-form-posting-button");
     try {
       await this.post(message, files);

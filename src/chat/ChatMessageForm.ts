@@ -2,8 +2,10 @@ import {
   Button,
   DomNode,
   el,
+  ErrorAlert,
   FileDropArea,
   Icon,
+  msg,
   UploadForm,
 } from "@common-module/app";
 
@@ -66,6 +68,15 @@ export default abstract class ChatMessageForm extends UploadForm {
   }
 
   private async _sendMessage(message: string, files: File[]) {
+    if (message.length > 1000) {
+      new ErrorAlert({
+        title: msg("message-too-long-alert-title"),
+        message: msg("message-too-long-alert-message", {
+          maxLength: 1000,
+        }),
+      });
+      return;
+    }
     const tempId = this.nextTempId -= 1;
     this.fireEvent("messageSending", tempId, message, files);
     const messageId = await this.sendMessage(message, files);

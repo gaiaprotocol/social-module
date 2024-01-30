@@ -5,3 +5,6 @@ following-post-list-empty-message: No posts from followed users yet
 getting-email-from-x-error-message: >
   Error getting user email from external provider.
   Please add an email in your X account settings and allow email access.
+
+message-too-long-alert-title: Message Length Exceeded
+message-too-long-alert-message: Your message is too long. The maximum allowed length is {maxLength} characters. Please shorten your message.
