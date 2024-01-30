@@ -62,6 +62,10 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
         : undefined,
     );
 
+    const targetDisplay = post.target_details
+      ? interactions.displayTarget(post)
+      : undefined;
+
     const ownerMenuButton = options.owner
       ? el("button.owner-menu", new Icon("section-menu"), {
         click: (event, button) => this.openOwnerMenu(event, button),
@@ -96,7 +100,13 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
 
     if (options.inView) {
       this.append(
-        el("header", authorAvatar, authorDisplay, ownerMenuButton),
+        el(
+          "header",
+          authorAvatar,
+          authorDisplay,
+          targetDisplay,
+          ownerMenuButton,
+        ),
         messageDisplay,
         richDisplay,
         dateDisplay,
@@ -107,7 +117,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
         authorAvatar,
         el(
           "main",
-          el("header", authorDisplay, ownerMenuButton),
+          el("header", authorDisplay, targetDisplay, ownerMenuButton),
           messageDisplay,
           richDisplay,
           dateDisplay,
@@ -116,7 +126,11 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       ).onDom("click", () => interactions.openPostView(post));
     }
 
-    this.onDelegate(postService, "deleteMessage", () => this.delete());
+    this.onDelegate(postService, "deleteMessage", (postId) => {
+      if (postId === post.id) {
+        this.delete();
+      }
+    });
   }
 
   private goAuthorProfile(event: MouseEvent) {

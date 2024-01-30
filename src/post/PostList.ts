@@ -227,7 +227,8 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
 
   public show() {
     this.deleteClass("hidden");
-    if (!this.refreshed) this.refresh();
+    this.lastPostId = undefined;
+    this.refresh();
   }
 
   public hide() {

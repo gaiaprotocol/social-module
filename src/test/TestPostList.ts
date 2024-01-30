@@ -1,3 +1,4 @@
+import { DomNode } from "@common-module/app";
 import Author from "../database-interface/Author.js";
 import Post, { PostSelectQuery } from "../database-interface/Post.js";
 import PostInteractions from "../post/PostInteractions.js";
@@ -33,16 +34,7 @@ class TestPostInteractions implements PostInteractions<Post> {
   public openCommentPopup(post: Post) {
     throw new Error("Method not implemented.");
   }
-  public repost(postId: number) {
-    throw new Error("Method not implemented.");
-  }
-  public unrepost(postId: number) {
-    throw new Error("Method not implemented.");
-  }
-  public like(postId: number) {
-    throw new Error("Method not implemented.");
-  }
-  public unlike(postId: number) {
+  public displayTarget(post: Post): DomNode {
     throw new Error("Method not implemented.");
   }
 }

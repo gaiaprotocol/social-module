@@ -1,1 +1,1 @@
-{"version":3,"file":"Post.js","sourceRoot":"","sources":["../../src/database-interface/Post.ts"],"names":[],"mappings":"AACA,OAAgB,EAAE,kBAAkB,EAAE,MAAM,cAAc,CAAC;AAU3D,MAAM,CAAC,MAAM,eAAe,GAAG,kBAAkB,CAAC"}
+{"version":3,"file":"Post.js","sourceRoot":"","sources":["../../src/database-interface/Post.ts"],"names":[],"mappings":"AACA,OAAgB,EAAE,kBAAkB,EAAE,MAAM,cAAc,CAAC;AAW3D,MAAM,CAAC,MAAM,eAAe,GAAG,kBAAkB,CAAC"}
