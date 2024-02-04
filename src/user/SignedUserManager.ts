@@ -20,6 +20,15 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     if (error) throw error;
     const sessionUser = data?.session?.user;
     if (sessionUser) {
+      this.user = await this.fetchUser(sessionUser.id);
+    }
+  }
+
+  public async fetchUserAndFollowsOnInit() {
+    const { data, error } = await Supabase.client.auth.getSession();
+    if (error) throw error;
+    const sessionUser = data?.session?.user;
+    if (sessionUser) {
       [this.user] = await Promise.all([
         this.fetchUser(sessionUser.id),
         FollowService.fetchSignedUserFollows(sessionUser.id),
