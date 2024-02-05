@@ -204,7 +204,7 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
     );
   }
 
-  private scrollToBottom() {
+  public scrollToBottom() {
     this.domElement.scrollTo(
       0,
       this.domElement.scrollHeight,

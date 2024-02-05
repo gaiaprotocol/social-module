@@ -22,6 +22,6 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
     messageSent(tempId: number, id: number): void;
     addNewMessage(message: ChatMessage<S>): void;
     protected scrolledToBottom(appendHeight?: number): boolean;
-    private scrollToBottom;
+    scrollToBottom(): void;
 }
 //# sourceMappingURL=ChatMessageList.d.ts.map
