@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonType,
   DomNode,
   el,
   ErrorAlert,
@@ -39,7 +40,11 @@ export default abstract class ChatMessageForm extends UploadForm {
             ),
             { click: () => this.input.domElement.focus() },
           ),
-          this.sendButton = new Button({ tag: ".send", title: "Send" }),
+          this.sendButton = new Button({
+            type: ButtonType.Contained,
+            tag: ".send",
+            title: "Send",
+          }),
           {
             submit: (event) => {
               event.preventDefault();
@@ -56,7 +61,7 @@ export default abstract class ChatMessageForm extends UploadForm {
     );
 
     this.input.onDom("keydown", (event: KeyboardEvent) => {
-      if (event.key === "Enter" && !event.shiftKey) {
+      if (event.key === "Enter" && !event.shiftKey && event.keyCode !== 229) {
         event.preventDefault();
         this.form.fireDomEvent("submit");
       }

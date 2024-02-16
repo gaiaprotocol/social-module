@@ -26,7 +26,7 @@ CREATE POLICY "can write only authed" ON "public"."chat_messages" FOR INSERT TO 
 
 ALTER TABLE "public"."chat_messages" ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "view everyone" ON "public"."chat_messages" FOR INSERT WITH CHECK (true);
+CREATE POLICY "view everyone" ON "public"."chat_messages" FOR SELECT USING (true);
 
 GRANT ALL ON TABLE "public"."chat_messages" TO "anon";
 GRANT ALL ON TABLE "public"."chat_messages" TO "authenticated";
