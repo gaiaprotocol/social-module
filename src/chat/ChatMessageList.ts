@@ -6,7 +6,7 @@ import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
 import ChatMessageListItem from "./ChatMessageListItem.js";
 
-export default abstract class ChatMessageList<S> extends SocialComponent {
+export default abstract class ChatMessageList<ST> extends SocialComponent {
   private store: Store;
   private addedMessageIds: number[] = [];
 
@@ -17,14 +17,14 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
       signedUserId?: string;
       emptyMessage: string;
     },
-    private interactions: ChatMessageInteractions<S>,
+    private interactions: ChatMessageInteractions<ST>,
     initialLoadingAnimation: DomChild,
   ) {
     super(tag + ".chat-message-list");
     this.store = new Store(options.storeName);
     this.domElement.setAttribute("data-empty-message", options.emptyMessage);
 
-    const cachedMessages = this.store.get<ChatMessage<S>[]>("cached-messages");
+    const cachedMessages = this.store.get<ChatMessage<ST>[]>("cached-messages");
     if (cachedMessages && cachedMessages.length > 0) {
       const groupedMessages = this.groupMessagesByAuthor(cachedMessages);
       for (const messages of groupedMessages) {
@@ -47,7 +47,7 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
     setTimeout(() => this.refresh());
   }
 
-  protected abstract fetchMessages(): Promise<ChatMessage<S>[]>;
+  protected abstract fetchMessages(): Promise<ChatMessage<ST>[]>;
 
   private async refresh() {
     this.append(new ListLoadingBar());
@@ -67,8 +67,8 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
   }
 
   private groupMessagesByAuthor(
-    messages: ChatMessage<S>[],
-  ): ChatMessage<S>[][] {
+    messages: ChatMessage<ST>[],
+  ): ChatMessage<ST>[][] {
     const grouped = [];
     let currentGroup = [];
     let lastAuthorId = null;
@@ -106,7 +106,7 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
     return grouped;
   }
 
-  private addItem(messages: ChatMessage<S>[]) {
+  private addItem(messages: ChatMessage<ST>[]) {
     const item = new ChatMessageListItem(messages, {
       signedUserId: this.options.signedUserId,
     }, this.interactions).appendTo(this);
@@ -122,13 +122,13 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
   }
 
   private addNewItem(
-    message: ChatMessage<S>,
+    message: ChatMessage<ST>,
     wait?: boolean,
     scrollToBottom?: boolean,
   ) {
-    const lastMessageItem: ChatMessageListItem<S> | undefined =
+    const lastMessageItem: ChatMessageListItem<ST> | undefined =
       this.children.length
-        ? this.children[this.children.length - 1] as ChatMessageListItem<S>
+        ? this.children[this.children.length - 1] as ChatMessageListItem<ST>
         : undefined;
 
     const lastMessageAuthorId = lastMessageItem?.firstMessage?.author
@@ -153,7 +153,7 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
 
   public messageSending(
     tempId: number,
-    source: S,
+    source: ST,
     author: Author,
     message: string,
     files: File[],
@@ -184,14 +184,14 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
     this.addedMessageIds.push(id);
   }
 
-  public addNewMessage(message: ChatMessage<S>) {
+  public addNewMessage(message: ChatMessage<ST>) {
     if (!this.addedMessageIds.includes(message.id)) {
       this.addNewItem(message);
       this.addedMessageIds.push(message.id);
     }
 
     const cachedMessages =
-      this.store.get<ChatMessage<S>[]>("cached-messages") ?? [];
+      this.store.get<ChatMessage<ST>[]>("cached-messages") ?? [];
     cachedMessages.push(message);
     this.store.set("cached-messages", cachedMessages, true);
   }

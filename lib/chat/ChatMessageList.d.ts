@@ -3,7 +3,7 @@ import SocialComponent from "../SocialComponent.js";
 import Author from "../database-interface/Author.js";
 import ChatMessage from "../database-interface/ChatMessage.js";
 import ChatMessageInteractions from "./ChatMessageInteractions.js";
-export default abstract class ChatMessageList<S> extends SocialComponent {
+export default abstract class ChatMessageList<ST> extends SocialComponent {
     private options;
     private interactions;
     private store;
@@ -12,15 +12,15 @@ export default abstract class ChatMessageList<S> extends SocialComponent {
         storeName: string;
         signedUserId?: string;
         emptyMessage: string;
-    }, interactions: ChatMessageInteractions<S>, initialLoadingAnimation: DomChild);
-    protected abstract fetchMessages(): Promise<ChatMessage<S>[]>;
+    }, interactions: ChatMessageInteractions<ST>, initialLoadingAnimation: DomChild);
+    protected abstract fetchMessages(): Promise<ChatMessage<ST>[]>;
     private refresh;
     private groupMessagesByAuthor;
     private addItem;
     private addNewItem;
-    messageSending(tempId: number, source: S, author: Author, message: string, files: File[]): void;
+    messageSending(tempId: number, source: ST, author: Author, message: string, files: File[]): void;
     messageSent(tempId: number, id: number): void;
-    addNewMessage(message: ChatMessage<S>): void;
+    addNewMessage(message: ChatMessage<ST>): void;
     protected scrolledToBottom(appendHeight?: number): boolean;
     scrollToBottom(): void;
 }

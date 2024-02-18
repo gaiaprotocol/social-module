@@ -2,6 +2,7 @@ export { default as SocialComponent } from "./SocialComponent.js";
 export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
 export { default as ChatMessageInteractions } from "./chat/ChatMessageInteractions.js";
 export { default as ChatMessageList } from "./chat/ChatMessageList.js";
+export { default as ChatRoomView } from "./chat/ChatRoomView.js";
 export { default as Author } from "./database-interface/Author.js";
 export { default as ChatMessage } from "./database-interface/ChatMessage.js";
 export { default as Message, MessageSelectQuery, } from "./database-interface/Message.js";
