@@ -8,5 +8,6 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic> ext
     fetchUserAndFollowsOnInit(): Promise<void>;
     protected abstract fetchUser(userId: string): Promise<UT | undefined>;
     signOut(): Promise<void>;
+    deleteAccount(): Promise<void>;
 }
 //# sourceMappingURL=SignedUserManager.d.ts.map

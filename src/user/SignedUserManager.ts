@@ -44,4 +44,10 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     await Supabase.signOut();
     location.reload();
   }
+
+  public async deleteAccount() {
+    const { error } = await Supabase.client.functions.invoke("delete-account");
+    if (error) throw error;
+    this.signOut();
+  }
 }
