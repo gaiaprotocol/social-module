@@ -5,6 +5,7 @@ export default abstract class ChatMessageForm extends UploadForm {
     private nextTempId;
     protected sendButton: Button;
     constructor(tag: string, focus?: boolean);
+    private submit;
     private _sendMessage;
     protected abstract sendMessage(message: string, files: File[]): Promise<number>;
 }

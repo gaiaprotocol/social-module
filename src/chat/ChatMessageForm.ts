@@ -45,30 +45,29 @@ export default abstract class ChatMessageForm extends UploadForm {
             tag: ".send",
             title: "Send",
           }),
-          {
-            submit: (event) => {
-              event.preventDefault();
-              const message = this.input.domElement.innerText;
-              if (message) {
-                this._sendMessage(message, this.toUploadFiles);
-                this.input.domElement.innerText = "";
-                this.clearUploads();
-              }
-            },
-          },
+          { submit: (event) => this.submit(event) },
         ),
       ),
     );
 
     this.input.onDom("keydown", (event: KeyboardEvent) => {
       if (event.key === "Enter" && !event.shiftKey && event.keyCode !== 229) {
-        event.preventDefault();
-        this.form.fireDomEvent("submit");
+        this.submit(event);
       }
     });
 
     if (focus) {
       this.on("visible", () => this.input.domElement.focus());
+    }
+  }
+
+  private submit(event: Event) {
+    event.preventDefault();
+    const message = this.input.domElement.innerText;
+    if (message) {
+      this._sendMessage(message, this.toUploadFiles);
+      this.input.domElement.innerText = "";
+      this.clearUploads();
     }
   }
 
