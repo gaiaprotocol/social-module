@@ -14,6 +14,7 @@ export { default as Topic } from "./database-interface/Topic.js";
 export { default as FollowService } from "./follow/FollowService.js";
 export { default as inject_social_msg } from "./inject_social_msg.js";
 export { default as MessageService } from "./message/MessageService.js";
+export { default as FCM } from "./notification/FCM.js";
 export { default as NotificationList } from "./notification/NotificationList.js";
 export { default as NotificationListItem } from "./notification/NotificationListItem.js";
 export { default as NotificationStore } from "./notification/NotificationStore.js";
