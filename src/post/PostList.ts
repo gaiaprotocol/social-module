@@ -1,4 +1,4 @@
-import { ListLoadingBar, Store } from "@common-module/app";
+import { Activatable, ListLoadingBar, Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
@@ -6,7 +6,8 @@ import PostInteractions from "./PostInteractions.js";
 import PostListItem from "./PostListItem.js";
 import PostService from "./PostService.js";
 
-export default abstract class PostList<T extends Post> extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SocialComponent
+  implements Activatable {
   private store: Store | undefined;
   private refreshed = false;
   protected lastPostId: number | undefined;
@@ -225,13 +226,13 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     }
   }
 
-  public show() {
+  public activate() {
     this.deleteClass("hidden");
     this.lastPostId = undefined;
     this.refresh();
   }
 
-  public hide() {
+  public deactivate() {
     this.addClass("hidden");
   }
 }

@@ -51,7 +51,7 @@ export default class TestPostList extends PostList<Post> {
       new TestPostInteractions(),
       "Loading...",
     );
-    this.show();
+    this.activate();
   }
 
   protected async fetchPosts(): Promise<

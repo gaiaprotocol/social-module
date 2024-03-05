@@ -1,9 +1,10 @@
+import { Activatable } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
 import PostInteractions from "./PostInteractions.js";
 import PostService from "./PostService.js";
-export default abstract class PostList<T extends Post> extends SocialComponent {
+export default abstract class PostList<T extends Post> extends SocialComponent implements Activatable {
     protected postService: PostService<T>;
     protected options: {
         storeName?: string;
@@ -31,7 +32,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent {
     protected refresh(): Promise<void>;
     protected addNewPost(post: T): void;
     private loadMore;
-    show(): void;
-    hide(): void;
+    activate(): void;
+    deactivate(): void;
 }
 //# sourceMappingURL=PostList.d.ts.map
