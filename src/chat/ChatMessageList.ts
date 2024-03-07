@@ -1,4 +1,4 @@
-import { ListLoadingBar, Store } from "@common-module/app";
+import { Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SocialComponent from "../SocialComponent.js";
 import Author from "../database-interface/Author.js";
@@ -50,14 +50,14 @@ export default abstract class ChatMessageList<ST> extends SocialComponent {
   protected abstract fetchMessages(): Promise<ChatMessage<ST>[]>;
 
   private async refresh() {
-    this.append(new ListLoadingBar());
+    this.addClass("loading");
 
     const messages = (await this.fetchMessages()).reverse();
 
     this.store.set("cached-messages", messages, true);
 
     if (!this.deleted) {
-      this.empty();
+      this.deleteClass("loading");
       const groupedMessages = this.groupMessagesByAuthor(messages);
       for (const messages of groupedMessages) {
         this.addItem(messages);

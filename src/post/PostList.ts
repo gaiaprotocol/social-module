@@ -1,4 +1,4 @@
-import { Activatable, ListLoadingBar, Store } from "@common-module/app";
+import { Activatable, Store } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
 import SocialComponent from "../SocialComponent.js";
 import Post from "../database-interface/Post.js";
@@ -140,7 +140,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent
   }
 
   protected async refresh() {
-    this.append(new ListLoadingBar());
+    this.addClass("loading");
 
     const cachedPosts = this.store?.get<{
       posts: T[];
@@ -166,7 +166,7 @@ export default abstract class PostList<T extends Post> extends SocialComponent
         .filter((p) => !cachedPostIds.has(p.mainPostId))
         .map((p) => p.mainPostId);
 
-      this.empty();
+      this.deleteClass("loading");
       for (const p of posts) {
         this.addPostItem(p.posts, {
           mainPostId: p.mainPostId,

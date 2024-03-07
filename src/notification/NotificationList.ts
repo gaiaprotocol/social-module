@@ -1,6 +1,6 @@
-import { RealtimeChannel } from "@supabase/supabase-js";
-import { ListLoadingBar, Store, Supabase } from "@common-module/app";
+import { Store, Supabase } from "@common-module/app";
 import { DomChild } from "@common-module/app/lib/dom/DomNode.js";
+import { RealtimeChannel } from "@supabase/supabase-js";
 import SocialComponent from "../SocialComponent.js";
 
 export interface NotificationListOptions {
@@ -64,14 +64,14 @@ export default abstract class NotificationList<T> extends SocialComponent {
   protected abstract fetchNotifications(): Promise<T[]>;
 
   private async refresh() {
-    this.append(new ListLoadingBar());
+    this.addClass("loading");
 
     const notifications = await this.fetchNotifications();
 
     this.store.set("cached-notifications", notifications, true);
 
     if (!this.deleted) {
-      this.empty();
+      this.deleteClass("loading");
       for (const notification of notifications) {
         this.addNotificationItem(notification, false);
       }
