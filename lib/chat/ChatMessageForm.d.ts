@@ -1,9 +1,8 @@
-import { Button, UploadForm } from "@common-module/app";
+import { UploadForm } from "@common-module/app";
 export default abstract class ChatMessageForm extends UploadForm {
     private form;
     private input;
     private nextTempId;
-    protected sendButton: Button;
     constructor(tag: string, focus?: boolean);
     private submit;
     private _sendMessage;
