@@ -29,7 +29,7 @@ pwa-install-popup-android-step-3: A popup window titled "Add to Home screen" wil
 pwa-install-popup-android-step-4: >
   {serviceName} will now be installed on your Android phone's home screen, acting as a standalone app. You can launch it directly from the home screen, just like any other app.
 pwa-install-popup-android-message-2: By following these simple steps, you can easily install {serviceName} on your Android device and access it conveniently from your home screen.
-pwa-install-popup-ios-title: Add {serviceName} to Home Screen
+pwa-install-popup-ios-title: Installing {serviceName} on iOS
 pwa-install-popup-ios-message-1: >
   You can easily install {serviceName} on your iOS device for quick access. Just follow these simple steps:
 pwa-install-popup-ios-step-1: While viewing {serviceName} website in Safari, tap the "Share" button (square with an up arrow) located at the bottom of the screen.

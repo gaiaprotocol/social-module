@@ -1,12 +1,26 @@
-import { BrowserInfo, Button, el, msg, Popup } from "@common-module/app";
+import {
+  BrowserInfo,
+  Button,
+  ButtonType,
+  el,
+  MaterialIcon,
+  msg,
+  Popup,
+} from "@common-module/app";
 
 export default class PWAInstallPopup extends Popup {
   constructor(serviceName: string) {
     super(".pwa-install-popup", { barrierDismissible: true });
 
-    if (BrowserInfo.isAndroid) {
+    if (true || BrowserInfo.isAndroid) {
       this.header.append(
         el("h1", msg("pwa-install-popup-android-title", { serviceName })),
+        new Button({
+          tag: ".close",
+          type: ButtonType.Circle,
+          icon: new MaterialIcon("close"),
+          click: () => this.delete(),
+        }),
       );
       this.main.append(
         el("p", msg("pwa-install-popup-android-message-1", { serviceName })),
@@ -43,6 +57,12 @@ export default class PWAInstallPopup extends Popup {
     } else {
       this.header.append(
         el("h1", msg("pwa-install-popup-ios-title", { serviceName })),
+        new Button({
+          tag: ".close",
+          type: ButtonType.Circle,
+          icon: new MaterialIcon("close"),
+          click: () => this.delete(),
+        }),
       );
       this.main.append(
         el("p", msg("pwa-install-popup-ios-message-1", { serviceName })),

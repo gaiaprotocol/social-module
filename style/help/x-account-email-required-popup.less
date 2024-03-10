@@ -1,13 +1,20 @@
 .x-account-email-required-popup {
     >header {
+        padding: 0 12px !important;
+
         >h1 {
+            padding-left  : 8px;
             flex-grow     : 1;
             display       : flex;
             align-items   : center;
             gap           : 10px;
             font-size     : 18px;
             font-weight   : bold;
-            text-transform: capitalize;
+            line-height   : 1.5em;
+
+            @container (width < @safe-width) {
+                font-size: 16px;
+            }
         }
     }
 

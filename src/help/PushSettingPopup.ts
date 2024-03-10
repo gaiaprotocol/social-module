@@ -1,4 +1,12 @@
-import { BrowserInfo, Button, el, msg, Popup } from "@common-module/app";
+import {
+  BrowserInfo,
+  Button,
+  ButtonType,
+  el,
+  MaterialIcon,
+  msg,
+  Popup,
+} from "@common-module/app";
 
 export default class PushSettingPopup extends Popup {
   constructor(serviceName: string) {
@@ -10,6 +18,12 @@ export default class PushSettingPopup extends Popup {
           el(
             "h1",
             msg("push-setting-popup-android-app-title", { serviceName }),
+            new Button({
+              tag: ".close",
+              type: ButtonType.Circle,
+              icon: new MaterialIcon("close"),
+              click: () => this.delete(),
+            }),
           ),
         );
         this.main.append(
@@ -54,6 +68,12 @@ export default class PushSettingPopup extends Popup {
           el(
             "h1",
             msg("push-setting-popup-android-web-title", { serviceName }),
+            new Button({
+              tag: ".close",
+              type: ButtonType.Circle,
+              icon: new MaterialIcon("close"),
+              click: () => this.delete(),
+            }),
           ),
         );
         this.main.append(
@@ -105,6 +125,12 @@ export default class PushSettingPopup extends Popup {
     } else {
       this.header.append(
         el("h1", msg("push-setting-popup-ios-title", { serviceName })),
+        new Button({
+          tag: ".close",
+          type: ButtonType.Circle,
+          icon: new MaterialIcon("close"),
+          click: () => this.delete(),
+        }),
       );
       this.main.append(
         el("p", msg("push-setting-popup-ios-message-1", { serviceName })),
