@@ -5,7 +5,7 @@ import {
   el,
   ErrorAlert,
   FileDropArea,
-  Icon,
+  MaterialIcon,
   msg,
   UploadForm,
 } from "@common-module/app";
@@ -27,7 +27,7 @@ export default abstract class ChatMessageForm extends UploadForm {
           new Button({
             type: ButtonType.Circle,
             tag: ".attachment",
-            icon: new Icon("attachment"),
+            icon: new MaterialIcon("attach_file"),
             click: () => this.openFileSelector(),
           }),
         ),
@@ -44,7 +44,7 @@ export default abstract class ChatMessageForm extends UploadForm {
           new Button({
             type: ButtonType.Circle,
             tag: ".send",
-            icon: new Icon("send"),
+            icon: new MaterialIcon("send"),
           }),
           { submit: (event) => this.submit(event) },
         ),

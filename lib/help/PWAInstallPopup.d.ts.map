@@ -1,1 +1,1 @@
-{"version":3,"file":"PWAInstallPopup.d.ts","sourceRoot":"","sources":["../../src/help/PWAInstallPopup.ts"],"names":[],"mappings":""}
+{"version":3,"file":"PWAInstallPopup.d.ts","sourceRoot":"","sources":["../../src/help/PWAInstallPopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAAgC,KAAK,EAAE,MAAM,oBAAoB,CAAC;AAEzE,MAAM,CAAC,OAAO,OAAO,eAAgB,SAAQ,KAAK;gBACpC,WAAW,EAAE,MAAM;CA4FhC"}

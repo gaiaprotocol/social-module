@@ -8,3 +8,55 @@ getting-email-from-x-error-message: >
 
 message-too-long-alert-title: Message Length Exceeded
 message-too-long-alert-message: Your message is too long. The maximum allowed length is {maxLength} characters. Please shorten your message.
+
+x-account-email-required-popup-title: Add Your Email to X Account
+x-account-email-required-popup-message-1: Follow these simple steps to link an email address to your X account.
+x-account-email-required-popup-step-1: Navigate to "More" on the left-hand menu.
+x-account-email-required-popup-step-2: Select "Settings and privacy."
+x-account-email-required-popup-step-3: In "Settings," tap "Your account" and then "Account information" to manage your contact information.
+x-account-email-required-popup-step-4: Choose the "Email" section to update or add your email address.
+x-account-email-required-popup-step-5: Select "Add email address" and enter your preferred email into the pop-up window.
+x-account-email-required-popup-step-6: Look out for a verification code sent to the provided email and enter it in the designated field.
+x-account-email-required-popup-step-7: Finalize the process by clicking "Verify," securely linking your email to your X account.
+x-account-email-required-popup-message-2: Once you've completed these steps, your email should be added and verified on your X account.
+
+pwa-install-popup-android-title: Installing {serviceName} on Android
+pwa-install-popup-android-message-1: >
+  Follow these simple steps to add {serviceName} to your Android device's home screen for quick and easy access:
+pwa-install-popup-android-step-1: Open {serviceName} website in your Android phone's web browser and tap on the three-dot menu icon located at the top right corner of the browser.
+pwa-install-popup-android-step-2: From the dropdown menu that appears, select the "Add to Home screen" option.
+pwa-install-popup-android-step-3: A popup window titled "Add to Home screen" will open, displaying the name of the app. Tap on the "Add" button to confirm the installation.
+pwa-install-popup-android-step-4: >
+  {serviceName} will now be installed on your Android phone's home screen, acting as a standalone app. You can launch it directly from the home screen, just like any other app.
+pwa-install-popup-android-message-2: By following these simple steps, you can easily install {serviceName} on your Android device and access it conveniently from your home screen.
+pwa-install-popup-ios-title: Add {serviceName} to Home Screen
+pwa-install-popup-ios-message-1: >
+  You can easily install {serviceName} on your iOS device for quick access. Just follow these simple steps:
+pwa-install-popup-ios-step-1: While viewing {serviceName} website in Safari, tap the "Share" button (square with an up arrow) located at the bottom of the screen.
+pwa-install-popup-ios-step-2: Scroll down the list of options in the Share menu that appears.
+pwa-install-popup-ios-step-3: Find and tap the "Add to Home Screen" option in the list.
+pwa-install-popup-ios-step-4: Tap the "Add" button in the upper-right corner to finish adding {serviceName} to your iOS device's Home Screen.
+pwa-install-popup-ios-message-2: The app will now appear on your Home Screen like a native app icon. Tapping this icon will quickly launch {serviceName} in a full-screen, app-like interface for easy access and use.
+
+push-setting-popup-android-app-title: Enabling Push Notifications
+push-setting-popup-android-app-message-1: >
+  Follow these steps to allow push notifications from {serviceName} on your Android device:
+push-setting-popup-android-app-step-1: Long press {serviceName} icon to open the Site Settings menu.
+push-setting-popup-android-app-step-2: In the Site Settings, tap on Notifications.
+push-setting-popup-android-app-step-3: Tap the switch next to "Allow notifications" to enable push notifications from {serviceName}.
+push-setting-popup-android-app-message-2: Once enabled, you will be able to receive push notifications from {serviceName} on your Android device. Notifications can be disabled at any time by following the same steps and turning off the "Allow notifications" switch.
+push-setting-popup-android-web-title: Enabling Push Notifications
+push-setting-popup-android-web-message-1: >
+  Follow these steps to allow push notifications from {serviceName} on your Android device:
+push-setting-popup-android-web-step-1: Open {serviceName} in your Android browser and tap the browser menu icon (typically three dots in the upper right corner).
+push-setting-popup-android-web-step-2: In the menu that appears, select "Permissions".
+push-setting-popup-android-web-step-3: Tap on "Notifications" to open the notification permission settings for {serviceName}.
+push-setting-popup-android-web-step-4: Tap the switch next to "Allow notifications" to enable push notifications from {serviceName}.
+push-setting-popup-android-web-message-2: Once enabled, you will be able to receive push notifications from {serviceName} on your Android device. Notifications can be disabled at any time by following the same steps and turning off the "Allow notifications" switch.
+push-setting-popup-ios-title: Enabling Push Notifications
+push-setting-popup-ios-message-1: >
+  Follow these steps to allow push notifications from {serviceName} on your iOS device:
+push-setting-popup-ios-step-1: Open the Settings app on your device and scroll down until you see the "Notifications" option and tap on it to open the Notifications settings screen.
+push-setting-popup-ios-step-2: Scroll down the list of apps until you find "{serviceName}". Tap on it to open the notification settings for {serviceName}.
+push-setting-popup-ios-step-3: On {serviceName} notification settings screen, tap the toggle switch next to "Allow Notifications" to turn on push notifications for the app.
+push-setting-popup-ios-message-2: Once enabled, you will be able to receive push notifications from {serviceName} on your iOS device. Notifications can be disabled at any time by following the same steps and turning off the "Allow Notifications" switch.

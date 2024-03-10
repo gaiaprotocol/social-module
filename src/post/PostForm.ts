@@ -4,7 +4,7 @@ import {
   el,
   ErrorAlert,
   FileDropArea,
-  Icon,
+  MaterialIcon,
   msg,
   UploadForm,
 } from "@common-module/app";
@@ -43,7 +43,7 @@ export default abstract class PostForm extends UploadForm {
         "footer",
         el(
           "section.rich",
-          el("button", new Icon("image"), {
+          el("button", new MaterialIcon("image"), {
             click: () => this.openFileSelector(),
           }),
         ),

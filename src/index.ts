@@ -19,6 +19,9 @@ export { default as PreviewUserPublic } from "./database-interface/PreviewUserPu
 export { default as SocialUserPublic } from "./database-interface/SocialUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as FollowService } from "./follow/FollowService.js";
+export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
+export { default as PushSettingPopup } from "./help/PushSettingPopup.js";
+export { default as XAccountEmailRequiredPopup } from "./help/XAccountEmailRequiredPopup.js";
 export { default as inject_social_msg } from "./inject_social_msg.js";
 export { default as MessageService } from "./message/MessageService.js";
 export { default as FCM } from "./notification/FCM.js";

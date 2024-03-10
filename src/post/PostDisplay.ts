@@ -3,7 +3,7 @@ import {
   DateUtil,
   DomNode,
   el,
-  Icon,
+  MaterialIcon,
   RichDisplay,
 } from "@common-module/app";
 import Post from "../database-interface/Post.js";
@@ -67,7 +67,7 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       : undefined;
 
     const ownerMenuButton = options.owner
-      ? el("button.owner-menu", new Icon("section-menu"), {
+      ? el("button.owner-menu", new MaterialIcon("more_vert"), {
         click: (event, button) => this.openOwnerMenu(event, button),
       })
       : undefined;
@@ -80,19 +80,19 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       ".actions",
       el(
         "button.comment",
-        new Icon("comment"),
+        new MaterialIcon("comment"),
         String(post.comment_count),
         { click: (event) => this.openCommentPopup(event) },
       ),
       el(
         "button.repost" + (this.reposted ? ".reposted" : ""),
-        new Icon("repeat"),
+        new MaterialIcon("repeat"),
         this.repostCountDisplay = el("span", String(post.repost_count)),
         { click: (event, button) => this.repost(event, button) },
       ),
       el(
         "button.like" + (this.liked ? ".liked" : ""),
-        new Icon("like"),
+        new MaterialIcon("favorite_border"),
         this.likeCountDisplay = el("span", String(post.like_count)),
         { click: (event, button) => this.like(event, button) },
       ),
