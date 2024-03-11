@@ -1,9 +1,8 @@
-import { Supabase } from "@common-module/app";
+import { Supabase, SupabaseService } from "@common-module/app";
 import Post from "../database-interface/Post.js";
-import MessageService from "../message/MessageService.js";
 
 export default abstract class PostService<T extends Post>
-  extends MessageService<T> {
+  extends SupabaseService<T> {
   constructor(
     postTableName: string,
     private repostTableName: string,

@@ -1,6 +1,6 @@
+import { SupabaseService } from "@common-module/app";
 import Post from "../database-interface/Post.js";
-import MessageService from "../message/MessageService.js";
-export default abstract class PostService<T extends Post> extends MessageService<T> {
+export default abstract class PostService<T extends Post> extends SupabaseService<T> {
     private repostTableName;
     private likeTableName;
     constructor(postTableName: string, repostTableName: string, likeTableName: string, selectQuery: string, fetchLimit: number);
