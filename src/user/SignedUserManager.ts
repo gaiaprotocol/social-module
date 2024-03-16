@@ -1,4 +1,5 @@
 import { EventContainer, Supabase } from "@common-module/app";
+import FCM from "../FCM.js";
 import SocialUserPublic from "../database-interface/SocialUserPublic.js";
 import FollowService from "../follow/FollowService.js";
 
@@ -21,6 +22,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     const sessionUser = data?.session?.user;
     if (sessionUser) {
       this.user = await this.fetchUser(sessionUser.id);
+      FCM.requestPermissionAndSaveToken();
     }
   }
 
@@ -33,6 +35,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
         this.fetchUser(sessionUser.id),
         FollowService.fetchSignedUserFollows(sessionUser.id),
       ]);
+      FCM.requestPermissionAndSaveToken();
     }
   }
 

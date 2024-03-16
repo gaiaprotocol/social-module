@@ -1,1 +1,0 @@
-{"version":3,"file":"Rich.d.ts","sourceRoot":"","sources":["../../src/database-interface/Rich.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,YAAY;IAC3B,GAAG,EAAE,MAAM,CAAC;IACZ,QAAQ,EAAE,MAAM,CAAC;IACjB,QAAQ,EAAE,MAAM,CAAC;IACjB,QAAQ,EAAE,MAAM,CAAC;CAClB;AAED,MAAM,CAAC,OAAO,WAAW,IAAI;IAC3B,KAAK,CAAC,EAAE,YAAY,EAAE,CAAC;CACxB"}

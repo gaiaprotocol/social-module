@@ -1,1 +1,0 @@
-{"version":3,"file":"AuthorUtil.d.ts","sourceRoot":"","sources":["../../src/util/AuthorUtil.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,oBAAoB,CAAC;AAE7C,MAAM,CAAC,OAAO,OAAO,UAAU;WACT,oBAAoB,CACtC,MAAM,EAAE,OAAO,EACf,MAAM,EAAE,CAAC,MAAM,GAAG,SAAS,CAAC,EAAE;CAiBjC"}

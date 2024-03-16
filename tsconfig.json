@@ -72,5 +72,6 @@
     "old",
     "test",
     "supabase",
+    "service-worker",
   ]
 }
