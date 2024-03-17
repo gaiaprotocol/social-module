@@ -1,4 +1,3 @@
-export { default as FCM } from "./FCM.js";
 export { default as SocialComponent } from "./SocialComponent.js";
 export { default as PWAInstallOverlay } from "./app/PWAInstallOverlay.js";
 export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
@@ -13,6 +12,8 @@ export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
 export { default as SocialUserPublic } from "./database-interface/SocialUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
+export { default as FCM } from "./fcm/FCM.js";
+export { default as FCMTokenService } from "./fcm/FCMTokenService.js";
 export { default as FollowService } from "./follow/FollowService.js";
 export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
 export { default as PushSettingPopup } from "./help/PushSettingPopup.js";

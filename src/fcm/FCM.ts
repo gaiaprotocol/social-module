@@ -22,9 +22,7 @@ class FCM extends EventContainer {
   }
 
   public async getToken() {
-    return await getToken(this.messaging, {
-      vapidKey: this.vapidKey,
-    });
+    return await getToken(this.messaging, { vapidKey: this.vapidKey });
   }
 
   public async saveToken() {

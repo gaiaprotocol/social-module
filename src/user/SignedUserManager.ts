@@ -1,5 +1,5 @@
 import { EventContainer, Supabase } from "@common-module/app";
-import FCM from "../FCM.js";
+import FCM from "../fcm/FCM.js";
 import SocialUserPublic from "../database-interface/SocialUserPublic.js";
 import FollowService from "../follow/FollowService.js";
 
