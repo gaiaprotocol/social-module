@@ -27,56 +27,49 @@ export default class XAccountEmailRequiredPopup extends Popup {
           "li",
           msg("x-account-email-required-popup-step-1"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/1.jpg",
+            src: "/images/x-account-email-required-popup/1.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-2"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/2.jpg",
+            src: "/images/x-account-email-required-popup/2.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-3"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/3.jpg",
+            src: "/images/x-account-email-required-popup/3.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-4"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/4.jpg",
+            src: "/images/x-account-email-required-popup/4.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-5"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/5.jpg",
+            src: "/images/x-account-email-required-popup/5.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-6"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/6.jpg",
+            src: "/images/x-account-email-required-popup/6.jpg",
           }),
         ),
         el(
           "li",
           msg("x-account-email-required-popup-step-7"),
           el("img", {
-            src:
-              "https://resources.gaia.cc/images/x-account-email-required-popup/7.jpg",
+            src: "/images/x-account-email-required-popup/7.jpg",
           }),
         ),
       ),

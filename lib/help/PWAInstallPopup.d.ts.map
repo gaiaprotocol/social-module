@@ -1,1 +1,1 @@
-{"version":3,"file":"PWAInstallPopup.d.ts","sourceRoot":"","sources":["../../src/help/PWAInstallPopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAOL,KAAK,EACN,MAAM,oBAAoB,CAAC;AAE5B,MAAM,CAAC,OAAO,OAAO,eAAgB,SAAQ,KAAK;gBACpC,WAAW,EAAE,MAAM;CAwGhC"}
+{"version":3,"file":"PWAInstallPopup.d.ts","sourceRoot":"","sources":["../../src/help/PWAInstallPopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAOL,KAAK,EACN,MAAM,oBAAoB,CAAC;AAE5B,MAAM,CAAC,OAAO,OAAO,eAAgB,SAAQ,KAAK;gBACpC,WAAW,EAAE,MAAM;CAgIhC"}
