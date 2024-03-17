@@ -1,4 +1,6 @@
+export { default as FCM } from "./FCM.js";
 export { default as SocialComponent } from "./SocialComponent.js";
+export { default as PWAInstallOverlay } from "./app/PWAInstallOverlay.js";
 export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
 export { default as ChatMessageInteractions } from "./chat/ChatMessageInteractions.js";
 export { default as ChatMessageList } from "./chat/ChatMessageList.js";
@@ -23,7 +25,6 @@ export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
 export { default as PushSettingPopup } from "./help/PushSettingPopup.js";
 export { default as XAccountEmailRequiredPopup } from "./help/XAccountEmailRequiredPopup.js";
 export { default as inject_social_msg } from "./inject_social_msg.js";
-export { default as FCM } from "./FCM.js";
 export { default as NotificationList } from "./notification/NotificationList.js";
 export { default as NotificationListItem } from "./notification/NotificationListItem.js";
 export { default as NotificationStore } from "./notification/NotificationStore.js";
