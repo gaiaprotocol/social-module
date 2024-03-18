@@ -13,32 +13,22 @@ class FCM extends EventContainer {
     this.vapidKey = vapidKey;
   }
 
-  public async requestNotificationPermission() {
-    return await (() => {
+  public async requestPermissionAndSaveToken() {
+    const permission = await (() => {
       return new Promise<NotificationPermission>((resolve) => {
         Notification.requestPermission((permission) => resolve(permission));
       });
     })();
-  }
 
-  public async getToken() {
-    return await getToken(this.messaging, { vapidKey: this.vapidKey });
-  }
-
-  public async saveToken() {
-    const token = await this.getToken();
-    const { error } = await Supabase.client.functions.invoke(
-      "store-fcm-token",
-      { body: { fcmToken: token } },
-    );
-    if (error) throw error;
-    return token;
-  }
-
-  public async requestPermissionAndSaveToken() {
-    const permission = await this.requestNotificationPermission();
     if (permission === "granted") {
-      return await this.saveToken();
+      const fcmToken = await getToken(this.messaging, {
+        vapidKey: this.vapidKey,
+      });
+      const { error } = await Supabase.client.functions.invoke(
+        "store-fcm-token",
+        { body: { fcmToken } },
+      );
+      if (error) throw error;
     }
   }
 }

@@ -5,10 +5,7 @@ declare class FCM extends EventContainer {
     private app;
     private messaging;
     init(options: FirebaseOptions, vapidKey: string): void;
-    requestNotificationPermission(): Promise<NotificationPermission>;
-    getToken(): Promise<string>;
-    saveToken(): Promise<string>;
-    requestPermissionAndSaveToken(): Promise<string | undefined>;
+    requestPermissionAndSaveToken(): Promise<void>;
 }
 declare const _default: FCM;
 export default _default;

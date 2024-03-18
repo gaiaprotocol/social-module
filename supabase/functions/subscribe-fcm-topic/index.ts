@@ -2,18 +2,12 @@ import { serveWithOptions } from "../_shared/cors.ts";
 import { subscribeFcmTopic } from "../_shared/fcm.ts";
 import supabase, { getSignedUser } from "../_shared/supabase.ts";
 
-const TOPICS = ["notices"];
-
 serveWithOptions(async (req) => {
-  const { fcmToken } = await req.json();
-  if (!fcmToken) throw new Error("Unauthorized");
+  const { topic } = await req.json();
+  if (!topic) throw new Error("Topic is required");
 
   const user = await getSignedUser(req);
   if (!user) throw new Error("Unauthorized");
-
-  const { error: upsertError } = await supabase.from("fcm_tokens")
-    .upsert({ user_id: user.id, token: fcmToken });
-  if (upsertError) throw upsertError;
 
   const { data: tokenDataSet, error: fetchError } = await supabase.from(
     "fcm_tokens",
@@ -23,17 +17,15 @@ serveWithOptions(async (req) => {
   const subscribedTopics: string[] = [];
   for (const tokenData of tokenDataSet) {
     let hasChanged = false;
-    for (const topic of TOPICS) {
-      if (!tokenData.subscribed_topics.includes(topic)) {
-        try {
-          await subscribeFcmTopic(tokenData.token, topic);
-        } catch (e) {
-          console.error(e);
-        }
-        if (!subscribedTopics.includes(topic)) subscribedTopics.push(topic);
-        tokenData.subscribed_topics.push(topic);
-        hasChanged = true;
+    if (!tokenData.subscribed_topics.includes(topic)) {
+      try {
+        await subscribeFcmTopic(tokenData.token, topic);
+      } catch (e) {
+        console.error(e);
       }
+      if (!subscribedTopics.includes(topic)) subscribedTopics.push(topic);
+      tokenData.subscribed_topics.push(topic);
+      hasChanged = true;
     }
 
     if (hasChanged) {

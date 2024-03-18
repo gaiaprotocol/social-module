@@ -18,10 +18,3 @@ follows
 	follower_id - uuid, fk to users_public.user_id - auth.uid() - pk
 	followee_id - uuid, fk to users_public.user_id - pk
 	followed_at - timestampz - now()
-
-fcm_tokens
-	user_id - uuid, fk to users_public.user_id - auth.uid() - pk
-	token - text - not null - pk
-	subscribed_topics - text[] - []
-	created_at - timestampz - now()
-	updated_at - timestampz - nullable

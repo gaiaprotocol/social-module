@@ -1,6 +1,7 @@
 import { EventContainer, Supabase } from "@common-module/app";
-import FCM from "../fcm/FCM.js";
 import SocialUserPublic from "../database-interface/SocialUserPublic.js";
+import FCM from "../fcm/FCM.js";
+import FCMTopicSubscribeManager from "../fcm/FCMTopicSubscribeManager.js";
 import FollowService from "../follow/FollowService.js";
 
 export default abstract class SignedUserManager<UT extends SocialUserPublic>
@@ -16,24 +17,21 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     this.addAllowedEvents("walletLinked");
   }
 
-  public async fetchUserOnInit() {
-    const { data, error } = await Supabase.client.auth.getSession();
-    if (error) throw error;
-    const sessionUser = data?.session?.user;
-    if (sessionUser) {
-      this.user = await this.fetchUser(sessionUser.id);
-      FCM.requestPermissionAndSaveToken();
-    }
-  }
-
-  public async fetchUserAndFollowsOnInit() {
+  public async init(fetchTopics: boolean, fetchFollows: boolean) {
     const { data, error } = await Supabase.client.auth.getSession();
     if (error) throw error;
     const sessionUser = data?.session?.user;
     if (sessionUser) {
       [this.user] = await Promise.all([
         this.fetchUser(sessionUser.id),
-        FollowService.fetchSignedUserFollows(sessionUser.id),
+        fetchTopics
+          ? FCMTopicSubscribeManager.loadSignedUserSubscribedTopics(
+            sessionUser.id,
+          )
+          : undefined,
+        fetchFollows
+          ? FollowService.fetchSignedUserFollows(sessionUser.id)
+          : undefined,
       ]);
       FCM.requestPermissionAndSaveToken();
     }

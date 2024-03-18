@@ -4,8 +4,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic> ext
     user: UT | undefined;
     get signed(): boolean;
     constructor();
-    fetchUserOnInit(): Promise<void>;
-    fetchUserAndFollowsOnInit(): Promise<void>;
+    init(fetchTopics: boolean, fetchFollows: boolean): Promise<void>;
     protected abstract fetchUser(userId: string): Promise<UT | undefined>;
     signOut(): Promise<void>;
     deleteAccount(): Promise<void>;

@@ -13,7 +13,7 @@ export { default as PreviewUserPublic } from "./database-interface/PreviewUserPu
 export { default as SocialUserPublic } from "./database-interface/SocialUserPublic.js";
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as FCM } from "./fcm/FCM.js";
-export { default as FCMTokenService } from "./fcm/FCMTokenService.js";
+export { default as FCMTopicSubscribeManager } from "./fcm/FCMTopicSubscribeManager.js";
 export { default as FollowService } from "./follow/FollowService.js";
 export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
 export { default as PushSettingPopup } from "./help/PushSettingPopup.js";
