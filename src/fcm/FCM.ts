@@ -29,7 +29,11 @@ class FCM extends EventContainer {
         { body: { fcmToken } },
       );
       if (error) throw error;
+
+      return true;
     }
+
+    return false;
   }
 }
 
