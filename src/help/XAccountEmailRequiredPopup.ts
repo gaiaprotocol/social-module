@@ -77,7 +77,7 @@ export default class XAccountEmailRequiredPopup extends Popup {
     );
     this.footer.append(
       new Button({
-        tag: ".confirm-button",
+        tag: ".confirm",
         title: "OK",
         click: () => this.delete(),
       }),

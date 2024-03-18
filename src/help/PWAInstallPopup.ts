@@ -131,7 +131,7 @@ export default class PWAInstallPopup extends Popup {
 
     this.footer.append(
       new Button({
-        tag: ".confirm-button",
+        tag: ".confirm",
         title: "OK",
         click: () => this.delete(),
       }),
