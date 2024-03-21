@@ -73,5 +73,6 @@
     "test",
     "supabase",
     "service-worker",
+    "legacy-versions",
   ]
 }
