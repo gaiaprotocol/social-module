@@ -1,1 +1,1 @@
-{"version":3,"file":"SendFeedbackModal.js","sourceRoot":"","sources":["../../src/feedback/SendFeedbackModal.ts"],"names":[],"mappings":""}
+{"version":3,"file":"SendFeedbackModal.js","sourceRoot":"","sources":["../../src/feedback/SendFeedbackModal.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,oBAAoB,CAAC;AAEnD,MAAM,CAAC,OAAO,OAAO,kBAAmB,SAAQ,aAAa;IAC3D;QACE,KAAK,CAAC,uBAAuB,EAAE,EAAE,kBAAkB,EAAE,IAAI,EAAE,CAAC,CAAC;QAC7D,IAAI,CAAC,KAAK,GAAG,gBAAgB,CAAC;IAChC,CAAC;CACF"}

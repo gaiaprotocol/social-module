@@ -1,0 +1,5 @@
+feedbacks
+	id - int8 - auto_increment - pk
+    user_id - uuid, fk to users_public.user_id
+    feedback - text - not null
+	created_at - timestampz - now()

@@ -1,1 +1,1 @@
-{"version":3,"file":"FeedbackService.js","sourceRoot":"","sources":["../../src/feedback/FeedbackService.ts"],"names":[],"mappings":""}
+{"version":3,"file":"FeedbackService.js","sourceRoot":"","sources":["../../src/feedback/FeedbackService.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AAGrD,MAAM,eAAgB,SAAQ,eAAyB;IACrD;QACE,KAAK,CAAC,WAAW,EAAE,GAAG,EAAE,EAAE,CAAC,CAAC;IAC9B,CAAC;IAEM,KAAK,CAAC,cAAc,CACzB,QAA2D;QAE3D,MAAM,IAAI,CAAC,UAAU,CAAC,QAAQ,CAAC,CAAC;IAClC,CAAC;CACF;AAED,eAAe,IAAI,eAAe,EAAE,CAAC"}

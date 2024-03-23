@@ -8,12 +8,12 @@ export { default as Author } from "./database-interface/Author.js";
 export { default as ChatMessage } from "./database-interface/ChatMessage.js";
 export {
   default as Message,
-  MessageSelectQuery,
+  MessageSelectQuery
 } from "./database-interface/Message.js";
 export {
   default as Notification,
   NotificationSelectQuery,
-  NotificationType,
+  NotificationType
 } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
@@ -21,6 +21,7 @@ export { default as SocialUserPublic } from "./database-interface/SocialUserPubl
 export { default as Topic } from "./database-interface/Topic.js";
 export { default as FCM } from "./fcm/FCM.js";
 export { default as FCMTopicSubscribeManager } from "./fcm/FCMTopicSubscribeManager.js";
+export { default as LeaveFeedbackModal } from "./feedback/LeaveFeedbackModal.js";
 export { default as FollowService } from "./follow/FollowService.js";
 export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
 export { default as PushSettingPopup } from "./help/PushSettingPopup.js";
@@ -44,3 +45,4 @@ export { default as TestPostView } from "./test/TestPostView.js";
 export { default as TopicService } from "./topic/TopicService.js";
 export { default as SignedUserManager } from "./user/SignedUserManager.js";
 export { default as SocialUserService } from "./user/SocialUserService.js";
+
