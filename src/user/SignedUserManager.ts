@@ -17,7 +17,11 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     this.addAllowedEvents("walletLinked");
   }
 
-  public async init(fetchTopics: boolean, fetchFollows: boolean) {
+  public async init(
+    fetchTopics: boolean,
+    fetchFollows: boolean,
+    initializers?: Promise<void>[],
+  ) {
     const { data, error } = await Supabase.client.auth.getSession();
     if (error) throw error;
     const sessionUser = data?.session?.user;
@@ -32,6 +36,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
         fetchFollows
           ? FollowService.fetchSignedUserFollows(sessionUser.id)
           : undefined,
+        ...(initializers ?? []),
       ]);
       FCM.requestPermissionAndSaveToken();
     }
