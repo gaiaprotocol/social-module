@@ -39,7 +39,33 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
         ...(initializers ?? []),
       ]);
       FCM.requestPermissionAndSaveToken();
+
+      const request = indexedDB.open("signedUserIdDatabase");
+      request.onupgradeneeded = (event) => {
+        const db = (event.target as any)?.result;
+        if (!db.objectStoreNames.contains("userIds")) {
+          db.createObjectStore("userIds", { keyPath: "id" });
+        }
+      };
+      request.onsuccess = () => {
+        this.saveSignedUserIdToIndexedDB(sessionUser.id, request.result);
+      };
+      request.onerror = (event) => {
+        console.error("Database error: ", (event.target as any)?.error);
+      };
     }
+  }
+
+  private saveSignedUserIdToIndexedDB(signedUserId: string, db: IDBDatabase) {
+    const transaction = db.transaction(["userIds"], "readwrite");
+    const store = transaction.objectStore("userIds");
+    const request = store.put({ id: "signedUserId", signedUserId });
+    request.onsuccess = () => {
+      console.log("Item added to the database", signedUserId);
+    };
+    request.onerror = (event) => {
+      console.error("Database error: ", (event.target as any)?.error);
+    };
   }
 
   protected abstract fetchUser(

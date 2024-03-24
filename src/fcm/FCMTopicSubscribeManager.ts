@@ -11,7 +11,6 @@ class FCMTopicSubscribeManager extends EventContainer {
 
   public async loadSignedUserSubscribedTopics(userId: string) {
     const topicDataSet = await FCMSubscribedTopicService.fetch(userId);
-    console.log(topicDataSet);
     for (const topicData of topicDataSet) {
       this.subscribedTopics.add(topicData.topic);
     }
