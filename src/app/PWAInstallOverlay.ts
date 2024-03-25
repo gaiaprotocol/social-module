@@ -8,20 +8,25 @@ import {
 import PWAInstallPopup from "../help/PWAInstallPopup.js";
 
 export default class PWAInstallOverlay extends DomNode {
-  constructor(serviceName: string) {
+  constructor(serviceName: string, overviewUrl: string) {
     super(".pwa-install-overlay");
     this.append(
+      el("h1", serviceName),
       el("img.icon", { src: "/images/logo.png", alt: "Logo" }),
-      el("h1", "Add To Home Screen"),
+      el("h2", "Add To Home Screen"),
       el(
         "p",
-        "To install the app, you need to add this website to your home screen.",
+        `To install ${serviceName} app, you need to add this website to your home screen.`,
       ),
       new Button({
+        type: ButtonType.Contained,
         icon: new MaterialIcon("download"),
         title: "How to Install",
-        type: ButtonType.Contained,
         click: () => new PWAInstallPopup(serviceName),
+      }),
+      el("a.help", `What is ${serviceName}?`, {
+        href: overviewUrl,
+        target: "_blank",
       }),
     );
   }

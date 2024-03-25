@@ -1,1 +1,1 @@
-{"version":3,"file":"PWAInstallOverlay.d.ts","sourceRoot":"","sources":["../../src/app/PWAInstallOverlay.ts"],"names":[],"mappings":"AAAA,OAAO,EAGL,OAAO,EAGR,MAAM,oBAAoB,CAAC;AAG5B,MAAM,CAAC,OAAO,OAAO,iBAAkB,SAAQ,OAAO;gBACxC,WAAW,EAAE,MAAM;CAiBhC"}
+{"version":3,"file":"PWAInstallOverlay.d.ts","sourceRoot":"","sources":["../../src/app/PWAInstallOverlay.ts"],"names":[],"mappings":"AAAA,OAAO,EAGL,OAAO,EAGR,MAAM,oBAAoB,CAAC;AAG5B,MAAM,CAAC,OAAO,OAAO,iBAAkB,SAAQ,OAAO;gBACxC,WAAW,EAAE,MAAM,EAAE,WAAW,EAAE,MAAM;CAsBrD"}
