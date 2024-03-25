@@ -1,6 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging } from "firebase/messaging/sw";
 
+const firebaseApp = initializeApp({
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: "",
+});
+
 self.addEventListener("notificationclick", (event: any) => {
   console.log("On notification click: ", event.notification);
   event.notification.close();
@@ -14,26 +24,17 @@ self.addEventListener("notificationclick", (event: any) => {
           if ("focus" in client) {
             client.postMessage({
               action: "notificationclick",
-              data: event.notification.data?.FCM_MSG?.data,
+              data: event.notification.data,
             });
             return client.focus();
           }
         }
         if ((self as any).clients.openWindow) {
-          return (self as any).clients.openWindow("/");
+          const fcmData = event.notification.data?.FCM_MSG?.data;
+          return (self as any).clients.openWindow(fcmData.redirectTo ?? "/");
         }
       }),
   );
-});
-
-const firebaseApp = initializeApp({
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: "",
 });
 
 getMessaging(firebaseApp);
