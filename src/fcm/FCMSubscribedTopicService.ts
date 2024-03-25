@@ -5,8 +5,8 @@ class FCMSubscribedTopicService extends SupabaseService<{ topic: string }> {
     super("fcm_subscribed_topics", "topic", 100);
   }
 
-  public async fetch(userId: string) {
-    return await this.safeSelect((b) => b.eq("user_id", userId));
+  public async fetchAll(userId: string) {
+    return await this.safeSelect((b) => b.eq("user_id", userId), 1000);
   }
 }
 

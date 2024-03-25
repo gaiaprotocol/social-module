@@ -14,11 +14,13 @@ class FCM extends EventContainer {
   }
 
   public async requestPermissionAndSaveToken() {
-    const permission = await (() => {
-      return new Promise<NotificationPermission>((resolve) => {
-        Notification.requestPermission((permission) => resolve(permission));
-      });
-    })();
+    const permission = Notification.permission === "granted"
+      ? "granted"
+      : await (() => {
+        return new Promise<NotificationPermission>((resolve) => {
+          Notification.requestPermission((permission) => resolve(permission));
+        });
+      })();
 
     if (permission === "granted") {
       const fcmToken = await getToken(this.messaging, {

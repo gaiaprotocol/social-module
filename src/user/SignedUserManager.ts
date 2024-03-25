@@ -18,9 +18,8 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
   }
 
   public async init(
-    fetchTopics: boolean,
-    fetchFollows: boolean,
-    initializers?: Promise<void>[],
+    options?: { fetchFollows?: boolean; fetchTopics?: boolean },
+    additionalInitializer?: (userId: string) => Promise<void>,
   ) {
     const { data, error } = await Supabase.client.auth.getSession();
     if (error) throw error;
@@ -28,44 +27,18 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     if (sessionUser) {
       [this.user] = await Promise.all([
         this.fetchUser(sessionUser.id),
-        fetchTopics
+        options?.fetchFollows
+          ? FollowService.fetchSignedUserFollows(sessionUser.id)
+          : undefined,
+        options?.fetchTopics
           ? FCMTopicSubscribeManager.loadSignedUserSubscribedTopics(
             sessionUser.id,
           )
           : undefined,
-        fetchFollows
-          ? FollowService.fetchSignedUserFollows(sessionUser.id)
-          : undefined,
-        ...(initializers ?? []),
+        additionalInitializer?.(sessionUser.id),
       ]);
       FCM.requestPermissionAndSaveToken();
-
-      const request = indexedDB.open("signedUserIdDatabase");
-      request.onupgradeneeded = (event) => {
-        const db = (event.target as any)?.result;
-        if (!db.objectStoreNames.contains("userIds")) {
-          db.createObjectStore("userIds", { keyPath: "id" });
-        }
-      };
-      request.onsuccess = () => {
-        this.saveSignedUserIdToIndexedDB(sessionUser.id, request.result);
-      };
-      request.onerror = (event) => {
-        console.error("Database error: ", (event.target as any)?.error);
-      };
     }
-  }
-
-  private saveSignedUserIdToIndexedDB(signedUserId: string, db: IDBDatabase) {
-    const transaction = db.transaction(["userIds"], "readwrite");
-    const store = transaction.objectStore("userIds");
-    const request = store.put({ id: "signedUserId", signedUserId });
-    request.onsuccess = () => {
-      console.log("Item added to the database", signedUserId);
-    };
-    request.onerror = (event) => {
-      console.error("Database error: ", (event.target as any)?.error);
-    };
   }
 
   protected abstract fetchUser(

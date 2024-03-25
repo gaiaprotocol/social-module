@@ -3,7 +3,7 @@ declare class FCMSubscribedTopicService extends SupabaseService<{
     topic: string;
 }> {
     constructor();
-    fetch(userId: string): Promise<{
+    fetchAll(userId: string): Promise<{
         topic: string;
     }[]>;
 }

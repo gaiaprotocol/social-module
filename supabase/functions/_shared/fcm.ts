@@ -25,9 +25,9 @@ const getAccessToken = (
 
 export async function sendFcmToSpecificUser(token: string, message: {
   title: string;
-  content: string;
+  body: string;
   icon?: string;
-}) {
+}, data?: any) {
   const accessToken = await getAccessToken({
     clientEmail: serviceAccount.client_email,
     privateKey: serviceAccount.private_key,
@@ -48,8 +48,9 @@ export async function sendFcmToSpecificUser(token: string, message: {
           token,
           notification: {
             title: message.title,
-            body: message.content,
+            body: message.body,
           },
+          data,
           webpush: message.icon
             ? { notification: { icon: message.icon } }
             : undefined,
@@ -124,9 +125,9 @@ export async function unsubscribeFcmTopic(token: string, topic: string) {
 
 export async function sendFcmToTopic(topic: string, message: {
   title: string;
-  content: string;
+  body: string;
   icon?: string;
-}) {
+}, data?: any) {
   const accessToken = await getAccessToken({
     clientEmail: serviceAccount.client_email,
     privateKey: serviceAccount.private_key,
@@ -147,8 +148,9 @@ export async function sendFcmToTopic(topic: string, message: {
           topic,
           notification: {
             title: message.title,
-            body: message.content,
+            body: message.body,
           },
+          data,
           webpush: message.icon
             ? { notification: { icon: message.icon } }
             : undefined,
@@ -158,7 +160,7 @@ export async function sendFcmToTopic(topic: string, message: {
   );
 
   const resData = await res.json();
-  if (isDevMode) console.log("resData", resData);
+  if (isDevMode) console.log("resData", JSON.stringify(resData));
   if (res.status < 200 || 299 < res.status) {
     throw resData;
   }
