@@ -37,6 +37,18 @@ class FCM extends EventContainer {
 
     return false;
   }
+
+  public async closeAllNotifications(tag: string) {
+    const registration = await navigator.serviceWorker.getRegistration(
+      "/firebase-cloud-messaging-push-scope",
+    );
+    if (registration) {
+      const notifications = await registration.getNotifications({ tag });
+      for (const notification of notifications) {
+        notification.close();
+      }
+    }
+  }
 }
 
 export default new FCM();
