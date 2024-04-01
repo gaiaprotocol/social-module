@@ -4,16 +4,17 @@ export { default as ChatMessageForm } from "./chat/ChatMessageForm.js";
 export { default as ChatMessageInteractions } from "./chat/ChatMessageInteractions.js";
 export { default as ChatMessageList } from "./chat/ChatMessageList.js";
 export { default as ChatRoomView } from "./chat/ChatRoomView.js";
+export { default as EmojiPicker } from "./chat/EmojiPicker.js";
 export { default as Author } from "./database-interface/Author.js";
 export { default as ChatMessage } from "./database-interface/ChatMessage.js";
 export {
   default as Message,
-  MessageSelectQuery
+  MessageSelectQuery,
 } from "./database-interface/Message.js";
 export {
   default as Notification,
   NotificationSelectQuery,
-  NotificationType
+  NotificationType,
 } from "./database-interface/Notification.js";
 export { default as Post, PostSelectQuery } from "./database-interface/Post.js";
 export { default as PreviewUserPublic } from "./database-interface/PreviewUserPublic.js";
@@ -45,4 +46,3 @@ export { default as TestPostView } from "./test/TestPostView.js";
 export { default as TopicService } from "./topic/TopicService.js";
 export { default as SignedUserManager } from "./user/SignedUserManager.js";
 export { default as SocialUserService } from "./user/SocialUserService.js";
-
