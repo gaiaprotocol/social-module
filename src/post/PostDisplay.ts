@@ -73,7 +73,9 @@ export default class PostDisplay<T extends Post> extends SocialComponent {
       : undefined;
 
     const messageDisplay = el(".message", post.message);
-    const richDisplay = post.rich ? new RichDisplay(post.rich) : undefined;
+    const richDisplay = post.rich
+      ? new RichDisplay(post.rich, false)
+      : undefined;
     const dateDisplay = el(".date", DateUtil.fromNow(post.created_at));
 
     const actions = el(

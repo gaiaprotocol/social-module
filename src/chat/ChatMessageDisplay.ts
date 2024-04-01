@@ -16,7 +16,7 @@ export default class ChatMessageDisplay<S> extends SocialComponent {
     this.append(
       el("p.message", message.message),
       message.rich
-        ? this.richDisplay = new RichDisplay(message.rich)
+        ? this.richDisplay = new RichDisplay(message.rich, false)
         : undefined,
     );
 
