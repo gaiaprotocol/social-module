@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "public"."fcm_tokens" (
-    "user_id" "uuid" DEFAULT "auth"."uid"() NOT NULL,
+    "user_id" "uuid" NOT NULL,
     "token" "text" NOT NULL,
     "subscribed_topics" "text"[] DEFAULT '{}'::text[] NOT NULL,
     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,

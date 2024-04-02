@@ -24,6 +24,7 @@ const getAccessToken = (
 };
 
 export async function sendFcmToSpecificUser(token: string, message: {
+  tag: string;
   title: string;
   body: string;
   icon?: string;
@@ -52,7 +53,13 @@ export async function sendFcmToSpecificUser(token: string, message: {
           },
           data,
           webpush: message.icon
-            ? { notification: { icon: message.icon } }
+            ? {
+              notification: {
+                icon: message.icon,
+                tag: message.tag,
+                renotify: true,
+              },
+            }
             : undefined,
         },
       }),
@@ -124,6 +131,7 @@ export async function unsubscribeFcmTopic(token: string, topic: string) {
 }
 
 export async function sendFcmToTopic(topic: string, message: {
+  tag: string;
   title: string;
   body: string;
   icon?: string;
@@ -152,7 +160,13 @@ export async function sendFcmToTopic(topic: string, message: {
           },
           data,
           webpush: message.icon
-            ? { notification: { icon: message.icon } }
+            ? {
+              notification: {
+                icon: message.icon,
+                tag: message.tag,
+                renotify: true,
+              },
+            }
             : undefined,
         },
       }),

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "public"."fcm_subscribed_topics" (
-    "user_id" "uuid" DEFAULT "auth"."uid"() NOT NULL,
+    "user_id" "uuid" NOT NULL,
     "topic" "text" NOT NULL,
     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
     "updated_at" timestamp with time zone

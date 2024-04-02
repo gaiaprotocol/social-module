@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "public"."users_public" (
-    "user_id" "uuid" DEFAULT "auth"."uid"() NOT NULL,
+    "user_id" "uuid" NOT NULL,
     "display_name" "text",
     "avatar" "text",
     "avatar_thumb" "text",

@@ -1,12 +1,12 @@
 fcm_tokens
-	user_id - uuid, fk to users_public.user_id - auth.uid() - pk
+	user_id - uuid, fk to users_public.user_id - pk
 	token - text - not null - pk
 	subscribed_topics - text[] - []
 	created_at - timestampz - now()
 	updated_at - timestampz - nullable
 
 fcm_subscribed_topics
-    user_id - uuid, fk to users_public.user_id - auth.uid() - pk
+    user_id - uuid, fk to users_public.user_id - pk
     topic - text - not null - pk
     created_at - timestampz - now()
     updated_at - timestampz - nullable

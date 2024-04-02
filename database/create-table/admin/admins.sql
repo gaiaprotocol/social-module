@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "public"."admins" (
-    "user_id" "uuid" DEFAULT "auth"."uid"() NOT NULL,
+    "user_id" "uuid" NOT NULL,
     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL
 );
 
