@@ -1,20 +1,21 @@
 :root {
-    --pwa-install-overlay-bg-color: rgba(12, 12, 12, 0.8);
+    --pwa-install-overlay-bg-color: rgba(12, 12, 12, 0.85);
 }
 
 .pwa-install-overlay {
-    position        : fixed;
-    top             : 0;
-    left            : 0;
-    z-index         : 999997;
-    width           : 100%;
-    height          : 100%;
-    overflow-y      : auto;
-    background-color: var(--pwa-install-overlay-bg-color);
-    backdrop-filter : blur(2px);
-    display         : flex;
-    flex-direction  : column;
-    padding-top     : 48px;
+    position               : fixed;
+    top                    : 0;
+    left                   : 0;
+    z-index                : 999997;
+    width                  : 100%;
+    height                 : 100%;
+    overflow-y             : auto;
+    background-color       : var(--pwa-install-overlay-bg-color);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter        : blur(2px);
+    display                : flex;
+    flex-direction         : column;
+    padding-top            : 48px;
 
     >main {
         flex-grow      : 1;
