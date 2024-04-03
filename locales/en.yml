@@ -9,17 +9,6 @@ getting-email-from-x-error-message: >
 message-too-long-alert-title: Message Length Exceeded
 message-too-long-alert-message: Your message is too long. The maximum allowed length is {maxLength} characters. Please shorten your message.
 
-x-account-email-required-popup-title: Add Your Email to X Account
-x-account-email-required-popup-message-1: Follow these simple steps to link an email address to your X account.
-x-account-email-required-popup-step-1: Navigate to "More" on the left-hand menu.
-x-account-email-required-popup-step-2: Select "Settings and privacy."
-x-account-email-required-popup-step-3: In "Settings," tap "Your account" and then "Account information" to manage your contact information.
-x-account-email-required-popup-step-4: Choose the "Email" section to update or add your email address.
-x-account-email-required-popup-step-5: Select "Add email address" and enter your preferred email into the pop-up window.
-x-account-email-required-popup-step-6: Look out for a verification code sent to the provided email and enter it in the designated field.
-x-account-email-required-popup-step-7: Finalize the process by clicking "Verify," securely linking your email to your X account.
-x-account-email-required-popup-message-2: Once you've completed these steps, your email should be added and verified on your X account.
-
 pwa-install-popup-pc-title: Installing {serviceName} on Your Computer
 pwa-install-popup-pc-message-1: >
   Follow these simple steps to install {serviceName} to your computer for quick and easy access:
