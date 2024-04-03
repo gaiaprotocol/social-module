@@ -1,0 +1,12 @@
+chat_messages
+	id - int8 - auto_increment - pk
+	source - int2 - not null
+	author - uuid, fk to users_public.user_id - auth.uid() - nullable
+	external_author_id - text - nullable
+	external_author_name - text - nullable
+	external_author_avatar - text - nullable
+	message - text - nullable
+	external_message_id - text - nullable
+	translated - jsonb - nullbale
+	rich - jsonb - nullable
+	created_at - timestampz - now()

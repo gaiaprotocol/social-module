@@ -1,0 +1,3 @@
+admins
+	user_id - uuid, fk to users_public.user_id - pk
+	created_at - timestampz - now()

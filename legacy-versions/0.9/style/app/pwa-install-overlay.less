@@ -1,0 +1,68 @@
+:root {
+    --pwa-install-overlay-bg-color: rgba(12, 12, 12, 0.85);
+}
+
+.pwa-install-overlay {
+    position               : fixed;
+    top                    : 0;
+    left                   : 0;
+    z-index                : 999997;
+    width                  : 100%;
+    height                 : 100%;
+    overflow-y             : auto;
+    background-color       : var(--pwa-install-overlay-bg-color);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter        : blur(2px);
+    display                : flex;
+    flex-direction         : column;
+    padding-top            : 48px;
+
+    >main {
+        flex-grow      : 1;
+        display        : flex;
+        flex-direction : column;
+        gap            : 16px;
+        align-items    : center;
+        justify-content: center;
+        text-align     : center;
+
+        >.icon {
+            width        : 100px;
+            height       : 100px;
+            border-radius: 16px;
+        }
+
+        >h1 {
+            font-size: 24px;
+            padding  : 0 16px;
+        }
+
+        >h2 {
+            font-size: 24px;
+            padding  : 0 16px;
+        }
+
+        >p {
+            font-size: 16px;
+            padding  : 0 16px;
+        }
+
+        >a.help {
+            font-size      : 12px;
+            color          : var(--sub-text-color);
+            text-decoration: underline;
+        }
+    }
+
+    >footer {
+        padding        : 16px;
+        display        : flex;
+        justify-content: center;
+
+        >a.cancel {
+            font-size      : 12px;
+            color          : var(--sub-text-color);
+            text-decoration: underline;
+        }
+    }
+}

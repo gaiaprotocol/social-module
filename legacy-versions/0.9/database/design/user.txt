@@ -1,0 +1,20 @@
+users_public
+	user_id - uuid, fk to auth.user - auth.uid() - pk
+	display_name - text - nullable
+	avatar - text - nullable
+	avatar_thumbnail - text - nullable
+	avatar_stored - bool - false
+	stored_avatar - text - nullable
+	stored_avatar_thumbnail - text - nullable
+	x_username - text - nullable
+	metadata - jsonb - nullable
+	follower_count - int4 - 0
+	following_count - int4 - 0
+	blocked - bool - false
+	created_at - timestampz - now()
+	updated_at - timestampz - nullable
+
+follows
+	follower_id - uuid, fk to users_public.user_id - auth.uid() - pk
+	followee_id - uuid, fk to users_public.user_id - pk
+	followed_at - timestampz - now()
