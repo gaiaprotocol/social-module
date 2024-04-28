@@ -3,7 +3,6 @@ import SocialUserPublic from "../database-interface/SocialUserPublic.js";
 export default abstract class SignedUserManager<UT extends SocialUserPublic> extends EventContainer {
     user: UT | undefined;
     get signed(): boolean;
-    constructor();
     init(additionalInitializer?: (userId: string) => Promise<void>): Promise<void>;
     protected abstract fetchUser(userId: string): Promise<UT | undefined>;
     signOut(): Promise<void>;

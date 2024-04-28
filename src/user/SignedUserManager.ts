@@ -10,11 +10,6 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     return this.user !== undefined;
   }
 
-  constructor() {
-    super();
-    this.addAllowedEvents("walletLinked");
-  }
-
   public async init(additionalInitializer?: (userId: string) => Promise<void>) {
     const { data, error } = await Supabase.client.auth.getSession();
     if (error) throw error;
