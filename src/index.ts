@@ -7,6 +7,7 @@ export {
   MessageSelectQuery,
 } from "./database-interface/Message.js";
 export { default as SocialUserPublic } from "./database-interface/SocialUserPublic.js";
+export { default as AndroidFcmNotification } from "./fcm/AndroidFcmNotification.js";
 export { default as FCM } from "./fcm/FCM.js";
 export { default as LeaveFeedbackModal } from "./feedback/LeaveFeedbackModal.js";
 export { default as PWAInstallPopup } from "./help/PWAInstallPopup.js";
