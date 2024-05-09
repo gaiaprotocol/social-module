@@ -4,6 +4,6 @@ import SocialUserPublic from "../database-interface/SocialUserPublic.js";
 export default abstract class SocialUserService<T extends SocialUserPublic>
   extends UserService<T> {
   public async fetchByXUsername(xUsername: string): Promise<T | undefined> {
-    return await this.safeSelectSingle((b) => b.eq("x_username", xUsername));
+    return await this.safeSelectSingle((b) => b.ilike("x_username", xUsername));
   }
 }
