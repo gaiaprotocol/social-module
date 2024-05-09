@@ -1,11 +1,10 @@
 import {
   BodyNode,
-  BrowserInfo,
   Button,
   ButtonType,
   el,
   msg,
-  Router,
+  Router
 } from "@common-module/app";
 import SocialComponent from "../SocialComponent.js";
 
@@ -35,14 +34,6 @@ export default class AndroidFcmNotification extends SocialComponent {
         }),
       ),
     );
-
-    // Android back button
-    if (
-      BrowserInfo.isAndroid &&
-      BrowserInfo.installed && window.location.hash === ""
-    ) {
-      window.location.hash = "#exitable";
-    }
 
     BodyNode.append(this);
 
