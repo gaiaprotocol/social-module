@@ -19,7 +19,11 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     if (
       cachedSessionUserId !== undefined && sessionUserId !== cachedSessionUserId
     ) window.location.reload();
-    this.store.set("sessionUserId", sessionUserId, true);
+    if (sessionUserId) {
+      this.store.set("sessionUserId", sessionUserId, true);
+    } else {
+      this.store.delete("sessionUserId");
+    }
     return sessionUserId;
   }
 
