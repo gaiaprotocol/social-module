@@ -29,12 +29,12 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     let sessionUserId = this.store.get<string>("sessionUserId");
     if (!sessionUserId) {
       sessionUserId = await this.fetchSessionUser(sessionUserId);
-    }
+    } else this.fetchSessionUser(sessionUserId); // no await
     if (sessionUserId) {
       await Promise.all([
         this.fetchUser(sessionUserId),
         ...(additionalInitializers?.map((initializer) =>
-          initializer(sessionUserId)
+          initializer(sessionUserId as string)
         ) ?? []),
       ]);
       FCM.requestPermissionAndSaveToken();
@@ -44,7 +44,12 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
   protected abstract fetchUser(userId: string): Promise<void>;
 
   public async signOut() {
-    await Supabase.signOut();
+    this.store.delete("sessionUserId");
+    try {
+      await Supabase.signOut();
+    } catch (error) {
+      console.error(error);
+    }
     location.reload();
   }
 
