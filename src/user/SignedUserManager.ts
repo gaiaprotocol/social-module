@@ -48,7 +48,7 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
   protected abstract fetchUser(userId: string): Promise<void>;
 
   public async signOut() {
-    this.store.delete("sessionUserId");
+    this.store.delete("sessionUserId", "user");
     try {
       await Supabase.signOut();
     } catch (error) {
