@@ -15,7 +15,7 @@ export default class EmojiPicker extends SocialComponent {
   }
 
   private emojiClick = (event: any) => {
-    this.fireEvent("select", event.detail.unicode);
+    this.emit("select", event.detail.unicode);
   };
 
   private _hide = (event: MouseEvent) => {
