@@ -21,23 +21,22 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
     if (
       cachedSessionUserId !== undefined &&
       this.sessionUserId !== cachedSessionUserId
-    ) window.location.reload();
-    if (this.sessionUserId) {
+    ) {
+      this.store.delete("sessionUserId", "user");
+      window.location.reload();
+    } else if (this.sessionUserId) {
       this.store.set("sessionUserId", this.sessionUserId, true);
     } else {
       this.store.delete("sessionUserId", "user");
     }
   }
 
-  public async init(additionalInitializers?: (() => Promise<void> | void)[]) {
+  public async init() {
     this.sessionUserId = this.store.get<string>("sessionUserId");
     if (!this.sessionUserId) await this.fetchSessionUser();
     else this.fetchSessionUser(); // no await
     if (this.sessionUserId) {
-      await Promise.all([
-        this.fetchUser(),
-        ...(additionalInitializers?.map((initializer) => initializer()) ?? []),
-      ]);
+      await this.fetchUser();
       FCM.requestPermissionAndSaveToken();
     }
   }
