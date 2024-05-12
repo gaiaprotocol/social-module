@@ -6,46 +6,43 @@ export default abstract class SignedUserManager<UT extends SocialUserPublic>
   extends EventContainer {
   protected store = new Store("__SIGN_USER_MANAGER_STORE");
 
+  public sessionUserId: string | undefined;
   public user: UT | undefined;
 
   public get signed() {
     return this.user !== undefined;
   }
 
-  private async fetchSessionUser(cachedSessionUserId: string | undefined) {
+  private async fetchSessionUser() {
+    const cachedSessionUserId = this.sessionUserId;
     const { data, error } = await Supabase.client.auth.getSession();
     if (error) throw error;
-    const sessionUserId = data?.session?.user.id;
+    this.sessionUserId = data?.session?.user.id;
     if (
-      cachedSessionUserId !== undefined && sessionUserId !== cachedSessionUserId
+      cachedSessionUserId !== undefined &&
+      this.sessionUserId !== cachedSessionUserId
     ) window.location.reload();
-    if (sessionUserId) {
-      this.store.set("sessionUserId", sessionUserId, true);
+    if (this.sessionUserId) {
+      this.store.set("sessionUserId", this.sessionUserId, true);
     } else {
-      this.store.delete("sessionUserId");
+      this.store.delete("sessionUserId", "user");
     }
-    return sessionUserId;
   }
 
-  public async init(
-    additionalInitializers?: ((userId: string) => Promise<void> | void)[],
-  ) {
-    let sessionUserId = this.store.get<string>("sessionUserId");
-    if (!sessionUserId) {
-      sessionUserId = await this.fetchSessionUser(sessionUserId);
-    } else this.fetchSessionUser(sessionUserId); // no await
-    if (sessionUserId) {
+  public async init(additionalInitializers?: (() => Promise<void> | void)[]) {
+    this.sessionUserId = this.store.get<string>("sessionUserId");
+    if (!this.sessionUserId) await this.fetchSessionUser();
+    else this.fetchSessionUser(); // no await
+    if (this.sessionUserId) {
       await Promise.all([
-        this.fetchUser(sessionUserId),
-        ...(additionalInitializers?.map((initializer) =>
-          initializer(sessionUserId as string)
-        ) ?? []),
+        this.fetchUser(),
+        ...(additionalInitializers?.map((initializer) => initializer()) ?? []),
       ]);
       FCM.requestPermissionAndSaveToken();
     }
   }
 
-  protected abstract fetchUser(userId: string): Promise<void>;
+  protected abstract fetchUser(): Promise<void>;
 
   public async signOut() {
     this.store.delete("sessionUserId", "user");
