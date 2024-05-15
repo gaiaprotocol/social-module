@@ -6,9 +6,6 @@ getting-email-from-x-error-message: >
   Error getting user email from external provider.
   Please add an email in your X account settings and allow email access.
 
-message-too-long-alert-title: Message Length Exceeded
-message-too-long-alert-message: Your message is too long. The maximum allowed length is {maxLength} characters. Please shorten your message.
-
 pwa-install-popup-pc-title: Installing {serviceName} on Your Computer
 pwa-install-popup-pc-message-1: >
   Follow these simple steps to install {serviceName} to your computer for quick and easy access:
