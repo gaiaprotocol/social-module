@@ -1,6 +1,7 @@
 import SocialComponent from "../SocialComponent.js";
 export default class EmojiPicker extends SocialComponent {
     showing: boolean;
+    private picker;
     constructor();
     private emojiClick;
     private _hide;

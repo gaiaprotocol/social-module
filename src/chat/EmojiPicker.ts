@@ -1,17 +1,16 @@
 import { Picker } from "emoji-picker-element";
 import SocialComponent from "../SocialComponent.js";
 
-const picker = new Picker();
-
 export default class EmojiPicker extends SocialComponent {
   public showing: boolean = false;
+  private picker = new Picker();
 
   constructor() {
     super(".emoji-picker");
     this.addAllowedEvents("select");
 
-    picker.addEventListener("emoji-click", this.emojiClick);
-    this.domElement.appendChild(picker);
+    this.picker.addEventListener("emoji-click", this.emojiClick);
+    this.domElement.appendChild(this.picker);
   }
 
   private emojiClick = (event: any) => {
@@ -37,8 +36,8 @@ export default class EmojiPicker extends SocialComponent {
   }
 
   public delete(): void {
-    picker.removeEventListener("emoji-click", this.emojiClick);
-    this.domElement.removeChild(picker);
+    this.picker.removeEventListener("emoji-click", this.emojiClick);
+    this.domElement.removeChild(this.picker);
     super.delete();
   }
 }
