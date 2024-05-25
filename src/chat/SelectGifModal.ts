@@ -1,11 +1,4 @@
-import {
-  AdaptiveModal,
-  Button,
-  ButtonType,
-  DomNode,
-  el,
-  MaterialIcon,
-} from "@common-module/app";
+import { AdaptiveModal, DomNode, el, MaterialIcon } from "@common-module/app";
 import { renderGrid } from "@giphy/js-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import SEnv from "../SEnv.js";
@@ -73,11 +66,6 @@ export default class SelectGifModal extends AdaptiveModal {
     this.main.append(
       el(
         ".gif-search-bar-container",
-        new Button({
-          type: ButtonType.Circle,
-          icon: new MaterialIcon("arrow_back"),
-          click: () => this.searchBar.search(""),
-        }),
         this.searchBar = new GifSearchBar(),
       ),
       this.categoryGrid = el(".category-grid"),
