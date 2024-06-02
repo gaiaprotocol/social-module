@@ -5,22 +5,17 @@
     }
 
     >main {
-        padding: 20px;
+        padding       : 20px;
+        display       : flex;
+        flex-direction: column;
+        gap           : 12px;
 
-        >form {
-            display       : flex;
-            flex-direction: column;
-            gap           : 12px;
-
-            >textarea {
-                width        : 100%;
-                height       : 200px;
-                padding      : 10px;
-                border       : 1px solid var(--line-color);
-                border-radius: 5px;
-            }
-
-            >button.submit {}
+        >textarea {
+            width        : 100%;
+            height       : 200px;
+            padding      : 10px;
+            border       : 1px solid var(--line-color);
+            border-radius: 5px;
         }
     }
 }
