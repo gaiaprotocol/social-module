@@ -19,7 +19,7 @@ export default class PWAInstallPopup extends Popup {
           tag: ".close",
           type: ButtonType.Circle,
           icon: new MaterialIcon("close"),
-          click: () => this.delete(),
+          onClick: () => this.delete(),
         }),
       );
       this.main.append(
@@ -50,7 +50,7 @@ export default class PWAInstallPopup extends Popup {
           tag: ".close",
           type: ButtonType.Circle,
           icon: new MaterialIcon("close"),
-          click: () => this.delete(),
+          onClick: () => this.delete(),
         }),
       );
       this.main.append(
@@ -89,7 +89,7 @@ export default class PWAInstallPopup extends Popup {
           tag: ".close",
           type: ButtonType.Circle,
           icon: new MaterialIcon("close"),
-          click: () => this.delete(),
+          onClick: () => this.delete(),
         }),
       );
       this.main.append(
@@ -133,7 +133,7 @@ export default class PWAInstallPopup extends Popup {
       new Button({
         tag: ".confirm",
         title: "OK",
-        click: () => this.delete(),
+        onClick: () => this.delete(),
       }),
     );
   }

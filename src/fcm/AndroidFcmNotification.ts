@@ -21,13 +21,13 @@ export default class AndroidFcmNotification extends SocialComponent {
         new Button({
           tag: ".cancel",
           title: msg("cancel-button"),
-          click: () => this.delete(),
+          onClick: () => this.delete(),
         }),
         new Button({
           type: ButtonType.Contained,
           tag: ".go",
           title: "Go",
-          click: async (event, button) => {
+          onClick: async () => {
             Router.go(redirectTo);
             this.delete();
           },

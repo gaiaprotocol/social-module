@@ -24,7 +24,7 @@ export default class PWAInstallOverlay extends DomNode {
           type: ButtonType.Contained,
           icon: new MaterialIcon("download"),
           title: "How to Install",
-          click: () => new PWAInstallPopup(serviceName),
+          onClick: () => new PWAInstallPopup(serviceName),
         }),
         el("a.help", `What is ${serviceName}?`, {
           href: overviewUrl,
@@ -33,7 +33,7 @@ export default class PWAInstallOverlay extends DomNode {
       ),
       el(
         "footer",
-        el("a.cancel", "Maybe later", { click: () => this.delete() }),
+        el("a.cancel", "Maybe later", { onClick: () => this.delete() }),
       ),
     );
   }

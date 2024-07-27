@@ -22,7 +22,7 @@ export default class PushSettingPopup extends Popup {
               tag: ".close",
               type: ButtonType.Circle,
               icon: new MaterialIcon("close"),
-              click: () => this.delete(),
+              onClick: () => this.delete(),
             }),
           ),
         );
@@ -76,7 +76,7 @@ export default class PushSettingPopup extends Popup {
               tag: ".close",
               type: ButtonType.Circle,
               icon: new MaterialIcon("close"),
-              click: () => this.delete(),
+              onClick: () => this.delete(),
             }),
           ),
         );
@@ -139,7 +139,7 @@ export default class PushSettingPopup extends Popup {
               tag: ".close",
               type: ButtonType.Circle,
               icon: new MaterialIcon("close"),
-              click: () => this.delete(),
+              onClick: () => this.delete(),
             }),
           ),
         );
@@ -186,7 +186,7 @@ export default class PushSettingPopup extends Popup {
               tag: ".close",
               type: ButtonType.Circle,
               icon: new MaterialIcon("close"),
-              click: () => this.delete(),
+              onClick: () => this.delete(),
             }),
           ),
         );
@@ -239,7 +239,7 @@ export default class PushSettingPopup extends Popup {
           tag: ".close",
           type: ButtonType.Circle,
           icon: new MaterialIcon("close"),
-          click: () => this.delete(),
+          onClick: () => this.delete(),
         }),
       );
       this.main.append(
@@ -276,7 +276,7 @@ export default class PushSettingPopup extends Popup {
       new Button({
         tag: ".confirm",
         title: "OK",
-        click: () => this.delete(),
+        onClick: () => this.delete(),
       }),
     );
   }
